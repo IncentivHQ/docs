@@ -4,8 +4,8 @@
   "name": "Incentiv Docs",
   "colors": {
     "primary": "#FE7233",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "light": "#fe7233",
+    "dark": "#fe7233"
   },
   "favicon": "/favicon.svg",
   "navigation": {
