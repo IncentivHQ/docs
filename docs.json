@@ -76,14 +76,14 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/Incentiv White.svg",
+    "dark": "/logo/Incentiv Black.svg"
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@incentiv.net"
       }
     ],
     "primary": {
