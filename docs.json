@@ -76,8 +76,8 @@
     }
   },
   "logo": {
-    "light": "/logo/Incentiv White.svg",
-    "dark": "/logo/Incentiv Black.svg"
+    "light": "/logo/Incentiv Black.svg",
+    "dark": "/logo/Incentiv White.svg"
   },
   "navbar": {
     "links": [
