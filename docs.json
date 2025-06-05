@@ -49,7 +49,7 @@
             ]
           },
           {
-            "group": "Endpoint Examples",
+            "group": "IncentiView",
             "pages": [
               "api-reference/endpoint/get",
               "api-reference/endpoint/create",
