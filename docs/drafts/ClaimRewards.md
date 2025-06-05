@@ -1,8 +1,4 @@
 
-title: Claim Rewards
-created at: Mon Mar 31 2025 14:40:16 GMT+0000 (Coordinated Universal Time)
-updated at: Thu May 29 2025 16:59:42 GMT+0000 (Coordinated Universal Time)
----
 
 # Claim Rewards
 
@@ -22,19 +18,19 @@ The economic model of Incentiv redistributes incentives to six primary stakehold
 
 * Those creating new tokens on the Incentiv platform are rewarded for their contributions to ecosystem expansion and adoption.
 
-1. **dApp Developers**
+2. **dApp Developers**
 
 * Builders of decentralized applications (dApps) receive incentives for their role in introducing innovative applications that attract users and generate value within the network.
 
-1. **Wallet Developers**
+3. **Wallet Developers**
 
 * Developers who create wallets and tools that enhance user experience, security, and accessibility receive rewards for supporting the growth of the ecosystem.
 
-1. **Network Operations**
+4. **Network Operations**
 
 * Validators and bundlers responsible for maintaining the infrastructure of the blockchain are incentivized for ensuring a secure, decentralized, and efficient network.
 
-1. **CO2 Offset**
+5. **CO2 Offset**
 
 * A portion of incentives is allocated to offset the carbon footprint of the network, promoting sustainability initiatives and reducing the environmental impact of blockchain operations.
 

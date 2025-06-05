@@ -16,23 +16,23 @@ The economic model of Incentiv redistributes incentives to six primary stakehold
 
 * Users engaging with the network by holding tokens, making transactions, and interacting with dApps are rewarded. Incentives are proportionally distributed based on user engagement, ensuring active participation is encouraged.
 
-1. **Token Issuers**
+2. **Token Issuers**
 
 * Those creating new tokens on the Incentiv platform are rewarded for their contributions to ecosystem expansion and adoption.
 
-1. **dApp Developers**
+3. **dApp Developers**
 
 * Builders of decentralized applications (dApps) receive incentives for their role in introducing innovative applications that attract users and generate value within the network.
 
-1. **Wallet Developers**
+4. **Wallet Developers**
 
 * Developers who create wallets and tools that enhance user experience, security, and accessibility receive rewards for supporting the growth of the ecosystem.
 
-1. **Network Operations**
+5. **Network Operations**
 
 * Validators and bundlers responsible for maintaining the infrastructure of the blockchain are incentivized for ensuring a secure, decentralized, and efficient network.
 
-1. **CO2 Offset**
+6. **CO2 Offset**
 
 * A portion of incentives is allocated to offset the carbon footprint of the network, promoting sustainability initiatives and reducing the environmental impact of blockchain operations.
 

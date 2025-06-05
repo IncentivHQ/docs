@@ -1,9 +1,3 @@
-
-title: Add Contacts
-created at: Mon Mar 03 2025 18:14:15 GMT+0000 (Coordinated Universal Time)
-updated at: Fri Apr 11 2025 12:38:38 GMT+0000 (Coordinated Universal Time)
----
-
 # Add Contacts
 
 The **Add Contacts** feature allows users to save wallet addresses with custom labels for easier identification. Once added, these contacts can be selected during transactions, streamlining token transfers and reducing the risk of errors.

@@ -14,15 +14,15 @@ The governance system in Incentiv ensures that decision-making remains decentral
 
 * Any eligible participant can submit proposals for changes to network parameters, funding initiatives, or protocol upgrades. Proposals are stored on-chain, ensuring transparency and immutability.
 
-1. **Voting Mechanism**
+2. **Voting Mechanism**
 
 * Token holders can vote on proposals based on their stake, ensuring that governance reflects the interests of active participants. Voting periods are predefined, allowing ample time for community engagement. Smart contracts automate vote tallying and execution, preventing manipulation.
 
-1. **Treasury Allocation**
+3. **Treasury Allocation**
 
 * Approved proposals with funding requirements trigger automated disbursements from the Treasury Contract. Funds are distributed according to pre-set guidelines, preventing unauthorized spending.
 
-1. **Protocol Adjustments**
+4. **Protocol Adjustments**
 
 * Governance decisions can modify staking rewards, incentive mechanisms, or system parameters. Adjustments to the Rewards Distribution Contract ensure fair compensation for validators, liquidity providers, and ecosystem contributors.
 

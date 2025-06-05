@@ -114,13 +114,13 @@ Allows users to create SQL-based queries and dashboards to visualize on-chain da
 
 Use Cases: DeFi trends, governance tracking, and smart contract analysis.
 
-1. **Flipside Crypto**
+2. **Flipside Crypto**
 
 Provides in-depth blockchain analytics with fast query execution.
 
 Use Cases: Network performance monitoring, transaction insights, and user engagement metrics.
 
-1. **Nansen**
+3. **Nansen**
 
 AI-driven analytics tool for tracking wallet activity, token flows, and market trends.
 

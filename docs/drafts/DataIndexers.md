@@ -70,7 +70,7 @@ To achieve high-performance data processing and retrieval, the Incentiv blockcha
 * Access Controls: Role-based access controls (RBAC) restrict unauthorized data access and administrative functions.
 * Encryption: Data encryption protocols secure stored and transmitted data against unauthorized access.
 
-#
+
 
 # Strategic Impact on the Network
 
@@ -84,7 +84,6 @@ Data indexers are essential for maintaining the performance and scalability of t
 
 * Fast data retrieval enhances the performance of wallets, dashboards, and block explorers. Users benefit from real-time updates on token balances, transaction statuses, and staking rewards, improving the overall accessibility of blockchain data.
 
-***
 
 **Scalability and Network Optimization**
 
@@ -106,13 +105,13 @@ Enables indexing and querying using subgraphs.
 
 Use Cases: dApp analytics, transaction tracking, and DeFi data aggregation.
 
-1. **Covalent**
+2. **Covalent**
 
 Provides a unified API for retrieving on-chain data across multiple networks.
 
 Use Cases: Token balances, wallet transaction history, and NFT metadata retrieval.
 
-1. **SubQuery**
+3. **SubQuery**
 
 Allows developers to build and host custom indexers for Incentiv.
 

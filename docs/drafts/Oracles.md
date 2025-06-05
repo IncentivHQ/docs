@@ -102,13 +102,13 @@ Decentralized price feeds and external data sources for smart contracts.
 
 Use Cases: DeFi, lending, stablecoins, insurance, and more.
 
-1. **Pyth Network**
+2. **Pyth Network**
 
 Real-time price data from first-party sources for fast transaction execution.
 
 Use Cases: DeFi applications, asset management, and high-frequency trading.
 
-1. **Redstone**
+3. **Redstone**
 
 Push-based price feed solution ensuring efficient and accurate data availability.
 
