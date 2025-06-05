@@ -1,6 +1,5 @@
----
-title: "Get Testnet Tokens"
----
+
+# Get Testnet Tokens
 
 During the Testnet phase, users have access to free claimable Testnet tokens via the Incentiv Portal. These tokens are meant for testing, experimenting, and exploring platform features—so feel free to play around without risk.
 

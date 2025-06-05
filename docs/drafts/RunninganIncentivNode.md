@@ -1,8 +1,5 @@
 
-title: Running an Incentiv Node
-created at: Sun Jan 19 2025 22:25:38 GMT+0000 (Coordinated Universal Time)
-updated at: Fri Mar 21 2025 18:08:39 GMT+0000 (Coordinated Universal Time)
----
+
 
 # Running an Incentiv Node
 
@@ -162,31 +159,19 @@ If you want to speed up synchronization, you can use a pre-built snapshot instea
 Why Run an Incentiv Node?
 
 * Earn INC Rewards
-
-  ```
     Validators and node operators receive staking and delegation incentives.
-  ```
 
 * Secure the Network
-
-  ```
     Nodes help validate transactions and maintain decentralization.
-  ```
 
 * Fast Synchronization
-
-  ```
     incentiv’s snapshot feature reduces sync time, allowing quick participation.
-  ```
 
 * Low Barrier to Entry
-
-  ```
     With Docker support, setup is streamlined for both novice and advanced users.
-  ```
 
-**For additional assistance, join the**[\*\* Incentiv Community\*\*](https://discord.com/invite/incentiv) **.**
+**For additional assistance, join the** [**Incentiv Community**](https://discord.com/invite/incentiv) 
 
-<u></u>
+
 
           

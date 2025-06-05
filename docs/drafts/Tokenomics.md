@@ -1,8 +1,5 @@
 
-title: Tokenomics
-created at: Sun Jan 19 2025 22:21:17 GMT+0000 (Coordinated Universal Time)
-updated at: Mon Mar 31 2025 16:46:06 GMT+0000 (Coordinated Universal Time)
----
+
 
 # Tokenomics
 
@@ -14,10 +11,10 @@ The INC token is distributed strategically to maintain network stability and enc
 
 | Catergory                 | Allocation | Purpose                                                                                                      |
 | ------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------ |
-| Pre-sale and Private Sale | 30         | Raised initial funding and incentivized early backers.                                                       |
-| Team and Advisory         | 15         | Rewards core contributors and project advisors, subject to vesting schedules.                                |
-| Long-Term Treasury Fund   | 20         | Reserved for future ecosystem development, governed by a DAO resolution.                                     |
-| Short-Term Growth Fund    | 35         | Supports marketing, operations, launchpad initiatives, airdrops, liquidity provision, and validator rewards​ |
+| Pre-sale and Private Sale | 30%         | Raised initial funding and incentivized early backers.                                                       |
+| Team and Advisory         | 15%         | Rewards core contributors and project advisors, subject to vesting schedules.                                |
+| Long-Term Treasury Fund   | 20%         | Reserved for future ecosystem development, governed by a DAO resolution.                                     |
+| Short-Term Growth Fund    | 35%         | Supports marketing, operations, launchpad initiatives, airdrops, liquidity provision, and validator rewards​ |
 
 To prevent sudden market disruptions, token distribution follows a vesting model, ensuring a gradual release based on predefined cliffs and schedules​.
 

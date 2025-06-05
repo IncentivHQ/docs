@@ -1,8 +1,5 @@
 
-title: Account Abstraction
-created at: Fri Feb 28 2025 11:50:50 GMT+0000 (Coordinated Universal Time)
-updated at: Mon Mar 31 2025 16:46:21 GMT+0000 (Coordinated Universal Time)
----
+
 
 # Account Abstraction
 
@@ -12,10 +9,10 @@ Account abstraction is at the core of Incentiv’s user experience, eliminating 
 
 # Key Features
 
-1. \*\*Automated Gas Fees: \*\*Users can pay transaction fees in any supported token, eliminating the need for native tokens for gas.
-2. \*\*Flexible Transaction Execution: \*\*AA Wallets enable scheduled payments, multi-signature approvals, and batch transactions, simplifying interactions with dApps and other blockchain services.
-3. \*\*Enhanced Security: \*\*If a user’s wallet is compromised, smart contract wallets allow for key recovery and multi-factor authentication, reducing risks associated with private key loss.
-4. \*\*Seamless dApp Integration: \*\*Developers can build applications that directly interact with AA Wallets, leveraging automated transaction execution and programmable security layers.
+1. **Automated Gas Fees:** Users can pay transaction fees in any supported token, eliminating the need for native tokens for gas.
+2. **Flexible Transaction Execution:** AA Wallets enable scheduled payments, multi-signature approvals, and batch transactions, simplifying interactions with dApps and other blockchain services.
+3. **Enhanced Security:** If a user’s wallet is compromised, smart contract wallets allow for key recovery and multi-factor authentication, reducing risks associated with private key loss.
+4. **Seamless dApp Integration:** Developers can build applications that directly interact with AA Wallets, leveraging automated transaction execution and programmable security layers.
 5. **Transfer Gate:** A smart contract-based mechanism that automates asset transfers, gas fee management, and transaction validation. It ensures seamless, secure, and efficient transactions, making blockchain interactions simpler and more intuitive for users.
 
 > <Note> Hello! you can try Account Abstraction here: [Using Incentiv](https://slite.com/api/public/notes/79D6QYMd7Ia2Gs/redirect)</Note>

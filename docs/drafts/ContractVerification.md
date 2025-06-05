@@ -1,8 +1,4 @@
 
-title: Contract Verification
-created at: Sat Dec 21 2024 23:19:22 GMT+0000 (Coordinated Universal Time)
-updated at: Mon Mar 10 2025 11:51:05 GMT+0000 (Coordinated Universal Time)
----
 
 # Contract Verification
 

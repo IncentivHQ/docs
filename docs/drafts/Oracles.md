@@ -1,8 +1,4 @@
 
-title: Oracles
-created at: Sun Jan 19 2025 22:29:19 GMT+0000 (Coordinated Universal Time)
-updated at: Thu Mar 27 2025 13:03:30 GMT+0000 (Coordinated Universal Time)
----
 
 # Oracles
 

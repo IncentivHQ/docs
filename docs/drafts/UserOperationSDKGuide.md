@@ -1,8 +1,5 @@
 
-title: UserOperation SDK Guide
-created at: Sun Mar 09 2025 15:48:40 GMT+0000 (Coordinated Universal Time)
-updated at: Mon Mar 31 2025 16:46:04 GMT+0000 (Coordinated Universal Time)
----
+
 
 # UserOperation SDK Guide
 
@@ -252,7 +249,7 @@ const getGasPrice = async (provider) => {
 
 ## Troubleshooting & Common Errors
 
-| Error                            | Cause                            | Solution                                       |
+| **Error**                            | **Cause**                            | **Solution**                                       |
 | -------------------------------- | -------------------------------- | ---------------------------------------------- |
 | `Invalid UserOperation (-32602)` | Malformed transaction parameters | Ensure all fields are correctly set            |
 | `AA23 reverted (Out of Gas)`     | Insufficient gas                 | Increase gas limits and balance                |

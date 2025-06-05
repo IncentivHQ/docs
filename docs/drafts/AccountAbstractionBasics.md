@@ -1,8 +1,4 @@
 
-title: Account Abstraction Basics
-created at: Sun Dec 22 2024 10:29:28 GMT+0000 (Coordinated Universal Time)
-updated at: Mon Mar 31 2025 16:46:19 GMT+0000 (Coordinated Universal Time)
----
 
 # Account Abstraction Basics
 

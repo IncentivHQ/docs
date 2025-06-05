@@ -1,8 +1,5 @@
 
-title: Whitelist and Blacklist
-created at: Mon Mar 31 2025 14:39:36 GMT+0000 (Coordinated Universal Time)
-updated at: Thu May 29 2025 16:59:38 GMT+0000 (Coordinated Universal Time)
----
+
 
 # Whitelist and Blacklist
 
@@ -42,7 +39,7 @@ The **TransferGate** is a user-centric security feature on the Incentiv blockc
 
 ### User Benefits
 
-| Feature                            | User Impact                                                       |
+| **Feature**                            | **User Impact**                                                       |
 | ---------------------------------- | ----------------------------------------------------------------- |
 | **Accidental Transfer Prevention** | Block misaddressed payments or phishing attempts.                 |
 | **Institutional Compliance**       | Meet regulatory demands for audit trails and controls.            |

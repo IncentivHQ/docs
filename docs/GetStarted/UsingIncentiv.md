@@ -1,6 +1,6 @@
----
-title: Using Incentiv
----
+
+# Using Incentiv
+
 ## Public Testnet
 
 Get started with Incentiv Public Testnet and experience seamless blockchain interactions. Access the testnet at: [testnet.incentiv.net](https://testnet.incentiv.net)

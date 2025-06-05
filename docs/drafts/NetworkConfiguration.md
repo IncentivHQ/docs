@@ -1,8 +1,5 @@
 
-title: Network Configuration
-created at: Sat Dec 21 2024 23:12:45 GMT+0000 (Coordinated Universal Time)
-updated at: Mon Mar 10 2025 11:52:40 GMT+0000 (Coordinated Universal Time)
----
+
 
 # Network Configuration
 
@@ -20,6 +17,6 @@ The **Incentiv Testnet** serves as the public testing environment for the Incent
 
 This configuration enables seamless interaction with the Incentiv Testnet, providing a stable environment for developers and validators to test functionalities before deployment on the mainnet.
 
-> <Tip> Check out our Onboarding experience </Tip>
+> <Check> Check out our Onboarding experience </Check>
 
           

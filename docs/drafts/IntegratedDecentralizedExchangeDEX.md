@@ -1,8 +1,5 @@
 
-title: Integrated Decentralized Exchange (DEX)
-created at: Fri Feb 28 2025 11:54:06 GMT+0000 (Coordinated Universal Time)
-updated at: Fri Mar 21 2025 17:52:53 GMT+0000 (Coordinated Universal Time)
----
+
 
 # Integrated Decentralized Exchange (DEX)
 

@@ -1,6 +1,6 @@
----
-title: Terms & Conditions for Incentiv Testnet Participation
----
+
+# Terms & Conditions for Incentiv Testnet Participation
+
 
 ## 1. Introduction
 

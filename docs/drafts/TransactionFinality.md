@@ -1,8 +1,4 @@
 
-title: Transaction Finality
-created at: Sat Dec 28 2024 21:16:07 GMT+0000 (Coordinated Universal Time)
-updated at: Mon Mar 31 2025 16:46:15 GMT+0000 (Coordinated Universal Time)
----
 
 # Transaction Finality
 
@@ -46,8 +42,8 @@ The integration of **ERC-4337** introduces **User Operations (UserOps)**, which 
 
 ### Throughput and Finality Metrics
 
-* \*\*Transaction Throughput: \*\*The efficient PoA mechanism and bundling (via ERC-4337) enable high throughput. Real-world TPS depends on gas limits and the complexity of on-chain operations, see more information [here](https://slite.com/api/public/notes/t4qifYh2J0vPzt/redirect) .
-* \*\*Near-Instant Finality: \*\*PoA ensures deterministic finality within one block production round, making UserOps immutable unless validators collude beyond the byzantine threshold.
+* **Transaction Throughput:** The efficient PoA mechanism and bundling (via ERC-4337) enable high throughput. Real-world TPS depends on gas limits and the complexity of on-chain operations, see more information [here](https://slite.com/api/public/notes/t4qifYh2J0vPzt/redirect) .
+* **Near-Instant Finality:** PoA ensures deterministic finality within one block production round, making UserOps immutable unless validators collude beyond the byzantine threshold.
 
 ### Strategic Impact on the Network
 

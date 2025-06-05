@@ -1,8 +1,5 @@
 
-title: Transaction Throughput (TPS)
-created at: Sat Dec 28 2024 21:42:51 GMT+0000 (Coordinated Universal Time)
-updated at: Mon Mar 31 2025 16:46:17 GMT+0000 (Coordinated Universal Time)
----
+
 
 # Transaction Throughput (TPS)
 
