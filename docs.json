@@ -19,10 +19,10 @@
               "index",
               "quickstart",
               "development",
-              "Get-Started/GetTestnetTokens",
-              "Get-Started/IncentivRegistration",
-              "Get-Started/TermsConditionsforI",
-              "Get-Started/UsingIncentiv"
+              "docs/GetStarted/GetTestnetTokens",
+              "docs/GetStarted/IncentivRegistration",
+              "docs/GetStarted/TermsConditionsforI",
+              "docs/GetStarted/UsingIncentiv"
             ]
           },
           {
