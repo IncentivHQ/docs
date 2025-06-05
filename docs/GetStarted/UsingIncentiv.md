@@ -1,5 +1,5 @@
 ---
-title:Using Incentiv
+title: Using Incentiv
 ---
 ## Public Testnet
 
