@@ -34,8 +34,9 @@
           }
         ]
       },
+      
       {
-        "tab": "API Reference",
+        "tab": "Development",
         "groups": [
           {
             "group": "API Documentation",
@@ -50,6 +51,12 @@
               "api-reference/endpoint/create",
               "api-reference/endpoint/delete",
               "api-reference/endpoint/webhook"
+            ]
+          },
+          {
+            "group": "Incentiv dApps SDK",
+            "pages": [
+              "tools/dapps/sdk"
             ]
           }
         ]
