@@ -1,10 +1,6 @@
 ---
 title: Terms & Conditions for Incentiv Testnet Participation
-created_at: Thu Apr 10 2025 23:12:34 GMT+0000 (Coordinated Universal Time)
-updated_at: Thu Apr 10 2025 23:27:47 GMT+0000 (Coordinated Universal Time)
 ---
-
-# Terms & Conditions for Incentiv Testnet Participation
 
 ## 1. Introduction
 
