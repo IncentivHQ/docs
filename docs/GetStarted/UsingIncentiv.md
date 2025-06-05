@@ -1,16 +1,10 @@
-
-title: Using Incentiv
-created at: Sat Dec 21 2024 22:59:30 GMT+0000 (Coordinated Universal Time)
-updated at: Mon Mar 31 2025 17:00:41 GMT+0000 (Coordinated Universal Time)
----
-
 # Using Incentiv
 
 ## Public Testnet
 
 Get started with Incentiv Public Testnet and experience seamless blockchain interactions. Access the testnet at: [testnet.incentiv.net](https://testnet.incentiv.net)
 
-> \[!NOTE]
+> [\!NOTE]
 > Hey, for a detailed registration process, go to [Incentiv Registration](https://slite.com/api/public/notes/2B4ygRivKAhD5t/redirect)
 
 ## Network and Transaction Processing
@@ -41,7 +35,5 @@ My Badges is a gamified badge system integrated into the Incentiv Portal that re
 | **Claim Rewards Completed**       | Claimed the earned rewards from the Incentiv Plus                                                        | Claim Rewards           |
 | **Play Game Completed**           | Completed a game interaction or on-chain game trigger integrated into the Incentiv ecosystem.            | Play Games              |
 
-> \[!NOTE] > \*\*Coming Soon! \*\* > **Integration with dApps and Ecosystem Growth**
+> [\!NOTE] \> \*\*Coming Soon\! \*\* \> **Integration with dApps and Ecosystem Growth**
 > Users will soon be able to interact with Incentiv-native dApps, enabling use of DEX swaps, asset transfers, and on-chain interactions seamlessly. The network's infrastructure supports scalable smart contract deployment, ensuring that developers and users benefit from an optimized Web3 experience.
-
-          

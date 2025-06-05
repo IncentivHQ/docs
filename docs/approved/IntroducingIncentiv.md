@@ -1,9 +1,3 @@
-
-title: Introducing Incentiv
-created at: Sat Dec 21 2024 22:33:55 GMT+0000 (Coordinated Universal Time)
-updated at: Fri May 16 2025 14:26:31 GMT+0000 (Coordinated Universal Time)
----
-
 # Introducing Incentiv
 
 # About Incentiv
@@ -35,5 +29,3 @@ The Web JS SDK provides developers with a seamless way to integrate blockchain f
 **Advanced Documentation and Support**
 
 Detailed, developer-friendly documentation accompanies all tools, ensuring ease of understanding and implementation. Combined with robust community support, these resources empower developers to build, test, and deploy with confidence.
-
-          
