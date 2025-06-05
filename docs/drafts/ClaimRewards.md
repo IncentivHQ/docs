@@ -1,0 +1,70 @@
+
+title: Claim Rewards
+created at: Mon Mar 31 2025 14:40:16 GMT+0000 (Coordinated Universal Time)
+updated at: Thu May 29 2025 16:59:42 GMT+0000 (Coordinated Universal Time)
+---
+
+# Claim Rewards
+
+> \[!CAUTION]
+> This feature is currently not live on the Public Testnet.
+
+The Incentiv blockchain employs a structured incentives distribution mechanism to maintain an equitable and sustainable ecosystem. This system ensures that fees collected from user transactions, AA wallets, and dApp operations are fairly distributed among key stakeholders who contribute to the network’s growth and security.
+
+The economic model of Incentiv redistributes incentives to six primary stakeholders, each receiving proportional rewards based on their participation and impact on the ecosystem:
+
+# Key Stakeholders
+
+1. **Active Wallets / Users**
+
+* Users engaging with the network by holding tokens, making transactions, and interacting with dApps are rewarded. Incentives are proportionally distributed based on user engagement, ensuring active participation is encouraged.
+
+1. **Token Issuers**
+
+* Those creating new tokens on the Incentiv platform are rewarded for their contributions to ecosystem expansion and adoption.
+
+1. **dApp Developers**
+
+* Builders of decentralized applications (dApps) receive incentives for their role in introducing innovative applications that attract users and generate value within the network.
+
+1. **Wallet Developers**
+
+* Developers who create wallets and tools that enhance user experience, security, and accessibility receive rewards for supporting the growth of the ecosystem.
+
+1. **Network Operations**
+
+* Validators and bundlers responsible for maintaining the infrastructure of the blockchain are incentivized for ensuring a secure, decentralized, and efficient network.
+
+1. **CO2 Offset**
+
+* A portion of incentives is allocated to offset the carbon footprint of the network, promoting sustainability initiatives and reducing the environmental impact of blockchain operations.
+
+> \[!NOTE]
+> Fun Fact: All of these stakeholders are rewarded by Incentiv!
+
+# Strategic Impact on the Network
+
+#### Encouraging Active Participation
+
+By rewarding active wallets, developers, and network operators, the Incentiv model ensures that key contributors remain engaged. Users benefit from staking, dApp interaction, and ecosystem participation, while developers are incentivized to create new applications and tools.
+
+#### Strengthening Network Security & Efficiency
+
+Validators and bundlers play a crucial role in maintaining blockchain integrity. By allocating rewards to network operations, Incentiv ensures decentralization, uptime, and operational efficiency, reducing risks of centralization and single points of failure.
+
+#### Fostering Innovation & Ecosystem Expansion
+
+Developers building dApps, wallets, and tokens receive direct incentives, driving the expansion of the ecosystem. This fosters a competitive environment where high-quality applications and new use cases continuously emerge.
+
+#### Commitment to Sustainability & Environmental Responsibility
+
+A portion of the incentives is allocated to CO2 offset initiatives, reinforcing Incentiv’s commitment to sustainability. By mitigating blockchain-related carbon footprints, the network supports long-term environmental consciousness without compromising efficiency.
+
+#### Self-Sustaining & Inclusive Economic Model
+
+Automated incentive redistribution eliminates reliance on centralized entities, making the economy self-sufficient. Proportional allocation ensures that all participants, from users to developers, benefit equitably, fostering a decentralized, transparent, and thriving blockchain environment.
+
+> \[!WARNING]
+> Coming soon to Incentiv Portal. Make sure to check it out once it's live!
+
+          
