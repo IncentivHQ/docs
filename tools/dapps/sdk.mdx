@@ -115,7 +115,23 @@ main().catch(console.error);
 
 ## Flow diagram
 
-![Mermaid Sdk Dapps Pn](/tools/sdk/mermaid-sdk-dapps.png)
+\`\`\`mermaid
+
+sequenceDiagram
+
+    participant dApp
+
+    participant PortalPopup
+
+    dApp-\>\>PortalPopup: [window.open](http://window.open)(.../dapp?data=CONNECT)
+
+    PortalPopup--\>\>dApp: postMessage CONNECT_RESOLVED (address)
+
+    dApp-\>\>PortalPopup: [window.open](http://window.open)(.../dapp?data=CALL&calldata=...)
+
+    PortalPopup--\>\>dApp: postMessage CALL_EXECUTED (hash)
+
+\`\`\`
 
 ---
 

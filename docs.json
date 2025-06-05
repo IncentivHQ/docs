@@ -58,9 +58,10 @@
             ]
           },
           {
-            "group": "Incentiv dApps SDK",
+            "group": "Tools",
             "pages": [
-              "tools/dapps/sdk"
+              "tools/dapps/sdk",
+              "tools/dapps/example"
             ]
           }
         ]
