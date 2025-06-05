@@ -18,8 +18,11 @@
             "pages": [
               "index",
               "quickstart",
-              "development"
-              
+              "development",
+              "Get-Started/GetTestnetTokens",
+              "Get-Started/IncentivRegistration",
+              "Get-Started/TermsConditionsforI",
+              "Get-Started/UsingIncentiv"
             ]
           },
           {
