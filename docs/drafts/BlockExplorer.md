@@ -8,8 +8,7 @@ updated at: Thu Mar 27 2025 13:11:46 GMT+0000 (Coordinated Universal Time)
 
 The Incentiv Block Explorer is an essential tool that provides real-time visibility into blockchain transactions, network activity, and smart contract execution. Designed for both transparency and ease of use, it enables users and developers to track, verify, and analyze on-chain data with precision. By offering detailed insights into network performance and individual transactions, the Incentiv Block Explorer strengthens user confidence and supports more effective development within the ecosystem.
 
-> \[!NOTE]
-> Want to see how it looks? go to https://explorer.staging.incentiv.net/
+> <Note>Want to see how it looks? go to https://explorer.staging.incentiv.net/</Note>
 
 # Core Functions of Block Explorers
 

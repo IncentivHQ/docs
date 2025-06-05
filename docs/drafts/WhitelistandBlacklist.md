@@ -6,8 +6,7 @@ updated at: Thu May 29 2025 16:59:38 GMT+0000 (Coordinated Universal Time)
 
 # Whitelist and Blacklist
 
-> \[!CAUTION]
-> This feature is currently not live on the Public Testnet.
+> <Warning> This feature is currently not live on the Public Testnet.</Warning>
 
 ## Incentiv Gate
 
@@ -55,7 +54,6 @@ The **TransferGate** is a user-centric security feature on the Incentiv blockc
 * **Enterprise Adoption**: Appeals to institutions requiring compliant asset management (e.g., funds, DAOs).
 * **User Confidence**: Positions Incentiv as a blockchain prioritizing both innovation and safety.
 
-> \[!WARNING]
-> Coming soon in the Incentiv Portal, be sure to try it out when it's live!
+> <Warning> Coming soon in the Incentiv Portal, be sure to try it out when it's live!</Warning>
 
           

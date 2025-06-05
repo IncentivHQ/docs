@@ -10,17 +10,16 @@ Human-readable names are not yet available on testnet.
 - Copy your wallet’s **0x address** (e.g., `0x1234...abcd`).
 - This is your **receiving address** for testnet tokens.
 
-![Screenshot 2025-03-31 at 11.26.29 PM.png](media_Receive%20Tokens/mA62igeDfKePTx-Screenshot%202025-03-31%20at%2011.26.29%E2%80%AFPM.png)
+![Receive Tokens](/docs/images/ReceiveTokens1.png)
 
-
-![Screenshot 2025-03-31 at 11.26.23 PM.png](media_Receive%20Tokens/WEqsuBVO9Xk4FQ-Screenshot%202025-03-31%20at%2011.26.23%E2%80%AFPM.png)
+![Receive Tokens](/docs/images/ReceiveTokens2.png)
 
 ## Step 2: Share Your Wallet Address
 
 - Send your 0x address to anyone who wants to send you tokens.
 - They’ll use this address in the Incentiv Portal or faucet to complete the transfer.
 
-> [\!NOTE] \> \*\*Coming soon to mainnet: \*\*use human-readable names like `centi.incentiv`, share QR codes or ENS-style links, and skip copying long 0x addresses.
+> <Note> **Coming soon to mainnet:** use human-readable names like `centi.incentiv`, share QR codes or ENS-style links, and skip copying long 0x addresses.</Note>
 
 ## [Coming Soon] Pending Transactions
 

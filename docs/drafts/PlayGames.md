@@ -6,8 +6,7 @@ updated at: Thu May 29 2025 16:59:40 GMT+0000 (Coordinated Universal Time)
 
 # Play Games
 
-> \[!CAUTION]
-> This feature is currently not live on the Public Testnet.
+> <Warning> This feature is currently not live on the Public Testnet. </Warning>
 
 The **Incentiv Arena** is a decentralized application (dApp) discovery and management module designed to showcase, organize, and elevate community-built projects within the Incentiv ecosystem. Serving as a central hub for innovation, the Arena empowers users to explore, evaluate, and interact with dApps while providing developers with visibility and feedback.
 
@@ -43,7 +42,6 @@ Incentiv’s dApp ecosystem features decentralized storage, where metadata like 
 
 Incentiv enables trustless discovery by reducing reliance on centralized app stores, letting users explore dApps vetted by the community. Security is enhanced through collective feedback and visible audit statuses, helping users identify potential risks. Users can also create custom workflows by building personalized DeFi dashboards or gaming portfolios with pinned favorites.
 
-> \[!WARNING]
-> Coming soon to Incentiv Portal. Make sure to check it out once it's live!
+> <Warning> Coming soon to Incentiv Portal. Make sure to check it out once it's live!</Warning>
 
           

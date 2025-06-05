@@ -15,21 +15,22 @@ Choose how you’d like to proceed:
 
 1. Click on “I’m just getting started.”
 
-![Screenshot 2025-03-04 at 1.59.20 AM.png](media_Incentiv%20Registration/nUqYTitzKEN4b7-Screenshot%202025-03-04%20at%201.59.20%E2%80%AFAM.png)
+![Incentiv Registration](/docs/images/IncentivRegistration1.png)
 
-1. Select “Create my first wallet.”
-2. Assign a nickname to your wallet for easy identification (or let the system generate one by clicking “Decide for me“).
+2. Select “Create my first wallet.”
+   ![Incentiv Registration](/docs/images/IncentivRegistration2.png)
+   
+3. Assign a nickname to your wallet for easy identification (or let the system generate one by clicking “Decide for me“).
 
-![Screenshot 2025-03-04 at 2.01.01 AM.png](media_Incentiv%20Registration/XZNMeHDq-APfZV-Screenshot%202025-03-04%20at%202.01.01%E2%80%AFAM.png)
+![Incentiv Registration](/docs/images/IncentivRegistration3.png)
 
-1. Validate your identity using biometric authentication or you device passkeys (touch/face recognition).
+4. Validate your identity using biometric authentication or you device passkeys (touch/face recognition).
 
-![Screenshot 2025-03-04 at 2.02.28 AM.png](media_Incentiv%20Registration/lwCYuLfxvunk5--Screenshot%202025-03-04%20at%202.02.28%E2%80%AFAM.png)
+![Incentiv Registration](/docs/images/IncentivRegistration4.png)
 
-> [\!NOTE]
-> Hello\! Worried about how Incentiv handle security? Check our [FAQ](https://slite.com/api/public/notes/FqQxtynJIOMSgG/redirect)
+> <Note> Hello\! Worried about how Incentiv handle security? Check our [FAQ](https://slite.com/api/public/notes/FqQxtynJIOMSgG/redirect) </Note>
 
-1. Your wallet is now connected to Incentiv, and you’re ready to explore\!
+5. Your wallet is now connected to Incentiv, and you’re ready to explore\!
 
 ### Option 2: Web3 is my thing
 
@@ -40,8 +41,7 @@ Choose an option:
 - Create an Incentiv Smart Wallet (for a new Web3 experience).
 ```
 
-> [\!WARNING]
-> If creating a new wallet, follow the steps outlined in Option 1 above.
+> <Warning> If creating a new wallet, follow the steps outlined in Option 1 above. </Warning>
 
 #### If using an existing wallet:
 
@@ -50,8 +50,7 @@ Choose an option:
 3. Choose your Wallet Provider (MetaMask or WalletConnect).
 4. Approve the network connection request in your wallet.
 
-> [\!TIP]
-> Hey, you got a Badge for activating your First Smart Wallet on Incentiv
+> <Tip> Hey, you got a Badge for activating your First Smart Wallet on Incentiv </Tip>
 
 # Video Tutorial: Registration
 

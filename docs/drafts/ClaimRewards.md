@@ -6,8 +6,7 @@ updated at: Thu May 29 2025 16:59:42 GMT+0000 (Coordinated Universal Time)
 
 # Claim Rewards
 
-> \[!CAUTION]
-> This feature is currently not live on the Public Testnet.
+> <Warning> This feature is currently not live on the Public Testnet. </Warning>
 
 The Incentiv blockchain employs a structured incentives distribution mechanism to maintain an equitable and sustainable ecosystem. This system ensures that fees collected from user transactions, AA wallets, and dApp operations are fairly distributed among key stakeholders who contribute to the network’s growth and security.
 
@@ -39,8 +38,7 @@ The economic model of Incentiv redistributes incentives to six primary stakehold
 
 * A portion of incentives is allocated to offset the carbon footprint of the network, promoting sustainability initiatives and reducing the environmental impact of blockchain operations.
 
-> \[!NOTE]
-> Fun Fact: All of these stakeholders are rewarded by Incentiv!
+> <Note> Fun Fact: All of these stakeholders are rewarded by Incentiv!</Note>
 
 # Strategic Impact on the Network
 
@@ -64,7 +62,6 @@ A portion of the incentives is allocated to CO2 offset initiatives, reinforcing 
 
 Automated incentive redistribution eliminates reliance on centralized entities, making the economy self-sufficient. Proportional allocation ensures that all participants, from users to developers, benefit equitably, fostering a decentralized, transparent, and thriving blockchain environment.
 
-> \[!WARNING]
-> Coming soon to Incentiv Portal. Make sure to check it out once it's live!
+> <Warning> Coming soon to Incentiv Portal. Make sure to check it out once it's live!</Warning>
 
           

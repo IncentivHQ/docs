@@ -8,8 +8,7 @@ updated at: Mon Mar 31 2025 16:46:21 GMT+0000 (Coordinated Universal Time)
 
 Account abstraction is at the core of Incentiv’s user experience, eliminating the need for complex private key management and manual fee payments. By leveraging ERC-4337, Incentiv’s Account Abstraction (AA) system enables seamless, automated transactions while enhancing security and flexibility.
 
-> \[!WARNING]
-> Hey! It's time to say goodbye to complicated actions, Incentiv will make it seamless!
+> <Warning> Hey! It's time to say goodbye to complicated actions, Incentiv will make it seamless! </Warning>
 
 # Key Features
 
@@ -19,8 +18,7 @@ Account abstraction is at the core of Incentiv’s user experience, eliminating 
 4. \*\*Seamless dApp Integration: \*\*Developers can build applications that directly interact with AA Wallets, leveraging automated transaction execution and programmable security layers.
 5. **Transfer Gate:** A smart contract-based mechanism that automates asset transfers, gas fee management, and transaction validation. It ensures seamless, secure, and efficient transactions, making blockchain interactions simpler and more intuitive for users.
 
-> \[!NOTE]
-> Hello! you can try Account Abstraction here: [Using Incentiv](https://slite.com/api/public/notes/79D6QYMd7Ia2Gs/redirect)
+> <Note> Hello! you can try Account Abstraction here: [Using Incentiv](https://slite.com/api/public/notes/79D6QYMd7Ia2Gs/redirect)</Note>
 
 # Strategic Impact on the Network
 

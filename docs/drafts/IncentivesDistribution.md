@@ -36,8 +36,7 @@ The economic model of Incentiv redistributes incentives to six primary stakehold
 
 * A portion of incentives is allocated to offset the carbon footprint of the network, promoting sustainability initiatives and reducing the environmental impact of blockchain operations.
 
-> \[!NOTE]
-> Fun Fact: All of these stakeholders are rewarded by Incentiv!
+> <Note> Fun Fact: All of these stakeholders are rewarded by Incentiv! </Note>
 
 # Strategic Impact on the Network
 

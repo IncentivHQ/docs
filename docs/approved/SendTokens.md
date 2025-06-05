@@ -7,31 +7,30 @@ Token transfers on Incentiv are executed through smart wallets using account abs
 - Locate the “Send” button in the panel beside your username or the pop-up menu.
 - Click “Send” to initiate the transfer.
 
-![Screenshot 2025-04-10 at 12.59.56 AM.png](media_Send%20Tokens/kdgXIg1KFer9MT-Screenshot%202025-04-10%20at%2012.59.56%E2%80%AFAM.png)
+![Send Tokens](/docs/images/SendTokens1.jpeg)
 
 **Alternate** **Step: Select a Contact**
 
 - Navigate to “My Contacts” section in the Incentiv Portal.
 - Select the desired contact you wish to send assets to and click “Send“
 
-![image.png](media_Send%20Tokens/cdJjo5rBc-jqrP-image.png)
+![Send Tokens](/docs/images/SendTokens2.jpeg)
 
 # Step 2: Fill Amount and Recipient Address
 
 - Enter the amount of tokens you want to send.
 - Input the recipient’s wallet address or select a contact from your list.
 
-![Screenshot 2025-04-11 at 8.21.08 PM.png](media_Send%20Tokens/oxqToq940wX_Pm-Screenshot%202025-04-11%20at%208.21.08%E2%80%AFPM.png)
+![Send Tokens](/docs/images/SendTokens3.jpeg)
 
-> [\!NOTE]
-> Fun Fact: You can select a contact from this page
+> <Note> Fun Fact: You can select a contact from this page </Note>
 
 # Step 3: Review & Confirm
 
 - Verify transaction details: recipient address, amount, and gas fees.
 - Click “Confirm” to proceed.
 
-![Screenshot 2025-04-11 at 8.21.32 PM.png](media_Send%20Tokens/qx_EU9ZXRwaGXQ-Screenshot%202025-04-11%20at%208.21.32%E2%80%AFPM.png)
+![Send Tokens](/docs/images/SendTokens4.jpeg)
 
 # Step 4:  Validation
 
@@ -39,7 +38,7 @@ Token transfers on Incentiv are executed through smart wallets using account abs
 - Confirm with biometrics or select Use a different passkey.
 - You can select "Cancel" to abort the transaction.
 
-![Screenshot 2025-04-11 at 8.22.41 PM.png](media_Send%20Tokens/imNs9H4Q9Nf69a-Screenshot%202025-04-11%20at%208.22.41%E2%80%AFPM.png)
+![Send Tokens](/docs/images/SendTokens5.jpeg)
 
 # Step 4:  Validation (Wallet Extension)
 
@@ -51,8 +50,7 @@ Token transfers on Incentiv are executed through smart wallets using account abs
 - You’ll receive a notification once the transaction is confirmed.
 - The recipient’s wallet will show the updated balance, and the transaction will appear in your Transaction History.
 
-> [\!TIP]
-> Congratulations, you earned a Badge for achieving your first transfer on Incentiv\!
+> <Tip> Congratulations, you earned a Badge for achieving your first transfer on Incentiv!</Tip>
 
 # Video Tutorial: Send Tokens
 

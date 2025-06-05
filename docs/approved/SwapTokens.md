@@ -7,21 +7,21 @@ Token swaps are executed through the built-in Incentiv DEX. Users can seamlessly
 - In the panel beside your nickname, or the pop-up widget, you can find action buttons.
 - Click “Swap” to manage the action.
 
-![Screenshot 2025-04-16 at 1.48.47 AM.png](media_Swap%20Tokens/BUWqUEuCfqqAJ0-Screenshot%202025-04-16%20at%201.48.47%E2%80%AFAM.png)
+![Swap Tokens](/docs/images/SwapTokens1.jpeg)
 
 # Step 2: Choose the token
 
 - Select which token you want to swap into and specify the amount of tokens.
 - You can use the 🔄 button if you want to switch between the origin token and the target token.
 
-![Screenshot 2025-04-16 at 1.46.53 AM.png](media_Swap%20Tokens/3GpSWs4PrkL2bI-Screenshot%202025-04-16%20at%201.46.53%E2%80%AFAM.png)
+![Swap Tokens](/docs/images/SwapTokens2.jpeg)
 
 # Step 3: Overview & Confirm
 
 - Review the transaction details, including the amount and gas fees.
 - Click “Confirm” to initiate the transaction.
 
-![Screenshot 2025-04-11 at 8.30.09 PM.png](media_Swap%20Tokens/IEwQbVINArWGm0-Screenshot%202025-04-11%20at%208.30.09%E2%80%AFPM.png)
+![Swap Tokens](/docs/images/SwapTokens3.jpeg)
 
 # Step 4:  Validation
 
@@ -29,7 +29,7 @@ Token swaps are executed through the built-in Incentiv DEX. Users can seamlessly
 - Use your fingerprint or facial recognition to confirm the transaction.
 - You can select "Use a different passkey" or "Cancel" to abort the transaction.
 
-![Screenshot 2025-04-11 at 8.22.41 PM.png](media_Swap%20Tokens/cxp3gY3SiWUkwi-Screenshot%202025-04-11%20at%208.22.41%E2%80%AFPM.png)
+![Swap Tokens](/docs/images/SwapTokens4.jpeg)
 
 Step 4:  Validation (Wallet Extension)
 
@@ -41,14 +41,13 @@ Check the details and sign the transaction from the extension
 
 - Once the transaction is confirmed, you’ll receive a notification.
 
-![Screenshot 2025-04-10 at 1.08.31 AM.png](media_Swap%20Tokens/XPvvKkWmiEKAKX-Screenshot%202025-04-10%20at%201.08.31%E2%80%AFAM.png)
+![Swap Tokens](/docs/images/SwapTokens5.jpeg)
 
 - The dashboard will reflect the updated balance of your swapped token, and the transaction will appear in your transaction history.
 
-![Screenshot 2025-04-16 at 1.49.21 AM.png](media_Swap%20Tokens/MAp2SqqIoRGKwf-Screenshot%202025-04-16%20at%201.49.21%E2%80%AFAM.png)
+![Swap Tokens](/docs/images/SwapTokens6.jpeg)
 
-> [\!TIP]
-> Congratulations, you earned a Badge for achieving your first swap on Incentiv\!
+> <Tip>Congratulations, you earned a Badge for achieving your first swap on Incentiv!</Tip>
 
 # Video Tutorial: Swap Tokens
 

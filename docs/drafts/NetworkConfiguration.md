@@ -20,7 +20,6 @@ The **Incentiv Testnet** serves as the public testing environment for the Incent
 
 This configuration enables seamless interaction with the Incentiv Testnet, providing a stable environment for developers and validators to test functionalities before deployment on the mainnet.
 
-> \[!TIP]
-> Check out our Onboarding experience
+> <Tip> Check out our Onboarding experience </Tip>
 
           
