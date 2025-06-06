@@ -26,12 +26,12 @@
           {
             "group": "General",
             "pages": [
-              "docs/approved/ReceiveTokens",
-              "docs/approved/AddContacts",
-              "docs/approved/SendTokens",
-              "docs/approved/SwapTokens",
-              "docs/approved/BundleActions",
-              "docs/approved/UnifiedToken"
+              "docs/General/ReceiveTokens",
+              "docs/General/AddContacts",
+              "docs/General/SendTokens",
+              "docs/General/SwapTokens",
+              "docs/General/BundleActions",
+              "docs/General/UnifiedToken"
             ]
           }
         ]
@@ -69,17 +69,17 @@
       "anchors": [
         {
           "anchor": "Documentation",
-          "href": "https://docs.incentiv.net/docs/",
+          "href": "https://docs.incentiv.net",
           "icon": "book-open-cover"
         },
         {
           "anchor": "Community",
-          "href": "https://mintlify.com/community",
+          "href": "https://discord.com/invite/incentiv",
           "icon": "discord"
         },
         {
           "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
+          "href": "https://medium.incentiv.net/",
           "icon": "newspaper"
         }
       ]
