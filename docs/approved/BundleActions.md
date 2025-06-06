@@ -1,11 +1,10 @@
-
-
-
-# Bundle Actions
+---
+title: Bundle Actions
+---
 
 With Incentiv’s Bundle feature, you can seamlessly swap tokens and send them to a contact—all in a single transaction, even if you don't hold the target token yet.
 
-> <Note> For this example, we are doing a swap and send bundle action </Note>
+ <Note> For this example, we are doing a swap and send bundle action </Note>
 
 # Step 1: Navigate and click the Swap button
 
@@ -33,7 +32,7 @@ With Incentiv’s Bundle feature, you can seamlessly swap tokens and send them t
 
 ![Bundle Actions](/docs/images/BundleActions4.jpeg)
 
-> <Warning>Note: The starting balance is 0.00 BULL Token before the start of the transaction, but now you have the swap projected balance after fees</Warning>
+ <Warning>Note: The starting balance is 0.00 BULL Token before the start of the transaction, but now you have the swap projected balance after fees</Warning>
 
 # Step 5: Overview & Confirm
 
@@ -65,7 +64,7 @@ With Incentiv’s Bundle feature, you can seamlessly swap tokens and send them t
 
 ![Bundle Actions](/docs/images/BundleActions8.jpeg)
 
-> <Tip> Congratulations! You earned a Badge for completing your first bundle action on Incentiv </Tip>
+ <Tip> Congratulations! You earned a Badge for completing your first bundle action on Incentiv </Tip>
 
 # Video Tutorial: Bundle Actions
 

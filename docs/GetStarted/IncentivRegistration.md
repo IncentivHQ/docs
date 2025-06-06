@@ -1,5 +1,6 @@
-# Incentiv Registration
-
+---
+title: Incentiv Registration
+---
 ## Step 1: Select Your Web3 Journey
 
 Choose how you’d like to proceed:

@@ -1,4 +1,6 @@
-# Add Contacts
+--- 
+title: Add Contacts 
+---
 
 The **Add Contacts** feature allows users to save wallet addresses with custom labels for easier identification. Once added, these contacts can be selected during transactions, streamlining token transfers and reducing the risk of errors.
 
@@ -24,7 +26,7 @@ Recommended Dimension Ratio: 1:1
 File Format: JPG, PNG
 ```
 
-> <Note> Fun Fact: You can upload any photo from your computer as their profile image!</Note>
+ <Note> Fun Fact: You can upload any photo from your computer as their profile image!</Note>
 
 ![Add Contacts](/docs/images/AddContacts2.jpeg)
 
@@ -36,7 +38,7 @@ Click **“Add contact”** to add the contact to your list.
 
 The contact will now appear in your address book, making it easier to send tokens with them in the future.
 
-> <Tip>Hey, you just earned a Badge for your new Contact Added on Incentiv!</Tip>
+ <Tip>Hey, you just earned a Badge for your new Contact Added on Incentiv!</Tip>
 
 # Video Tutorial: Add Contacts
 

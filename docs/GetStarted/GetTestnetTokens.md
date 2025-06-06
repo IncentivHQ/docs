@@ -1,9 +1,10 @@
-
-# Get Testnet Tokens
+---
+title: Get Testnet Tokens
+---
 
 During the Testnet phase, users have access to free claimable Testnet tokens via the Incentiv Portal. These tokens are meant for testing, experimenting, and exploring platform features—so feel free to play around without risk.
 
-> <Warning> When you register, you can claim 100 TCENT testnet tokens by clicking the “Get Free Tokens“ button or following the steps below </Warning>
+ <Warning> When you register, you can claim 100 TCENT testnet tokens by clicking the “Get Free Tokens“ button or following the steps below </Warning>
 
 ## How to Claim Testnet Tokens:
 
@@ -22,9 +23,7 @@ Click **"Close"** or the **"X"** to exit the popup. You can now view your update
 
 ![Get Testnet Tokens](/docs/images/GetTestnetTokens2.png)
 
-> <Tip>
->    Congratulations\! You just earned a Badge for receiving your free tokens on Incentiv\! 
-> </Tip>
+ <Tip>    Congratulations! You just earned a Badge for receiving your free tokens on Incentiv! </Tip>
 
 ## How to Get More Testnet Tokens?
 

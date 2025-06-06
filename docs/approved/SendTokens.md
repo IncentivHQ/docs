@@ -1,4 +1,6 @@
-# Send Tokens
+---
+title: Send Tokens
+---
 
 Token transfers on Incentiv are executed through smart wallets using account abstraction. This allows for simplified, gas-efficient transactions with support for batch processing and fee sponsorship. All transfers are routed through the Incentiv Portal and bundled via the alt mempool, ensuring secure and seamless delivery to the recipient.
 
@@ -23,7 +25,7 @@ Token transfers on Incentiv are executed through smart wallets using account abs
 
 ![Send Tokens](/docs/images/SendTokens3.jpeg)
 
-> <Note> Fun Fact: You can select a contact from this page </Note>
+ <Note> Fun Fact: You can select a contact from this page </Note>
 
 # Step 3: Review & Confirm
 
@@ -50,7 +52,7 @@ Token transfers on Incentiv are executed through smart wallets using account abs
 - You’ll receive a notification once the transaction is confirmed.
 - The recipient’s wallet will show the updated balance, and the transaction will appear in your Transaction History.
 
-> <Tip> Congratulations, you earned a Badge for achieving your first transfer on Incentiv!</Tip>
+ <Tip> Congratulations, you earned a Badge for achieving your first transfer on Incentiv!</Tip>
 
 # Video Tutorial: Send Tokens
 
