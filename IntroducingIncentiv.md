@@ -1,12 +1,12 @@
----
-title: "Welcome to Incentiv documentation"
----
 
-![Incentiv Light Violet Sv](/images/IncentivLightViolet.svg)
+title: Introducing Incentiv
+---
 
 # Introducing Incentiv
 
-A Layer 1 Blockchain with a core mission: making blockchain technology easy, accessible, intuitive, and rewarding by redefining the blockchain experience.
+# About Incentiv
+
+A Layer 1 Blockchain with a core mission — making blockchain technology easy, accessible, intuitive, and rewarding by redefining the blockchain experience.
 
 ## Incentiv’s Approach
 
@@ -34,11 +34,4 @@ The Web JS SDK provides developers with a seamless way to integrate blockchain f
 
 Detailed, developer-friendly documentation accompanies all tools, ensuring ease of understanding and implementation. Combined with robust community support, these resources empower developers to build, test, and deploy with confidence.
 
-<CardGroup cols={2}>
-  <Card title="Using Incentiv" icon="circle-play" href="https://docs.incentiv.net/docs/GetStarted/UsingIncentiv">
-    Get your Incentiv Jouney started
-  </Card>
-  <Card title="Development Tools" icon="rectangle-code" href="https://docs.incentiv.net/tools/dapps/sdk">
-    Start building you dApp on incentiv
-  </Card>
-</CardGroup>
+          
