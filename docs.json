@@ -16,18 +16,18 @@
           {
             "group": "Get Started",
             "pages": [
-              "index",
-              "quickstart",
-              "development",
-              "docs/GetStarted/GetTestnetTokens",
-              "docs/GetStarted/IncentivRegistration",
               "docs/GetStarted/TermsConditions",
-              "docs/GetStarted/UsingIncentiv"
+              "docs/GetStarted/UsingIncentiv",
+              "docs/GetStarted/IncentivRegistration",
+              "docs/GetStarted/GetTestnetTokens"
             ]
           },
           {
             "group": "Essentials",
             "pages": [
+              "index",
+              "quickstart",
+              "development",
               "essentials/markdown",
               "essentials/code",
               "essentials/images",
