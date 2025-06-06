@@ -34,15 +34,7 @@
               "docs/General/UnifiedToken"
             ]
           },
-          {
-            "group": "Building on Incentiv",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          },
+          
           {
             "group": "Tools",
             "pages": [
@@ -60,6 +52,15 @@
             "group": "API Documentation",
             "pages": [
               "api-reference/introduction"
+            ]
+          },
+          {
+            "group": "Building on Incentiv",
+            "pages": [
+              "api-reference/endpoint/get",
+              "api-reference/endpoint/create",
+              "api-reference/endpoint/delete",
+              "api-reference/endpoint/webhook"
             ]
           },
           {
