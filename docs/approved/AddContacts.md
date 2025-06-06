@@ -1,5 +1,5 @@
 --- 
-title: Add Contacts 
+title: Add  Contacts 
 ---
 The **Add Contacts** feature allows users to save wallet addresses with custom labels for easier identification. Once added, these contacts can be selected during transactions, streamlining token transfers and reducing the risk of errors.
 
