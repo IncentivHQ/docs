@@ -57,18 +57,14 @@
           {
             "group": "IncentiView",
             "pages": [
-              "api-reference/IncentiView/search"
+              "api-reference/IncentiView/search",
+              "api-reference/IncentiView/blocks",
+              "api-reference/IncentiView/block",
+              "api-reference/IncentiView/block-transactions",
+              "api-reference/IncentiView/block-userops"
             ]
           },
-          {
-            "group": "Endpoint Examples",
-            "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
-          },
+          
           {
             "group": "Tools",
             "pages": [

@@ -2,7 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "IncentiView Indexer API",
-    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+    "description": "API endpoint for listing blocks from the Incentiv Blockchain via the IncentiView indexer.",
     "license": {
       "name": "MIT"
     },
@@ -19,116 +19,6 @@
     }
   ],
   "paths": {
-    "/plants": {
-      "get": {
-        "description": "Returns all plants from the system that the user has access to",
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "The maximum number of results to return",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Plant"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "description": "Creates a new plant in the store",
-        "requestBody": {
-          "description": "Plant to add to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "plant response",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Plant"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/plants/{id}": {
-      "delete": {
-        "description": "Deletes a single plant based on the ID supplied",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "description": "ID of plant to delete",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "Plant deleted",
-            "content": {}
-          },
-          "400": {
-            "description": "unexpected error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/home/search": {
       "get": {
         "summary": "Global Search",
@@ -294,30 +184,138 @@
           }
         }
       }
-    }
-  },
-  "webhooks": {
-    "/plant/webhook": {
-      "post": {
-        "description": "Information about a new plant added to the store",
-        "requestBody": {
-          "description": "Plant added to the store",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewPlant"
+    },
+    "/blocks/{hashOrNumber}": {
+      "get": {
+        "summary": "Get Block",
+        "description": "Retrieve detailed information about a specific block using either its number or hash.",
+        "parameters": [
+          {
+            "name": "hashOrNumber",
+            "in": "path",
+            "required": true,
+            "description": "Block number (integer) or block hash (hex string).",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fetchTransactions",
+            "in": "query",
+            "required": false,
+            "description": "Include the list of transactions in the block.",
+            "schema": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detailed block information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BlockDetails"
+                },
+                "examples": {
+                  "example": {
+                    "summary": "Sample Block",
+                    "value": {
+                      "hash": "0xabc...",
+                      "number": 12345,
+                      "timestamp": 1748340000,
+                      "miner": "0xMinerAddress",
+                      "txCount": 4,
+                      "userOpCount": 2
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Block not found"
+          }
+        }
+      }
+    },
+    "/blocks/{hashOrNumber}/transactions": {
+      "get": {
+        "summary": "Get Block Transactions",
+        "description": "Retrieve all transactions that are included in the specified block.",
+        "parameters": [
+          {
+            "name": "hashOrNumber",
+            "in": "path",
+            "required": true,
+            "description": "Block number or hash",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of transactions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Transaction"
+                      }
+                    }
+                  }
+                }
               }
             }
           }
-        },
+        }
+      }
+    },
+    "/blocks/{hashOrNumber}/useroperations": {
+      "get": {
+        "summary": "Get Block UserOperations",
+        "description": "Retrieve all UserOperations (Account Abstraction) within a specified block.",
+        "parameters": [
+          {
+            "name": "hashOrNumber",
+            "in": "path",
+            "required": true,
+            "description": "Block number or hash",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "responses": {
           "200": {
-            "description": "Return a 200 status to indicate that the data was received successfully"
+            "description": "List of UserOperations",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/UserOperation"
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
     }
   },
+  
   "components": {
     "schemas": {
       "Block": {
@@ -371,6 +369,104 @@
             "type": "string"
           }
         }
+      },
+      "BlockDetails": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string"
+          },
+          "number": {
+            "type": "integer"
+          },
+          "timestamp": {
+            "type": "integer"
+          },
+          "miner": {
+            "type": "string"
+          },
+          "txCount": {
+            "type": "integer"
+          },
+          "userOpCount": {
+            "type": "integer"
+          },
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
+            }
+          }
+        },
+        "required": [
+          "hash",
+          "number",
+          "timestamp"
+        ]
+      },
+      "Transaction": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string"
+          },
+          "blockHash": {
+            "type": "string"
+          },
+          "blockNumber": {
+            "type": "integer"
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "gasUsed": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "hash",
+          "blockNumber",
+          "from",
+          "to"
+        ]
+      },
+      "UserOperation": {
+        "type": "object",
+        "properties": {
+          "hash": {
+            "type": "string"
+          },
+          "sender": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "integer"
+          },
+          "success": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "hash",
+          "sender",
+          "to",
+          "success"
+        ]
       }
     },
     "securitySchemes": {
