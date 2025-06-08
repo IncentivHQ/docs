@@ -1,41 +1,36 @@
 {
-  "openapi": "3.1.0",
+  "openapi": "3.0.3",
   "info": {
     "title": "IncentiView Indexer API",
-    "description": "An API for querying the Incentiv Blockchain through the IncentiView Indexer. Supports blocks, transactions, user operations, assets, and more.",
-    "license": {
-      "name": "MIT"
-    },
-    "version": "1.0.0"
+    "version": "1.0.0",
+    "description": "The IncentiView Indexer API provides developers, analysts, and explorers with programmatic access to real-time data \non the Incentiv Blockchain. IncentiView acts as the indexing and query layer for all on-chain activity, supporting \noperations such as retrieving blocks, transactions, user operations (Account Abstraction), assets, and account-level data. \n\nThe API is organized around REST principles and is designed for use in dApps, analytics dashboards, wallets, and block explorers.\n\nEach endpoint offers comprehensive filtering, pagination, and sorting capabilities to allow precise querying of blockchain state.\n"
   },
   "servers": [
     {
       "url": "https://indexer.testnet.incentiv.net/api"
     }
   ],
-  "security": [
-    {
-      "bearerAuth": []
-    }
-  ],
   "paths": {
     "/home/search": {
       "get": {
-        "description": "Search the Incentiv blockchain for any matching entity \u2014 address, block, transaction, user operation, or asset.",
+        "summary": "Global Search",
+        "description": "Performs a global search across the Incentiv blockchain index. \nThis endpoint enables querying of all major entity types such as addresses, blocks, transactions, user operations, and assets \nusing a free-form query string.\n\nUseful for implementing search bars or unified lookup features in dApps or explorers.\n",
+        "operationId": "searchHome",
         "parameters": [
           {
             "name": "query",
             "in": "query",
-            "description": "The search keyword or identifier (e.g., address, transaction hash, or name)",
             "required": true,
+            "description": "The search term to lookup. Can include full or partial hashes, addresses, or INS-style names.",
             "schema": {
-              "type": "string"
+              "type": "string",
+              "example": "0xabc123..."
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "Search results",
+            "description": "A list of matching search results across various entity types.",
             "content": {
               "application/json": {
                 "schema": {
@@ -44,7 +39,25 @@
                     "results": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/SearchResult"
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Type of the matched entity (e.g., block, transaction, userOperation)"
+                          },
+                          "id": {
+                            "type": "string",
+                            "description": "Identifier or primary key (e.g., hash or address)"
+                          },
+                          "label": {
+                            "type": "string",
+                            "description": "Human-readable label or summary of the entity"
+                          },
+                          "metadata": {
+                            "type": "object",
+                            "description": "Additional metadata depending on the type"
+                          }
+                        }
                       }
                     }
                   }
@@ -53,67 +66,15 @@
             }
           },
           "400": {
-            "description": "Invalid query or missing parameters",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
+            "description": "Bad Request. Likely missing the `query` parameter."
+          },
+          "500": {
+            "description": "Internal server error."
           }
-        }
-      }
-    }
-  },
-  "components": {
-    "schemas": {
-      "SearchResult": {
-        "required": [
-          "type",
-          "id"
-        ],
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "Entity type such as block, transaction, userOperation, etc."
-          },
-          "id": {
-            "type": "string",
-            "description": "The unique identifier for the result (e.g., hash or address)"
-          },
-          "label": {
-            "type": "string",
-            "description": "Human-readable label or summary"
-          },
-          "metadata": {
-            "type": "object",
-            "description": "Contextual information depending on the result type"
-          }
-        }
-      },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "message": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
+        },
+        "tags": [
+          "Home"
+        ]
       }
     }
   }
