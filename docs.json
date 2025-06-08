@@ -57,7 +57,7 @@
           {
             "group": "Building on Incentiv",
             "pages": [
-              "api-reference/incentiview/search",
+              "api-reference/incentiView/search",
               "api-reference/endpoint/create",
               "api-reference/endpoint/delete",
               "api-reference/endpoint/webhook"
