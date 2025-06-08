@@ -1,4 +1,4 @@
-{Add commentMore actions
+{
   "openapi": "3.1.0",
   "info": {
     "title": "OpenAPI Plant Store",
@@ -127,6 +127,72 @@
             }
           }
         }
+      }
+    },
+    "/home/search": {
+      "get": {
+        "summary": "Global Search",
+        "description": "Performs a global search across the Incentiv blockchain index. \nThis endpoint enables querying of all major entity types such as addresses, blocks, transactions, user operations, and assets \nusing a free-form query string.\n\nUseful for implementing search bars or unified lookup features in dApps or explorers.\n",
+        "operationId": "searchHome",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "description": "The search term to lookup. Can include full or partial hashes, addresses, or INS-style names.",
+            "schema": {
+              "type": "string",
+              "example": "0xabc123..."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of matching search results across various entity types.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "results": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "type": {
+                            "type": "string",
+                            "description": "Type of the matched entity (e.g., block, transaction, userOperation)"
+                          },
+                          "id": {
+                            "type": "string",
+                            "description": "Identifier or primary key (e.g., hash or address)"
+                          },
+                          "label": {
+                            "type": "string",
+                            "description": "Human-readable label or summary of the entity"
+                          },
+                          "metadata": {
+                            "type": "object",
+                            "description": "Additional metadata depending on the type"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request. Likely missing the `query` parameter."
+          },
+          "500": {
+            "description": "Internal server error."
+          }
+        },
+        "tags": [
+          "Home"
+        ]
       }
     }
   },
