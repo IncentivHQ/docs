@@ -1,7 +1,7 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "OpenAPI Plant Store",
+    "title": "IncentiView Indexer API",
     "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
     "license": {
       "name": "MIT"
@@ -10,7 +10,7 @@
   },
   "servers": [
     {
-      "url": "http://sandbox.mintlify.com"
+      "url": "https://indexer.testnet.incentiv.net/api"
     }
   ],
   "security": [
@@ -194,6 +194,106 @@
           "Home"
         ]
       }
+    },
+    "/blocks": {
+      "get": {
+        "summary": "List Blocks",
+        "description": "Retrieve a list of blocks with optional filters for timestamp and block number range.",
+        "parameters": [
+          {
+            "name": "fromTimestamp",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "name": "toTimestamp",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "name": "fromBlockNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "name": "toBlockNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "required": false
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of block metadata entries.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer"
+                    },
+                    "pageable": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Block"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "webhooks": {
@@ -220,40 +320,41 @@
   },
   "components": {
     "schemas": {
-      "Plant": {
-        "required": [
-          "name"
-        ],
+      "Block": {
         "type": "object",
         "properties": {
-          "name": {
-            "description": "The name of the plant",
+          "hash": {
             "type": "string"
           },
-          "tag": {
-            "description": "Tag to specify the type",
-            "type": "string"
-          }
-        }
-      },
-      "NewPlant": {
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/Plant"
+          "number": {
+            "type": "integer"
           },
-          {
-            "required": [
-              "id"
-            ],
-            "type": "object",
-            "properties": {
-              "id": {
-                "description": "Identification number of the plant",
-                "type": "integer",
-                "format": "int64"
-              }
-            }
+          "timestamp": {
+            "type": "integer"
+          },
+          "gasUsed": {
+            "type": "string"
+          },
+          "gasLimit": {
+            "type": "string"
+          },
+          "baseFeePerGas": {
+            "type": "string"
+          },
+          "miner": {
+            "type": "string"
+          },
+          "txCount": {
+            "type": "integer"
+          },
+          "userOpCount": {
+            "type": "integer"
           }
+        },
+        "required": [
+          "hash",
+          "number",
+          "timestamp"
         ]
       },
       "Error": {
@@ -264,8 +365,7 @@
         "type": "object",
         "properties": {
           "error": {
-            "type": "integer",
-            "format": "int32"
+            "type": "integer"
           },
           "message": {
             "type": "string"
