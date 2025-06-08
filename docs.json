@@ -57,7 +57,7 @@
           {
             "group": "Building on Incentiv",
              "openapi": {
-            "source": "/path/to/openapi.json",
+            "source": "/api-referenc/openapi.json",
             "directory": "api-reference"}
           },
           {
