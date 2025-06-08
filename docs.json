@@ -7,7 +7,7 @@
     "light": "#fe7233",
     "dark": "#fe7233"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon.ico",
   "navigation": {
     "tabs": [
       {
@@ -57,7 +57,7 @@
           {
             "group": "Building on Incentiv",
             "pages": [
-              "api-reference/endpoint/get",
+              "api-reference/incentiview/search",
               "api-reference/endpoint/create",
               "api-reference/endpoint/delete",
               "api-reference/endpoint/webhook"
