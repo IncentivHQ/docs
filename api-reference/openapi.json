@@ -2,7 +2,13 @@
   "openapi": "3.1.0",
   "info": {
     "title": "IncentiView Indexer API",
-    "description": "API endpoint for listing blocks from the Incentiv Blockchain via the IncentiView indexer.",
+    "description": "The IncentiView Indexer API provides developers, analysts, and explorers with programmatic access to real-time data 
+    on the Incentiv Blockchain. IncentiView acts as the indexing and query layer for all on-chain activity, supporting 
+    operations such as retrieving blocks, transactions, user operations (Account Abstraction), assets, and account-level data. 
+
+    The API is organized around REST principles and is designed for use in dApps, analytics dashboards, wallets, and block explorers.
+
+    Each endpoint offers comprehensive filtering, pagination, and sorting capabilities to allow precise querying of blockchain state.",
     "license": {
       "name": "MIT"
     },
@@ -14,9 +20,7 @@
     }
   ],
   "security": [
-    {
-      "bearerAuth": []
-    }
+    
   ],
   "paths": {
     "/home/search": {
@@ -313,6 +317,194 @@
           }
         }
       }
+    },
+    "/transactions": {
+      "get": {
+        "summary": "List Transactions",
+        "description": "Retrieve a list of blockchain transactions. Supports filtering by sender, receiver, block, timestamp, and pagination.",
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Sender address"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Recipient address"
+          },
+          {
+            "name": "blockNumber",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Block number"
+          },
+          {
+            "name": "fromTimestamp",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Start UNIX timestamp"
+          },
+          {
+            "name": "toTimestamp",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "End UNIX timestamp"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Offset for pagination"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer"
+            },
+            "description": "Page size"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            },
+            "description": "Sort order"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of transactions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Transaction"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions/{hash}": {
+      "get": {
+        "summary": "Get Transaction",
+        "description": "Fetch detailed information for a transaction by its hash.",
+        "parameters": [
+          {
+            "name": "hash",
+            "in": "path",
+            "required": true,
+            "description": "The transaction hash",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transaction details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transaction"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Transaction not found"
+          }
+        }
+      }
+    },
+    "/transactions/{hash}/useroperations": {
+      "get": {
+        "summary": "Get Transaction UserOperations",
+        "description": "Retrieve all user operations bundled inside the given transaction.",
+        "parameters": [
+          {
+            "name": "hash",
+            "in": "path",
+            "required": true,
+            "description": "Transaction hash",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User operations in the transaction",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserOperation"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions/{hash}/transfers": {
+      "get": {
+        "summary": "Get Transaction Transfers",
+        "description": "Retrieve all token transfers that occurred as part of the given transaction.",
+        "parameters": [
+          {
+            "name": "hash",
+            "in": "path",
+            "required": true,
+            "description": "Transaction hash",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transfers in the transaction",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Transfer"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   
@@ -467,13 +659,46 @@
           "to",
           "success"
         ]
+      },
+      "Transfer": {
+        "type": "object",
+        "properties": {
+          "transferId": {
+            "type": "string"
+          },
+          "assetId": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "string"
+          },
+          "tokenId": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "integer"
+          },
+          "transactionHash": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "transferId",
+          "from",
+          "to",
+          "amount",
+          "timestamp"
+        ]
       }
     },
     "securitySchemes": {
-      "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer"
-      }
+      
     }
   }
 }
