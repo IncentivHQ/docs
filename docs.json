@@ -55,9 +55,13 @@
             ]
           },
           {
-            "group": "Building on Incentiv",
-             "openapi": {
-            "source": "openapi.json"}
+            "group": "Endpoint Examples",
+            "pages": [
+              "api-reference/endpoint/get",
+              "api-reference/endpoint/create",
+              "api-reference/endpoint/delete",
+              "api-reference/endpoint/webhook"
+            ]
           },
           {
             "group": "Tools",
