@@ -1,80 +1,216 @@
-{
+{Add commentMore actions
   "openapi": "3.1.0",
   "info": {
-    "title": "IncentiView Indexer API",
-    "version": "1.0.0",
-    "description": "The IncentiView Indexer API provides developers, analysts, and explorers with programmatic access to real-time data \non the Incentiv Blockchain. IncentiView acts as the indexing and query layer for all on-chain activity, supporting \noperations such as retrieving blocks, transactions, user operations (Account Abstraction), assets, and account-level data. \n\nThe API is organized around REST principles and is designed for use in dApps, analytics dashboards, wallets, and block explorers.\n\nEach endpoint offers comprehensive filtering, pagination, and sorting capabilities to allow precise querying of blockchain state.\n"
+    "title": "OpenAPI Plant Store",
+    "description": "A sample API that uses a plant store as an example to demonstrate features in the OpenAPI specification",
+    "license": {
+      "name": "MIT"
+    },
+    "version": "1.0.0"
   },
   "servers": [
     {
-      "url": "https://indexer.testnet.incentiv.net/api"
+      "url": "http://sandbox.mintlify.com"
+    }
+  ],
+  "security": [
+    {
+      "bearerAuth": []
     }
   ],
   "paths": {
-    "/home/search": {
+    "/plants": {
       "get": {
-        "summary": "Global Search",
-        "description": "Performs a global search across the Incentiv blockchain index. \nThis endpoint enables querying of all major entity types such as addresses, blocks, transactions, user operations, and assets \nusing a free-form query string.\n\nUseful for implementing search bars or unified lookup features in dApps or explorers.\n",
-        "operationId": "searchHome",
+        "description": "Returns all plants from the system that the user has access to",
         "parameters": [
           {
-            "name": "query",
+            "name": "limit",
             "in": "query",
-            "required": true,
-            "description": "The search term to lookup. Can include full or partial hashes, addresses, or INS-style names.",
+            "description": "The maximum number of results to return",
             "schema": {
-              "type": "string",
-              "example": "0xabc123..."
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "A list of matching search results across various entity types.",
+            "description": "Plant response",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "results": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "type": {
-                            "type": "string",
-                            "description": "Type of the matched entity (e.g., block, transaction, userOperation)"
-                          },
-                          "id": {
-                            "type": "string",
-                            "description": "Identifier or primary key (e.g., hash or address)"
-                          },
-                          "label": {
-                            "type": "string",
-                            "description": "Human-readable label or summary of the entity"
-                          },
-                          "metadata": {
-                            "type": "object",
-                            "description": "Additional metadata depending on the type"
-                          }
-                        }
-                      }
-                    }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Plant"
                   }
                 }
               }
             }
           },
           "400": {
-            "description": "Bad Request. Likely missing the `query` parameter."
+            "description": "Unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new plant in the store",
+        "requestBody": {
+          "description": "Plant to add to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewPlant"
+              }
+            }
           },
-          "500": {
-            "description": "Internal server error."
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "plant response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Plant"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/plants/{id}": {
+      "delete": {
+        "description": "Deletes a single plant based on the ID supplied",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of plant to delete",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Plant deleted",
+            "content": {}
+          },
+          "400": {
+            "description": "unexpected error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "webhooks": {
+    "/plant/webhook": {
+      "post": {
+        "description": "Information about a new plant added to the store",
+        "requestBody": {
+          "description": "Plant added to the store",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewPlant"
+              }
+            }
           }
         },
-        "tags": [
-          "Home"
+        "responses": {
+          "200": {
+            "description": "Return a 200 status to indicate that the data was received successfully"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Plant": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The name of the plant",
+            "type": "string"
+          },
+          "tag": {
+            "description": "Tag to specify the type",
+            "type": "string"
+          }
+        }
+      },
+      "NewPlant": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Plant"
+          },
+          {
+            "required": [
+              "id"
+            ],
+            "type": "object",
+            "properties": {
+              "id": {
+                "description": "Identification number of the plant",
+                "type": "integer",
+                "format": "int64"
+              }
+            }
+          }
         ]
+      },
+      "Error": {
+        "required": [
+          "error",
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer"
       }
     }
   }
