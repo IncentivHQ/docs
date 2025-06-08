@@ -56,12 +56,9 @@
           },
           {
             "group": "Building on Incentiv",
-            "pages": [
-              "api-reference/incentiView/search",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
-            ]
+             "openapi": {
+            "source": "/path/to/openapi.json",
+            "directory": "api-reference"}
           },
           {
             "group": "Tools",
