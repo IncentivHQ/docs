@@ -55,6 +55,12 @@
             ]
           },
           {
+            "group": "IncentiView",
+            "pages": [
+              "api-reference/IncentiView/search"
+            ]
+          },
+          {
             "group": "Endpoint Examples",
             "pages": [
               "api-reference/IncentiView/search",
