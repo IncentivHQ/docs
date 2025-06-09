@@ -1,6 +1,6 @@
 ---
 title: Bundle Actions
-icon: "package"
+icon: "list"
 ---
 
 With Incentiv’s Bundle feature, you can seamlessly swap tokens and send them to a contact—all in a single transaction, even if you don't hold the target token yet.
