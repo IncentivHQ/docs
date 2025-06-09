@@ -49,12 +49,6 @@
         "tab": "Development",
         "groups": [
           {
-            "group": "API Documentation",
-            "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
             "group": "IncentiView",
             "pages": [
               "api-reference/IncentiView/search"
