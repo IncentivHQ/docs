@@ -1,5 +1,6 @@
 ---
 title: Receive Tokens
+icon: "arrow-down-left"
 ---
 
 To receive tokens, simply copy your **0x wallet address** from the Dashboard or use your QR code and share it with the sender. All transactions must go through the Incentiv Portal—direct transfers are not supported.

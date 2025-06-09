@@ -1,5 +1,6 @@
 ---
 title: Unified Token
+icon: "layers"
 ---
 
 The Unified Token System streamlines blockchain interactions by allowing users to perform transactions and pay gas fees using any supported token. By combining Account Abstraction (AA) and an integrated decentralized exchange (DEX), it removes the need to hold a native gas token like \$CENT, while maintaining security, efficiency, and decentralization.

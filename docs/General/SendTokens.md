@@ -1,5 +1,6 @@
 ---
 title: Send Tokens
+icon: "arrow-up-right"
 ---
 Token transfers on Incentiv are executed through smart wallets using account abstraction. This allows for simplified, gas-efficient transactions with support for batch processing and fee sponsorship. All transfers are routed through the Incentiv Portal and bundled via the alt mempool, ensuring secure and seamless delivery to the recipient.
 

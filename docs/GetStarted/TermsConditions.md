@@ -1,5 +1,6 @@
 ---
 title: Terms & Conditions for Incentiv Testnet Participation
+icon: "document"
 ---
 
 ## 1. Introduction

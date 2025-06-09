@@ -19,7 +19,6 @@
           {
             "group": "Get Started",
             "pages": [
-              "docs/GetStarted/TermsConditions",
               "docs/GetStarted/UsingIncentiv",
               "docs/GetStarted/IncentivRegistration",
               "docs/GetStarted/GetTestnetTokens"
@@ -38,10 +37,9 @@
           },
           
           {
-            "group": "Tools",
+            "group": "Others",
             "pages": [
-              "tools/dapps/sdk",
-              "tools/dapps/example"
+              "docs/GetStarted/TermsConditions"
             ]
           }
         ]

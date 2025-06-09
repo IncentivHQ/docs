@@ -1,5 +1,6 @@
 ---
 title: "Using Incentiv"
+icon: "book"
 ---
 
 ## Public Testnet

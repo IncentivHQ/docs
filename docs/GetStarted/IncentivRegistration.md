@@ -1,5 +1,6 @@
 ---
 title: Incentiv Registration
+icon: "form"
 ---
 ## Step 1: Select Your Web3 Journey
 
