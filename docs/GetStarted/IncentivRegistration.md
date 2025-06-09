@@ -2,16 +2,19 @@
 title: "Incentiv Registration"
 ---
 
-<Steps> Select Your Web3 Journey
+<Steps>
+<Step title=“Step 1: Select Your Web3 Journey“>
 
 Choose how you’d like to proceed:
 
 **“Web3 is my thing”** – For experienced Web3 users.
 
 **“I’m just getting started”** – For those new to blockchain, with guided support.
+</Step>
 
-<Steps> Create a Wallet or Connect an Existing One
-
+<step title=“Step 2: Create a Wallet or Connect an Existing One“>
+</step>
+</steps>
 ### Option 1: I’m just getting started
 
 1. Click on “I’m just getting started.”
@@ -45,7 +48,7 @@ Choose an option:
 - Use your existing wallet provider (MetaMask, WalletConnect, etc.).
 - Create an Incentiv Smart Wallet (for a new Web3 experience).
 ```
-
+</Step>
 > <Warning>
 >    If creating a new wallet, follow the steps outlined in Option 1 above. 
 > </Warning>
