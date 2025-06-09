@@ -93,9 +93,9 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://docs.incentiv.net",
-          "icon": "book-open-cover"
+          "anchor": "Try the Testnet",
+          "href": "https://testnet.incentiv.net/",
+          "icon": "monitor"
         },
         {
           "anchor": "Community",
@@ -123,8 +123,8 @@
     ],
     "primary": {
       "type": "button",
-      "label": "Testnet",
-      "href": "https://testnet.incentiv.net/"
+      "label": "Developer Tools",
+      "href": "https://docs.incentiv.net/api-reference/introduction"
     }
   },
   "footer": {
