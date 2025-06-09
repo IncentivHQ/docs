@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "almond",
+  "theme": "maple",
   "name": "Incentiv Docs",
   "colors": {
     "primary": "#FE7233",
@@ -26,7 +26,7 @@
             ]
           },
   {
-            "group": "Get Started",
+            "group": "General",
             "pages": [
               "docs/General/AddContacts",
               "docs/General/SendTokens",
