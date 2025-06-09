@@ -1,7 +1,6 @@
 ---
 title: Swap Tokens
 ---
-# Swap Tokens
 Token swaps are executed through the built-in Incentiv DEX. Users can seamlessly exchange supported assets within the portal, with all transactions handled via smart wallets for security and gas efficiency.
 
 <Steps> 
