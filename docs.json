@@ -79,6 +79,29 @@
               "api-reference/IncentiView/Transactions/transaction-transfer"
             ]
           },
+          {
+            "group": "User Operations",
+            "pages": [
+              "api-reference/IncentiView/UserOperations/userOperations",
+              "api-reference/IncentiView/UserOperations/userOperation",
+              "api-reference/IncentiView/UserOperations/userOps-transfers"
+            ]
+          },
+          {
+            "group": "Account",
+            "pages": [
+              "api-reference/IncentiView/Account/account-assets",
+              "api-reference/IncentiView/Account/account-transfers",
+              "api-reference/IncentiView/Account/account-userOps"
+            ]
+          },
+          {
+            "group": "Assets",
+            "pages": [
+              "api-reference/IncentiView/Assets/assets",
+              "api-reference/IncentiView/Assets/asset"
+            ]
+          },
           
           {
             "group": "Tools",

@@ -2,16 +2,7 @@
   "openapi": "3.1.0",
   "info": {
     "title": "IncentiView Indexer API",
-    "description": "The IncentiView Indexer API provides developers, analysts, and explorers with programmatic access to real-time data 
-    on the Incentiv Blockchain. IncentiView acts as the indexing and query layer for all on-chain activity, supporting 
-    operations such as retrieving blocks, transactions, user operations (Account Abstraction), assets, and account-level data. 
-
-    The API is organized around REST principles and is designed for use in dApps, analytics dashboards, wallets, and block explorers.
-
-    Each endpoint offers comprehensive filtering, pagination, and sorting capabilities to allow precise querying of blockchain state.",
-    "license": {
-      "name": "MIT"
-    },
+    "description": "API endpoint for listing blocks from the Incentiv Blockchain via the IncentiView indexer.",
     "version": "1.0.0"
   },
   "servers": [
@@ -19,58 +10,97 @@
       "url": "https://indexer.testnet.incentiv.net/api"
     }
   ],
-  "security": [
-    
-  ],
   "paths": {
-    "/home/search": {
+    "/useroperations": {
       "get": {
-        "summary": "Global Search",
-        "description": "Performs a global search across the Incentiv blockchain index. \nThis endpoint enables querying of all major entity types such as addresses, blocks, transactions, user operations, and assets \nusing a free-form query string.\n\nUseful for implementing search bars or unified lookup features in dApps or explorers.\n",
-        "operationId": "searchHome",
+        "summary": "List User Operations",
+        "description": "Retrieve a list of user operations with optional filters for timestamp, block number, sender, and more.",
         "parameters": [
           {
-            "name": "query",
+            "name": "fromTimestamp",
             "in": "query",
-            "required": true,
-            "description": "The search term to lookup. Can include full or partial hashes, addresses, or INS-style names.",
-            "schema": {
-              "type": "string",
-              "example": "0xabc123..."
-            }
+            "required": false,
+            "description": "UNIX timestamp (seconds) marking the start of the time range to filter user operations.",
+            "schema": { "type": "integer", "format": "int64" },
+            "example": 1710000000
+          },
+          {
+            "name": "toTimestamp",
+            "in": "query",
+            "required": false,
+            "description": "UNIX timestamp (seconds) marking the end of the time range to filter user operations.",
+            "schema": { "type": "integer", "format": "int64" },
+            "example": 1710090000
+          },
+          {
+            "name": "fromBlockNumber",
+            "in": "query",
+            "required": false,
+            "description": "Start of the block number range.",
+            "schema": { "type": "integer" },
+            "example": 1000
+          },
+          {
+            "name": "toBlockNumber",
+            "in": "query",
+            "required": false,
+            "description": "End of the block number range.",
+            "schema": { "type": "integer" },
+            "example": 1100
+          },
+          {
+            "name": "sender",
+            "in": "query",
+            "required": false,
+            "description": "Sender address to filter user operations.",
+            "schema": { "type": "string" },
+            "example": "0x123abc456def7890"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "description": "Status of the user operation to filter by.",
+            "schema": { "type": "string" },
+            "example": "success"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Offset for pagination.",
+            "schema": { "type": "integer" },
+            "example": 0
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of user operations to return.",
+            "schema": { "type": "integer" },
+            "example": 25
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "Sorting order for returned user operations. Options: `TIMESTAMP_ASC`, `TIMESTAMP_DESC`, `NUMBER_ASC`, `NUMBER_DESC`.",
+            "schema": { "type": "string" },
+            "example": "TIMESTAMP_DESC"
           }
         ],
         "responses": {
           "200": {
-            "description": "A list of matching search results across various entity types.",
+            "description": "A list of user operation entries.",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "results": {
+                    "total": { "type": "integer" },
+                    "items": {
                       "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "type": {
-                            "type": "string",
-                            "description": "Type of the matched entity (e.g., block, transaction, userOperation)"
-                          },
-                          "id": {
-                            "type": "string",
-                            "description": "Identifier or primary key (e.g., hash or address)"
-                          },
-                          "label": {
-                            "type": "string",
-                            "description": "Human-readable label or summary of the entity"
-                          },
-                          "metadata": {
-                            "type": "object",
-                            "description": "Additional metadata depending on the type"
-                          }
-                        }
-                      }
+                      "items": { "$ref": "#/components/schemas/UserOperation" }
                     }
                   }
                 }
@@ -78,15 +108,329 @@
             }
           },
           "400": {
-            "description": "Bad Request. Likely missing the `query` parameter."
-          },
-          "500": {
-            "description": "Internal server error."
+            "description": "Invalid query parameters",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
           }
-        },
-        "tags": [
-          "Home"
-        ]
+        }
+      }
+    },
+    "/useroperations/{hash}": {
+      "get": {
+        "summary": "Get User Operation by Hash",
+        "description": "Retrieve detailed information about a specific user operation by its hash.",
+        "parameters": [
+          {
+            "name": "hash",
+            "in": "path",
+            "required": true,
+            "description": "Hash of the user operation to retrieve.",
+            "schema": { "type": "string" },
+            "example": "0xop123abc456def"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User operation details.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/UserOperation" }
+              }
+            }
+          },
+          "404": {
+            "description": "User operation not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/useroperations/{hash}/transfers": {
+      "get": {
+        "summary": "Get Transfers for a User Operation",
+        "description": "Retrieve transfer events generated by a specific user operation hash.",
+        "parameters": [
+          {
+            "name": "hash",
+            "in": "path",
+            "required": true,
+            "description": "Hash of the user operation to retrieve transfers for.",
+            "schema": { "type": "string" },
+            "example": "0xop123abc456def"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of transfer events associated with the user operation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Transfer" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User operation not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/{address}/assets": {
+      "get": {
+        "summary": "Get Account Assets",
+        "description": "Retrieve a list of assets held by a specific account address.",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "required": true,
+            "description": "Account address to retrieve assets for.",
+            "schema": { "type": "string" },
+            "example": "0x123abc456def7890"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of assets held by the account.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Asset" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Account not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/{address}/transfers": {
+      "get": {
+        "summary": "Get Account Transfers",
+        "description": "List all transfer events related to a specific account address.",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "required": true,
+            "description": "Account address to retrieve transfers for.",
+            "schema": { "type": "string" },
+            "example": "0x123abc456def7890"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Offset for pagination.",
+            "schema": { "type": "integer" },
+            "example": 0
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of transfers to return.",
+            "schema": { "type": "integer" },
+            "example": 25
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of transfers related to the account.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Transfer" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Account not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/account/{address}/useroperations": {
+      "get": {
+        "summary": "Get Account User Operations",
+        "description": "List all user operations submitted by a specific account address.",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "required": true,
+            "description": "Account address to retrieve user operations for.",
+            "schema": { "type": "string" },
+            "example": "0x123abc456def7890"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Offset for pagination.",
+            "schema": { "type": "integer" },
+            "example": 0
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of user operations to return.",
+            "schema": { "type": "integer" },
+            "example": 25
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of user operations submitted by the account.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/UserOperation" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Account not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/assets": {
+      "get": {
+        "summary": "List Assets",
+        "description": "Retrieve a list of all available assets with optional filters.",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "description": "Type of asset to filter by (e.g., 'erc20', 'erc721', 'native').",
+            "schema": { "type": "string" },
+            "example": "erc20"
+          },
+          {
+            "name": "symbol",
+            "in": "query",
+            "required": false,
+            "description": "Symbol of the asset to filter by.",
+            "schema": { "type": "string" },
+            "example": "INC"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Offset for pagination.",
+            "schema": { "type": "integer" },
+            "example": 0
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of assets to return.",
+            "schema": { "type": "integer" },
+            "example": 25
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of assets.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": { "type": "integer" },
+                    "items": {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/Asset" }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query parameters",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/assets/{assetId}": {
+      "get": {
+        "summary": "Get Asset Details",
+        "description": "Retrieve metadata and statistics for a specific asset.",
+        "parameters": [
+          {
+            "name": "assetId",
+            "in": "path",
+            "required": true,
+            "description": "Asset identifier to retrieve details for.",
+            "schema": { "type": "string" },
+            "example": "0x123abc456def7890"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Asset metadata and statistics.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Asset" }
+              }
+            }
+          },
+          "404": {
+            "description": "Asset not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
       }
     },
     "/blocks": {
@@ -204,92 +548,83 @@
           }
         }
       }
-    }
+    },
     "/blocks/{hashOrNumber}": {
       "get": {
-        "summary": "Get Block",
-        "description": "Retrieve detailed information about a specific block using either its number or hash.",
+        "summary": "Get Block by Hash or Number",
+        "description": "Retrieve detailed information about a specific block by its hash or number.",
         "parameters": [
           {
             "name": "hashOrNumber",
             "in": "path",
             "required": true,
-            "description": "Block number (integer) or block hash (hex string).",
+            "description": "The block hash or block number to retrieve.",
             "schema": {
               "type": "string"
-            }
-          },
-          {
-            "name": "fetchTransactions",
-            "in": "query",
-            "required": false,
-            "description": "Include the list of transactions in the block.",
-            "schema": {
-              "type": "boolean",
-              "default": false
-            }
+            },
+            "example": "0xabc123... or 123456"
           }
         ],
         "responses": {
           "200": {
-            "description": "Detailed block information",
+            "description": "Block details.",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BlockDetails"
-                },
-                "examples": {
-                  "example": {
-                    "summary": "Sample Block",
-                    "value": {
-                      "hash": "0xabc...",
-                      "number": 12345,
-                      "timestamp": 1748340000,
-                      "miner": "0xMinerAddress",
-                      "txCount": 4,
-                      "userOpCount": 2
-                    }
-                  }
+                  "$ref": "#/components/schemas/Block"
                 }
               }
             }
           },
           "404": {
-            "description": "Block not found"
+            "description": "Block not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
     },
     "/blocks/{hashOrNumber}/transactions": {
       "get": {
-        "summary": "Get Block Transactions",
-        "description": "Retrieve all transactions that are included in the specified block.",
+        "summary": "Get Transactions for a Block",
+        "description": "Retrieve all transactions included in a specific block by its hash or number.",
         "parameters": [
           {
             "name": "hashOrNumber",
             "in": "path",
             "required": true,
-            "description": "Block number or hash",
+            "description": "The block hash or block number to retrieve transactions for.",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "0xabc123... or 123456"
           }
         ],
         "responses": {
           "200": {
-            "description": "List of transactions",
+            "description": "List of transactions in the block.",
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Transaction"
-                      }
-                    }
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Transaction"
                   }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Block not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
                 }
               }
             }
@@ -299,183 +634,23 @@
     },
     "/blocks/{hashOrNumber}/useroperations": {
       "get": {
-        "summary": "Get Block UserOperations",
-        "description": "Retrieve all UserOperations (Account Abstraction) within a specified block.",
+        "summary": "Get User Operations for a Block",
+        "description": "Retrieve all user operations (AA) included in a specific block by its hash or number.",
         "parameters": [
           {
             "name": "hashOrNumber",
             "in": "path",
             "required": true,
-            "description": "Block number or hash",
+            "description": "The block hash or block number to retrieve user operations for.",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "0xabc123... or 123456"
           }
         ],
         "responses": {
           "200": {
-            "description": "List of UserOperations",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/UserOperation"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/transactions": {
-      "get": {
-        "summary": "List Transactions",
-        "description": "Retrieve a list of blockchain transactions. Supports filtering by sender, receiver, block, timestamp, and pagination.",
-        "parameters": [
-          {
-            "name": "from",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Sender address"
-          },
-          {
-            "name": "to",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Recipient address"
-          },
-          {
-            "name": "blockNumber",
-            "in": "query",
-            "schema": {
-              "type": "integer"
-            },
-            "description": "Block number"
-          },
-          {
-            "name": "fromTimestamp",
-            "in": "query",
-            "schema": {
-              "type": "integer"
-            },
-            "description": "Start UNIX timestamp"
-          },
-          {
-            "name": "toTimestamp",
-            "in": "query",
-            "schema": {
-              "type": "integer"
-            },
-            "description": "End UNIX timestamp"
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "schema": {
-              "type": "integer"
-            },
-            "description": "Offset for pagination"
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "schema": {
-              "type": "integer"
-            },
-            "description": "Page size"
-          },
-          {
-            "name": "sort",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            },
-            "description": "Sort order"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of transactions",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Transaction"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/transactions/{hash}": {
-      "get": {
-        "summary": "Get Transaction",
-        "description": "Fetch detailed information for a transaction by its hash.",
-        "parameters": [
-          {
-            "name": "hash",
-            "in": "path",
-            "required": true,
-            "description": "The transaction hash",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Transaction details",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Transaction"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Transaction not found"
-          }
-        }
-      }
-    },
-    "/transactions/{hash}/useroperations": {
-      "get": {
-        "summary": "Get Transaction UserOperations",
-        "description": "Retrieve all user operations bundled inside the given transaction.",
-        "parameters": [
-          {
-            "name": "hash",
-            "in": "path",
-            "required": true,
-            "description": "Transaction hash",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "User operations in the transaction",
+            "description": "List of user operations in the block.",
             "content": {
               "application/json": {
                 "schema": {
@@ -486,28 +661,368 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Block not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/home/search": {
+      "get": {
+        "summary": "Search Home",
+        "description": "Search endpoint with multiple optional filters including block number, timestamp range, type, and pagination.",
+        "parameters": [
+          {
+            "name": "from",
+            "in": "query",
+            "required": false,
+            "description": "Start of the range filter, could be a block number or timestamp depending on context.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "1000"
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "required": false,
+            "description": "End of the range filter, could be a block number or timestamp depending on context.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "1100"
+          },
+          {
+            "name": "blockNumber",
+            "in": "query",
+            "required": false,
+            "description": "Specific block number to filter results.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1050
+          },
+          {
+            "name": "fromTimestamp",
+            "in": "query",
+            "required": false,
+            "description": "UNIX timestamp (seconds) marking the start of the time range.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": 1710000000
+          },
+          {
+            "name": "toTimestamp",
+            "in": "query",
+            "required": false,
+            "description": "UNIX timestamp (seconds) marking the end of the time range.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": 1710090000
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of results to return.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 25
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Offset for pagination.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 0
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "Sorting order of the results. Options may include `TIMESTAMP_ASC`, `TIMESTAMP_DESC`, `NUMBER_ASC`, `NUMBER_DESC`.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "TIMESTAMP_DESC"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "description": "Type of entity to filter by, e.g., `block`, `transaction`, `userOperation`.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "transaction"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Search results matching the query parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions": {
+      "get": {
+        "summary": "List Transactions",
+        "description": "Retrieve a list of transactions with optional filters and pagination.",
+        "parameters": [
+          {
+            "name": "fromTimestamp",
+            "in": "query",
+            "required": false,
+            "description": "UNIX timestamp (seconds) marking the start of the time range to filter transactions.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": 1710000000
+          },
+          {
+            "name": "toTimestamp",
+            "in": "query",
+            "required": false,
+            "description": "UNIX timestamp (seconds) marking the end of the time range to filter transactions.",
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "example": 1710090000
+          },
+          {
+            "name": "fromBlockNumber",
+            "in": "query",
+            "required": false,
+            "description": "Start of the block number range to filter transactions.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1000
+          },
+          {
+            "name": "toBlockNumber",
+            "in": "query",
+            "required": false,
+            "description": "End of the block number range to filter transactions.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1100
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Offset for pagination.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 0
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of transactions to return.",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 25
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "required": false,
+            "description": "Sorting order for returned transactions. Options: `TIMESTAMP_ASC`, `TIMESTAMP_DESC`, `NUMBER_ASC`, `NUMBER_DESC`.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "TIMESTAMP_DESC"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of transaction metadata entries.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": {
+                      "type": "integer"
+                    },
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Transaction"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid query parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions/{hash}": {
+      "get": {
+        "summary": "Get Transaction by Hash",
+        "description": "Retrieve detailed information about a specific transaction by its hash.",
+        "parameters": [
+          {
+            "name": "hash",
+            "in": "path",
+            "required": true,
+            "description": "Hash of the transaction to retrieve.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "0x123abc456def7890"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Transaction details.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transaction"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Transaction not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/transactions/{hash}/useroperations": {
+      "get": {
+        "summary": "Get User Operations for a Transaction",
+        "description": "Retrieve user operations (AA) associated with a specific transaction hash.",
+        "parameters": [
+          {
+            "name": "hash",
+            "in": "path",
+            "required": true,
+            "description": "Hash of the transaction to retrieve user operations for.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "0x123abc456def7890"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of user operations associated with the transaction.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UserOperation"
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Transaction not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
     },
     "/transactions/{hash}/transfers": {
       "get": {
-        "summary": "Get Transaction Transfers",
-        "description": "Retrieve all token transfers that occurred as part of the given transaction.",
+        "summary": "Get Transfers for a Transaction",
+        "description": "Retrieve transfer events associated with a specific transaction hash.",
         "parameters": [
           {
             "name": "hash",
             "in": "path",
             "required": true,
-            "description": "Transaction hash",
+            "description": "Hash of the transaction to retrieve transfers for.",
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "0x123abc456def7890"
           }
         ],
         "responses": {
           "200": {
-            "description": "Transfers in the transaction",
+            "description": "List of transfer events associated with the transaction.",
             "content": {
               "application/json": {
                 "schema": {
@@ -518,14 +1033,60 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "Transaction not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
           }
         }
       }
     }
   },
-  
   "components": {
     "schemas": {
+      "Asset": {
+        "type": "object",
+        "properties": {
+          "assetId": {
+            "type": "string",
+            "description": "Unique identifier for the asset (e.g., contract address or symbol for native asset)."
+          },
+          "symbol": {
+            "type": "string",
+            "description": "Ticker symbol of the asset."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the asset."
+          },
+          "decimals": {
+            "type": "integer",
+            "description": "Number of decimals the asset uses."
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of asset (e.g., 'erc20', 'erc721', 'native')."
+          },
+          "totalSupply": {
+            "type": "string",
+            "description": "Total supply of the asset."
+          }
+        },
+        "required": [
+          "assetId",
+          "symbol",
+          "name",
+          "decimals",
+          "type",
+          "totalSupply"
+        ]
+      },
       "Block": {
         "type": "object",
         "properties": {
@@ -569,161 +1130,208 @@
         "required": [
           "hash",
           "number",
-          "timestamp"
-        ]
-      },
-      "Error": {
-        "required": [
-          "error",
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "integer"
-          },
-          "message": {
-            "type": "string"
-          }
-        }
-      },
-      "BlockDetails": {
-        "type": "object",
-        "properties": {
-          "hash": {
-            "type": "string"
-          },
-          "number": {
-            "type": "integer"
-          },
-          "timestamp": {
-            "type": "integer"
-          },
-          "miner": {
-            "type": "string"
-          },
-          "txCount": {
-            "type": "integer"
-          },
-          "userOpCount": {
-            "type": "integer"
-          },
-          "transactions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Transaction"
-            }
-          }
-        },
-        "required": [
-          "hash",
-          "number",
-          "timestamp"
+          "timestamp",
+          "gasUsed",
+          "gasLimit",
+          "baseFeePerGas",
+          "miner",
+          "txCount",
+          "userOpCount"
         ]
       },
       "Transaction": {
         "type": "object",
         "properties": {
           "hash": {
-            "type": "string"
-          },
-          "blockHash": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique hash that identifies the transaction."
           },
           "blockNumber": {
-            "type": "integer"
-          },
-          "from": {
-            "type": "string"
-          },
-          "to": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          },
-          "gasUsed": {
-            "type": "string"
+            "type": "integer",
+            "description": "Block number in which this transaction was included."
           },
           "timestamp": {
-            "type": "integer"
+            "type": "integer",
+            "description": "UNIX timestamp of when the transaction was mined."
+          },
+          "from": {
+            "type": "string",
+            "description": "Address of the sender of the transaction."
+          },
+          "to": {
+            "type": "string",
+            "description": "Address of the receiver of the transaction."
+          },
+          "value": {
+            "type": "string",
+            "description": "Amount of cryptocurrency transferred in the transaction."
+          },
+          "gasUsed": {
+            "type": "string",
+            "description": "Gas used by this transaction."
+          },
+          "gasPrice": {
+            "type": "string",
+            "description": "Gas price paid per unit of gas."
+          },
+          "nonce": {
+            "type": "integer",
+            "description": "Transaction nonce to prevent replay attacks."
+          },
+          "input": {
+            "type": "string",
+            "description": "Input data sent with the transaction."
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of the transaction execution, e.g., success or failure."
           }
         },
         "required": [
           "hash",
           "blockNumber",
+          "timestamp",
           "from",
-          "to"
+          "to",
+          "value",
+          "gasUsed",
+          "gasPrice",
+          "nonce",
+          "input",
+          "status"
         ]
       },
       "UserOperation": {
         "type": "object",
         "properties": {
           "hash": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique hash identifying the user operation."
           },
           "sender": {
-            "type": "string"
+            "type": "string",
+            "description": "Address of the sender initiating the user operation."
           },
-          "to": {
-            "type": "string"
+          "nonce": {
+            "type": "string",
+            "description": "Nonce value to ensure uniqueness of the user operation."
           },
-          "value": {
-            "type": "string"
+          "initCode": {
+            "type": "string",
+            "description": "Initialization code for the user operation."
           },
-          "timestamp": {
-            "type": "integer"
+          "callData": {
+            "type": "string",
+            "description": "Call data payload of the user operation."
           },
-          "success": {
-            "type": "boolean"
+          "callGasLimit": {
+            "type": "string",
+            "description": "Gas limit for the call part of the user operation."
+          },
+          "verificationGasLimit": {
+            "type": "string",
+            "description": "Gas limit for the verification part of the user operation."
+          },
+          "preVerificationGas": {
+            "type": "string",
+            "description": "Gas paid before verification."
+          },
+          "maxFeePerGas": {
+            "type": "string",
+            "description": "Maximum fee per gas the sender is willing to pay."
+          },
+          "maxPriorityFeePerGas": {
+            "type": "string",
+            "description": "Maximum priority fee per gas."
+          },
+          "paymaster": {
+            "type": "string",
+            "description": "Address of the paymaster if any."
+          },
+          "paymasterData": {
+            "type": "string",
+            "description": "Additional data for the paymaster."
+          },
+          "signature": {
+            "type": "string",
+            "description": "Signature of the user operation."
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of the user operation execution."
           }
         },
         "required": [
           "hash",
           "sender",
-          "to",
-          "success"
+          "nonce",
+          "initCode",
+          "callData",
+          "callGasLimit",
+          "verificationGasLimit",
+          "preVerificationGas",
+          "maxFeePerGas",
+          "maxPriorityFeePerGas",
+          "paymaster",
+          "paymasterData",
+          "signature",
+          "status"
         ]
       },
       "Transfer": {
         "type": "object",
         "properties": {
-          "transferId": {
-            "type": "string"
-          },
-          "assetId": {
-            "type": "string"
-          },
           "from": {
-            "type": "string"
+            "type": "string",
+            "description": "Address from which the asset was transferred."
           },
           "to": {
-            "type": "string"
+            "type": "string",
+            "description": "Address to which the asset was transferred."
           },
-          "amount": {
-            "type": "string"
+          "value": {
+            "type": "string",
+            "description": "Amount of asset transferred."
           },
-          "tokenId": {
-            "type": "string"
-          },
-          "timestamp": {
-            "type": "integer"
+          "token": {
+            "type": "string",
+            "description": "Address or identifier of the token transferred."
           },
           "transactionHash": {
-            "type": "string"
+            "type": "string",
+            "description": "Hash of the transaction that included this transfer."
+          },
+          "logIndex": {
+            "type": "integer",
+            "description": "Index of the log entry within the transaction receipt."
           }
         },
         "required": [
-          "transferId",
           "from",
           "to",
-          "amount",
-          "timestamp"
+          "value",
+          "token",
+          "transactionHash",
+          "logIndex"
         ]
+      },
+      "Error": {
+        "type": "object",
+        "required": [
+          "error",
+          "message"
+        ],
+        "properties": {
+          "error": {
+            "type": "integer",
+            "description": "The error code."
+          },
+          "message": {
+            "type": "string",
+            "description": "A human-readable description of the error."
+          }
+        }
       }
-    },
-    "securitySchemes": {
-      
     }
   }
 }
