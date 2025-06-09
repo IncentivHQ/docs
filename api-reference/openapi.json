@@ -97,58 +97,74 @@
           {
             "name": "fromTimestamp",
             "in": "query",
+            "required": false,
+            "description": "UNIX timestamp (seconds) marking the start of the time range to filter blocks.",
             "schema": {
-              "type": "integer"
+              "type": "integer",
+              "format": "int64"
             },
-            "required": false
+            "example": 1710000000
           },
           {
             "name": "toTimestamp",
             "in": "query",
+            "required": false,
+            "description": "UNIX timestamp (seconds) marking the end of the time range to filter blocks.",
             "schema": {
-              "type": "integer"
+              "type": "integer",
+              "format": "int64"
             },
-            "required": false
+            "example": 1710090000
           },
           {
             "name": "fromBlockNumber",
             "in": "query",
+            "required": false,
+            "description": "Start of the block number range.",
             "schema": {
               "type": "integer"
             },
-            "required": false
+            "example": 1000
           },
           {
             "name": "toBlockNumber",
             "in": "query",
+            "required": false,
+            "description": "End of the block number range.",
             "schema": {
               "type": "integer"
             },
-            "required": false
+            "example": 1100
           },
           {
             "name": "offset",
             "in": "query",
+            "required": false,
+            "description": "Offset for pagination. Use in combination with `limit`.",
             "schema": {
               "type": "integer"
             },
-            "required": false
+            "example": 0
           },
           {
             "name": "limit",
             "in": "query",
+            "required": false,
+            "description": "Maximum number of blocks to return in a single response. Recommended max: 100.",
             "schema": {
               "type": "integer"
             },
-            "required": false
+            "example": 25
           },
           {
             "name": "sort",
             "in": "query",
+            "required": false,
+            "description": "Sorting order for returned blocks. Options: `TIMESTAMP_ASC`, `TIMESTAMP_DESC`, `NUMBER_ASC`, `NUMBER_DESC`.",
             "schema": {
               "type": "string"
             },
-            "required": false
+            "example": "NUMBER_DESC"
           }
         ],
         "responses": {
@@ -188,7 +204,7 @@
           }
         }
       }
-    },
+    }
     "/blocks/{hashOrNumber}": {
       "get": {
         "summary": "Get Block",
@@ -514,31 +530,40 @@
         "type": "object",
         "properties": {
           "hash": {
-            "type": "string"
+            "type": "string",
+            "description": "Unique hash that identifies the block."
           },
           "number": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Block number in the blockchain."
           },
           "timestamp": {
-            "type": "integer"
+            "type": "integer",
+            "description": "UNIX timestamp of when the block was mined."
           },
           "gasUsed": {
-            "type": "string"
+            "type": "string",
+            "description": "Total gas used in the block."
           },
           "gasLimit": {
-            "type": "string"
+            "type": "string",
+            "description": "Total gas limit of the block."
           },
           "baseFeePerGas": {
-            "type": "string"
+            "type": "string",
+            "description": "Base fee per gas used, introduced in EIP-1559."
           },
           "miner": {
-            "type": "string"
+            "type": "string",
+            "description": "Address of the miner who mined the block."
           },
           "txCount": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Number of transactions included in the block."
           },
           "userOpCount": {
-            "type": "integer"
+            "type": "integer",
+            "description": "Number of user operations (AA) in the block."
           }
         },
         "required": [
