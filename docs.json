@@ -22,7 +22,17 @@
               "docs/GetStarted/GetTestnetTokens"
             ]
           },
-  
+  {
+            "group": "Get Started",
+            "pages": [
+              "docs/AddContacts",
+              "docs/SendTokens",
+              "docs/ReceiveTokens",
+              "docs/SwapTokens",
+              "docs/BundleActions",
+              "docs/UnifiedToken"
+            ]
+          },
           {
             "group": "General",
             "pages": [
