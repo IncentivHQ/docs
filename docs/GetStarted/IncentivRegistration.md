@@ -2,21 +2,32 @@
 title: "Incentiv Registration"
 ---
 
-<Steps>
-<Step title=“Step 1: Select Your Web3 Journey“>
+## Step 1: Select Your Web3 Journey
 
 Choose how you’d like to proceed:
 
 **“Web3 is my thing”** – For experienced Web3 users.
 
 **“I’m just getting started”** – For those new to blockchain, with guided support.
-</Step>
 
-<step title=“Step 2: Create a Wallet or Connect an Existing One“>
-</step>
-</steps>
+
+## Step 2: Create a Wallet or Connect an Existing One
+
 ### Option 1: I’m just getting started
-
+<Steps>
+  <Step title="Click on “I’m just getting started.">
+     ![Incentiv Registration](/docs/images/IncentivRegistration1.png)
+  </Step>
+  <Step title="Select “Create my first wallet.”">
+   ![Incentiv Registration](/docs/images/IncentivRegistration2.png)
+  </Step>
+  <Step title="Assign a nickname to your wallet for easy identification (or let the system generate one by clicking “Decide for me“).">
+   ![Incentiv Registration](/docs/images/IncentivRegistration3.png)
+  </Step>
+  <Step title="Validate your identity using biometric authentication or you device passkeys (touch/face recognition)“).">
+   ![Incentiv Registration](/docs/images/IncentivRegistration4.png)
+  </Step>
+</Steps>
 1. Click on “I’m just getting started.”
    
 
