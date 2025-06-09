@@ -28,12 +28,12 @@
   {
             "group": "General",
             "pages": [
-              "docs/General/AddContacts",
-              "docs/General/SendTokens",
-              "docs/General/ReceiveTokens",
-              "docs/General/SwapTokens",
-              "docs/General/BundleActions",
-              "docs/General/UnifiedToken"
+              "docs/Guide/AddContacts",
+              "docs/Guide/SendTokens",
+              "docs/Guide/ReceiveTokens",
+              "docs/Guide/SwapTokens",
+              "docs/Guide/BundleActions",
+              "docs/Guide/UnifiedToken"
             ]
           },
           
