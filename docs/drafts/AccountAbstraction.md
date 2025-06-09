@@ -1,21 +1,3 @@
-<Steps>
-  <Step title="Click on “I’m just getting started.">
-    
-  ![Incentiv Registration](/docs/images/IncentivRegistration1.png)
-  </Step>
-  <Step title="Select “Create my first wallet.”">
-    
-   ![Incentiv Registration](/docs/images/IncentivRegistration2.png)
-  </Step>
-  <Step title="Assign a nickname to your wallet for easy identification (or let the system generate one by clicking “Decide for me“).">
-    
-   ![Incentiv Registration](/docs/images/IncentivRegistration3.png)
-  </Step>
-  <Step title="Validate your identity using biometric authentication or you device passkeys (touch/face recognition)“)">
-    ![Incentiv Registration](/docs/images/IncentivRegistration4.png)
-    
-  </Step>
-</Steps>
 
 
 # Account Abstraction
