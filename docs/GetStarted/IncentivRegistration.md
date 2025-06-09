@@ -5,26 +5,26 @@ icon: "user"
 <Steps>
 <Step title="Step 1: Select Your Web3 Journey">
 
-Choose how you’d like to proceed:
+Choose how you'd like to proceed:
 
-**“Web3 is my thing”** – For experienced Web3 users.
+**"Web3 is my thing"** – For experienced Web3 users.
 
-**“I’m just getting started”** – For those new to blockchain, with guided support.
+**"I'm just getting started"** – For those new to blockchain, with guided support.
 </Step>
 
 <Step title="Step 2: Create a Wallet or Connect an Existing One">
 
-### Option 1: I’m just getting started
+### Option 1: I'm just getting started
 
-1. Click on “I’m just getting started.”
+1. Click on "I'm just getting started."
 
 ![Incentiv Registration](/docs/images/IncentivRegistration1.png)
 
-2. Select “Create my first wallet.”
+2. Select "Create my first wallet."
 
 ![Incentiv Registration](/docs/images/IncentivRegistration2.png)
 
-4. Assign a nickname to your wallet for easy identification (or let the system generate one by clicking “Decide for me“).
+3. Assign a nickname to your wallet for easy identification (or let the system generate one by clicking "Decide for me").
 
 ![Incentiv Registration](/docs/images/IncentivRegistration3.png)
 
@@ -32,33 +32,32 @@ Choose how you’d like to proceed:
 
 ![Incentiv Registration](/docs/images/IncentivRegistration4.png)
 
-
-5. Your wallet is now connected to Incentiv, and you’re ready to explore!
+5. Your wallet is now connected to Incentiv, and you're ready to explore!
 </Step>
 </Steps>
-
+## Using an Existing Wallet
 <Steps>
-<step title="Option 2: Web3 is my thing">
+<Step title="Option 2: Web3 is my thing">
 
 Choose an option:
 
-```
 - Use your existing wallet provider (MetaMask, WalletConnect, etc.).
 - Create an Incentiv Smart Wallet (for a new Web3 experience).
-```
 </Step>
-> \[!WARNING]
-> If creating a new wallet, follow the steps outlined in Option 1 above.
 
-<step title="If using an existing wallet">
+<Note type="warning">
+If creating a new wallet, follow the steps outlined in Option 1 above.
+</Note>
 
-1. Click “I'll use my existing wallet.”
+<Step title="If using an existing wallet">
+
+1. Click "I'll use my existing wallet."
 2. Assign a nickname for easy identification (or let the system generate one).
 3. Choose your Wallet Provider (MetaMask or WalletConnect).
 4. Approve the network connection request in your wallet.
 </Step>
 </Steps>
-> \[!TIP]
-> Hey, you got a Badge for activating your First Smart Wallet on Incentiv
 
-          
+<Tip>
+Hey, you got a Badge for activating your First Smart Wallet on Incentiv
+</Tip>
