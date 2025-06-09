@@ -2,7 +2,7 @@
 title: "Incentiv Registration"
 ---
 
-## Step 1: Select Your Web3 Journey
+<Steps title= "Step: Select Your Web3 Journey">
 
 Choose how you’d like to proceed:
 
@@ -10,7 +10,7 @@ Choose how you’d like to proceed:
 
 **“I’m just getting started”** – For those new to blockchain, with guided support.
 
-## Step 2: Create a Wallet or Connect an Existing One
+<Steps title= "Step:Create a Wallet or Connect an Existing One">
 
 ### Option 1: I’m just getting started
 
