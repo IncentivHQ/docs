@@ -10,14 +10,13 @@ Choose how you’d like to proceed:
 
 **“I’m just getting started”** – For those new to blockchain, with guided support.
 
-
 ## Step 2: Create a Wallet or Connect an Existing One
 
 ### Option 1: I’m just getting started
 <Steps>
   <Step title="Click on “I’m just getting started.">
     
-     ![Incentiv Registration](/docs/images/IncentivRegistration1.png)
+  ![Incentiv Registration](/docs/images/IncentivRegistration1.png)
   </Step>
   <Step title="Select “Create my first wallet.”">
     
@@ -27,9 +26,9 @@ Choose how you’d like to proceed:
     
    ![Incentiv Registration](/docs/images/IncentivRegistration3.png)
   </Step>
-  <Step title="Validate your identity using biometric authentication or you device passkeys (touch/face recognition)“).">
-    
+  <Step title="Validate your identity using biometric authentication or you device passkeys (touch/face recognition)“)">
     ![Incentiv Registration](/docs/images/IncentivRegistration4.png)
+    
   </Step>
 </Steps>
 1. Click on “I’m just getting started.”
