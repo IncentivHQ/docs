@@ -26,9 +26,9 @@
           {
             "group": "General",
             "pages": [
-              "docs/General/ReceiveTokens",
               "docs/General/AddContacts",
               "docs/General/SendTokens",
+              "docs/General/ReceiveTokens",
               "docs/General/SwapTokens",
               "docs/General/BundleActions",
               "docs/General/UnifiedToken"
