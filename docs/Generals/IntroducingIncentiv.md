@@ -1,8 +1,6 @@
 ---
 title: Introducing Incentiv
 ---
-# About Incentiv
-
 A Layer 1 Blockchain with a core mission, making blockchain technology easy, accessible, intuitive, and rewarding by redefining the blockchain experience.
 
 ## Incentiv’s Approach

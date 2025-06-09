@@ -12,9 +12,9 @@
     "tabs": [
       {
         "tab": "Guides",
-        "groups": [
+        "anchor": [
           {
-            "group": "Get Started",
+            "anchor": "Get Started",
             "pages": [
               "docs/GetStarted/TermsConditions",
               "docs/GetStarted/UsingIncentiv",
@@ -23,7 +23,7 @@
             ]
           },
   {
-            "group": "Get Started",
+            "anchor": "Get Started",
             "pages": [
               "docs/Generals/AddContacts",
               "docs/Generals/SendTokens",
@@ -35,7 +35,7 @@
           },
           
           {
-            "group": "Tools",
+            "anchor": "Tools",
             "pages": [
               "tools/dapps/sdk",
               "tools/dapps/example"
