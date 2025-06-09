@@ -92,7 +92,7 @@
             "pages": [
               "api-reference/IncentiView/Account/account-assets",
               "api-reference/IncentiView/Account/account-transfers",
-              "api-reference/IncentiView/Account/account-userOps"
+              "api-reference/IncentiView/Account/account-userops"
             ]
           },
           {
