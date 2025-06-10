@@ -47,10 +47,13 @@
       
       {
         "tab": "Development",
-        "pages": [
-              "api-reference/introduction"
-            ],
         "groups": [
+          {
+            "group": "API Documentation",
+            "pages": [
+              "api-reference/introduction"
+            ]
+          },
           {
             "group": "IncentiView",
             "pages": [
@@ -112,6 +115,7 @@
     ],
     "global": {
       "anchors": [
+        
         {
           "anchor": "Try the Testnet",
           "href": "https://testnet.incentiv.net/",
