@@ -47,6 +47,9 @@
       
       {
         "tab": "Development",
+        "pages": [
+              "api-reference/introduction"
+            ],
         "groups": [
           {
             "group": "IncentiView",

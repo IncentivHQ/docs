@@ -1,33 +1,42 @@
 ---
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+title: "Introduction"
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+Welcome to the **Incentiv API Documentation** — your central resource for building on top of the Incentiv ecosystem.
+
+This documentation includes two major components:
+
+- **IncentiView API (Indexer)** – A structured, queryable interface for accessing blockchain data such as blocks, transactions, user operations, transfers, accounts, and assets.
+- **Incentiv SDK** – A developer toolkit that simplifies blockchain interaction, account abstraction workflows, reward systems, and integration with dApps and wallets.
+
 
 ## Welcome
-
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
-
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
-
+<Columns cols={2}>
+  <Card title="What Is the IncentiView API?" icon="searchengin">
+    A high-performance RESTful API layer built on top of the Incentiv Blockchain
+  </Card>
+  <Card title="What Is the Incentiv SDK?" icon="searchengin">
+    View the OpenAPI specification file
+  </Card>
+</Columns>
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+All endpoints are **public** on testnet. In production, API keys and quota limits may apply.
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
-```
+### **Response Format**
+
+All endpoints return structured application/json responses. Entities share common metadata fields like timestamp, hash, and pagination controls (offset, limit, total).
+
+## **Use Cases**
+
+Here are some example ways you can use this API and SDK:
+
+- Build your own **block explorer** or **activity dashboard**
+- Integrate **wallet activity** into your application
+- Track **token flows**, **rewards**, or **AA wallet usage**
+- Power **search and analytics** interfaces for smart wallet adoption
+
+## **Support & Community**
+
+- Email: [support@incentiv.net](mailto:support@incentiv.net)
+- Discord: [discord.incentiv.net](http://discord.incentiv.net)
