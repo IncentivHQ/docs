@@ -17,15 +17,15 @@ Incentiv Portal leverages account abstraction to simplify transactions. Instead 
 
 ## Smart Wallet and Security Features
 
-Every user operates through an AA (Account Abstraction) Wallet, which integrates multi-signature authentication, session-based approvals, and flexible transaction logic. This structure eliminates the need for direct private key signing per transaction, enhancing both security and usability.
+Every user operates through an **AA (Account Abstraction) Wallet**, which integrates multi-signature authentication, session-based approvals, and flexible transaction logic. This structure eliminates the need for direct private key signing per transaction, enhancing both security and usability.
 
 ## Incentive Distribution and Activity Tracking
 
-The platform continuously tracks user engagement metrics via My Badges, ensuring that on-chain actions contribute to long-term rewards. Activity-based rewards use real-time calculations, with distribution models adjusting based on total user participation.
+The platform continuously tracks user engagement metrics via **My Badges**, ensuring that on-chain actions contribute to long-term rewards. Activity-based rewards use real-time calculations, with distribution models adjusting based on total user participation.
 
 ### My Badges
 
-My Badges is a gamified badge system integrated into the Incentiv Portal that rewards users for completing key on-chain actions. These badges track user progress and encourage exploration of the Incentiv ecosystem. Already live on the Public Testnet, the system provides early feedback and helps evaluate user behavior patterns critical to incentive modeling.
+My Badges is a **gamified badge system** integrated into the Incentiv Portal that rewards users for completing key on-chain actions. These badges track user progress and encourage exploration of the Incentiv ecosystem. Already live on the Public Testnet, the system provides early feedback and helps evaluate user behavior patterns critical to incentive modeling.
 
 | Badge                             | Description                                                                                              | Guide                                                                                   |
 | --------------------------------- | -------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |

@@ -16,19 +16,19 @@ Choose how you'd like to proceed:
 
 ### Option 1: I'm just getting started
 
-1. Click on "I'm just getting started."
+1. Click on **"I'm just getting started."**
 
 ![Incentiv Registration](/docs/images/IncentivRegistration1.png)
 
-2. Select "Create my first wallet."
+2. Select **"Create my first wallet."**
 
 ![Incentiv Registration](/docs/images/IncentivRegistration2.png)
 
-3. Assign a nickname to your wallet for easy identification (or let the system generate one by clicking "Decide for me").
+3. Assign a **nickname** to your wallet for easy identification (or let the system generate one by clicking **"Decide for me"**).
 
 ![Incentiv Registration](/docs/images/IncentivRegistration3.png)
 
-4. Validate your identity using biometric authentication or you device passkeys (touch/face recognition).
+4. Validate your identity using biometric authentication or your device passkeys (touch/face recognition).
 
 ![Incentiv Registration](/docs/images/IncentivRegistration4.png)
 

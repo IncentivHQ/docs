@@ -2,7 +2,7 @@
 
 # API Reference
 
-The Incentiv API equips developers with a robust set of tools to interact with the blockchain, enabling seamless integration of decentralized applications (dApps), smart contracts, and network operations. Designed for efficiency, scalability, and security, the API ensures that developers can easily access blockchain data, execute transactions, and manage user accounts without friction. Its modular architecture and comprehensive documentation provide the foundation for building sophisticated Web3 applications with minimal complexity.
+The **Incentiv API** equips developers with a robust set of tools to interact with the blockchain, enabling seamless integration of decentralized applications (dApps), smart contracts, and network operations. Designed for efficiency, scalability, and security, the API ensures that developers can easily access blockchain data, execute transactions, and manage user accounts without friction. Its modular architecture and comprehensive documentation provide the foundation for building sophisticated Web3 applications with minimal complexity.
 
 # Core Functions
 
