@@ -3,8 +3,6 @@
 
 # Data Indexers
 
-**Data Indexers**
-
 Data indexers are critical to the Incentiv blockchain, structuring and optimizing blockchain data to ensure seamless access for developers, decentralized applications (dApps), and users. By enabling efficient retrieval of transaction details, token movements, and smart contract states, data indexers enhance the network’s performance, transparency, and scalability.
 
 # Core Functions of Data Indexers
@@ -37,35 +35,35 @@ To achieve high-performance data processing and retrieval, the Incentiv blockcha
 
 **Data Extraction and Parsing**
 
-* Block Listening Mechanism: The indexer connects to Incentiv's blockchain nodes via WebSocket or RPC endpoints, continuously monitoring new blocks as they are added to the blockchain.
-* Transaction and Event Parsing: Extracted block data is parsed, decoding transaction inputs and smart contract logs using ABI (Application Binary Interface) decoding to transform them into human-readable formats.
+* **Block Listening Mechanism:** The indexer connects to Incentiv's blockchain nodes via WebSocket or RPC endpoints, continuously monitoring new blocks as they are added to the blockchain.
+* **Transaction and Event Parsing:** Extracted block data is parsed, decoding transaction inputs and smart contract logs using ABI (Application Binary Interface) decoding to transform them into human-readable formats.
 
 **Data Transformation and Normalization**
 
-* Structuring Data: The indexer transforms raw blockchain data into predefined schemas for consistency, allowing efficient data retrieval.
-* Handling Complex Data Types: Smart contract interactions with nested arrays and mappings are flattened into structured relational formats for easier querying.
+* **Structuring Data:** The indexer transforms raw blockchain data into predefined schemas for consistency, allowing efficient data retrieval.
+* **Handling Complex Data Types:** Smart contract interactions with nested arrays and mappings are flattened into structured relational formats for easier querying.
 
 **Database Management and Storage**
 
-* Optimized Storage Solutions: High-performance databases like PostgreSQL or MongoDB store indexed data, depending on the need for complex queries or high-speed access.
-* Indexing Strategies: Database indexes are implemented on frequently queried fields (e.g., wallet addresses, block numbers) to accelerate data retrieval.
+* **Optimized Storage Solutions:** High-performance databases like PostgreSQL or MongoDB store indexed data, depending on the need for complex queries or high-speed access.
+* **Indexing Strategies:** Database indexes are implemented on frequently queried fields (e.g., wallet addresses, block numbers) to accelerate data retrieval.
 
 **API Layer and Query Optimization**
 
-* GraphQL Integration: The indexer exposes a GraphQL API, allowing developers to request only the data fields they need, minimizing unnecessary data transfers.
-* Rate Limiting and Caching: To manage request loads, rate limits are applied, and frequently accessed data is cached, reducing database strain and improving response times.
+* **GraphQL Integration:** The indexer exposes a GraphQL API, allowing developers to request only the data fields they need, minimizing unnecessary data transfers.
+* **Rate Limiting and Caching:** To manage request loads, rate limits are applied, and frequently accessed data is cached, reducing database strain and improving response times.
 
 **Scalability and Fault Tolerance**
 
-* Microservices Architecture: The indexer is modularized into independent services that can scale separately, improving maintainability and performance.
-* Load Balancing: Requests are distributed across multiple indexer instances to prevent congestion and ensure high availability.
-* Redundancy and Failover Mechanisms: Backup indexers operate in parallel, with failover mechanisms in place to switch to a secondary instance if a primary indexer fails.
+* **Microservices Architecture:** The indexer is modularized into independent services that can scale separately, improving maintainability and performance.
+* **Load Balancing:** Requests are distributed across multiple indexer instances to prevent congestion and ensure high availability.
+* **Redundancy and Failover Mechanisms:** Backup indexers operate in parallel, with failover mechanisms in place to switch to a secondary instance if a primary indexer fails.
 
 **Security Measures**
 
-* Data Integrity Verification: Periodic data integrity checks cross-reference indexed data with blockchain data to detect discrepancies.
-* Access Controls: Role-based access controls (RBAC) restrict unauthorized data access and administrative functions.
-* Encryption: Data encryption protocols secure stored and transmitted data against unauthorized access.
+* **Data Integrity Verification:**  Periodic data integrity checks cross-reference indexed data with blockchain data to detect discrepancies.
+* **Access Controls:** Role-based access controls (RBAC) restrict unauthorized data access and administrative functions.
+* **Encryption:** Data encryption protocols secure stored and transmitted data against unauthorized access.
 
 
 

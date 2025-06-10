@@ -30,27 +30,27 @@ Designed to handle high-volume requests, the API leverages load balancing and ca
 
 * **Blockchain Data Access**
 
-Block Information: Retrieve detailed information about blocks, including transactions and timestamps.
+**Block Information:** Retrieve detailed information about blocks, including transactions and timestamps.
 
-Transaction Details: Access detailed data about specific transactions, including sender, receiver, and gas fees.
+**Transaction Details:** Access detailed data about specific transactions, including sender, receiver, and gas fees.
 
 * **Transaction Execution**
 
-Send Transactions: Execute transactions directly through the API, with support for batch processing.
+**Send Transactions:** Execute transactions directly through the API, with support for batch processing.
 
-Smart Contract Interaction: Interact with smart contracts by calling their functions and retrieving state data.
+**Smart Contract Interaction:** Interact with smart contracts by calling their functions and retrieving state data.
 
 * **User Account Management**
 
-Account Balances: Retrieve account balances for various tokens and assets.
+**Account Balances:** Retrieve account balances for various tokens and assets.
 
-Transaction History: Access the transaction history of any account, including incoming and outgoing transactions.
+**Transaction History:** Access the transaction history of any account, including incoming and outgoing transactions.
 
 * **Network Operations**
 
-Node Status: Monitor the status and health of network nodes.
+**Node Status:** Monitor the status and health of network nodes.
 
-Gas Price Estimation: Get real-time gas price estimates to optimize transaction costs.
+**Gas Price Estimation:** Get real-time gas price estimates to optimize transaction costs.
 
 # Strategic Impact on the Network
 
