@@ -2,14 +2,14 @@
 title: Swap Tokens
 icon: "repeat"
 ---
-Token swaps are executed through the built-in Incentiv DEX. Users can seamlessly exchange supported assets within the portal, with all transactions handled via smart wallets for security and gas efficiency.
+Token swaps are executed through the built-in **Incentiv DEX**. Users can seamlessly exchange supported assets within the portal, with all transactions handled via smart wallets for security and gas efficiency.
 
 <Steps> 
   
 <Step title="Step 1: Navigate and click the Swap button">
 
 - In the panel beside your nickname, or the pop-up widget, you can find action buttons.
-- Click “Swap” to manage the action.
+- Click **“Swap”** to manage the action.
 
 ![Swap Tokens](/docs/images/SwapTokens1.jpeg)
 </Step>
@@ -23,7 +23,7 @@ Token swaps are executed through the built-in Incentiv DEX. Users can seamlessly
 <Step title="Step 3: Overview & Confirm">
 
 - Review the transaction details, including the amount and gas fees.
-- Click “Confirm” to initiate the transaction.
+- Click **“Confirm”** to initiate the transaction.
 
 ![Swap Tokens](/docs/images/SwapTokens3.jpeg)
 </Step>
@@ -31,7 +31,7 @@ Token swaps are executed through the built-in Incentiv DEX. Users can seamlessly
 
 - A prompt will appear, asking you to verify your identity using biometric authentication (e.g., Touch ID or Face ID).
 - Use your fingerprint or facial recognition to confirm the transaction.
-- You can select "Use a different passkey" or "Cancel" to abort the transaction.
+- You can select **"Use a different passkey"** or **"Cancel"** to abort the transaction.
 
 ![Swap Tokens](/docs/images/SwapTokens4.jpeg)
 

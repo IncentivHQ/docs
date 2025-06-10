@@ -7,16 +7,16 @@ The **Add Contacts** feature allows users to save wallet addresses with custom l
 
 <Steps>
   <Step title="Step 1: Access the My Contacts Section">
-    Click on “Add New Contact” to begin the process.
+    Click on **"Add New Contact"** to begin the process.
 
     ![Add Contacts](/docs/images/AddContacts1.jpeg)
   </Step>
   <Step title="Step 2: Enter Contact Details">
-    Contact name: Enter the contact name you want to add.
+    **Contact name:** Enter the contact name you want to add.
 
-    Wallet Address: Enter the wallet address of the contact you want to add.
+    **Wallet Address:** Enter the wallet address of the contact you want to add.
 
-    Optional Details: You can add a profile picture, to personalize the contact.
+    **Optional Details:** You can add a profile picture, to personalize the contact.
 
     ```
     Minimum Size: 254px by 254px
@@ -32,7 +32,7 @@ The **Add Contacts** feature allows users to save wallet addresses with custom l
     ![Add Contacts](/docs/images/AddContacts2.jpeg)
   </Step>
   <Step title="Step 3: Save the Contact">
-    Click **“Add contact”** to add the contact to your list.
+    Click **“Add Contact”** to add the contact to your list.
 
     ![Add Contacts](/docs/images/AddContacts3.jpeg)
 

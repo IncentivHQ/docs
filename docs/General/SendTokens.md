@@ -2,20 +2,20 @@
 title: Send Tokens
 icon: "arrow-up-right"
 ---
-Token transfers on Incentiv are executed through smart wallets using account abstraction. This allows for simplified, gas-efficient transactions with support for batch processing and fee sponsorship. All transfers are routed through the Incentiv Portal and bundled via the alt mempool, ensuring secure and seamless delivery to the recipient.
+Token transfers on Incentiv are executed through **smart wallets** using **Account Abstraction**. This allows for simplified, gas-efficient transactions with support for batch processing and fee sponsorship. All transfers are routed through the Incentiv Portal and bundled via the alt mempool, ensuring secure and seamless delivery to the recipient.
 
 <Steps>
 <Step title="Step 1: Navigate and Click the Send button">
 
-- Locate the “Send” button in the panel beside your username or the pop-up menu.
-- Click “Send” to initiate the transfer.
+- Locate the **“Send”** button in the panel beside your username or the pop-up menu.
+- Click **“Send”** to initiate the transfer.
 
 ![Send Tokens](/docs/images/SendTokens1.jpeg)
 
 **Alternate** **Step: Select a Contact**
 
-- Navigate to “My Contacts” section in the Incentiv Portal.
-- Select the desired contact you wish to send assets to and click “Send“
+- Navigate to **“My Contacts”** section in the Incentiv Portal.
+- Select the desired contact you wish to send assets to and click **“Send“**
 
 ![Send Tokens](/docs/images/SendTokens2.jpeg)
 </Step>
@@ -32,7 +32,7 @@ Token transfers on Incentiv are executed through smart wallets using account abs
 <Step title="Step 3: Review & Confirm">
 
 - Verify transaction details: recipient address, amount, and gas fees.
-- Click “Confirm” to proceed.
+- Click **“Confirm”** to proceed.
 
 ![Send Tokens](/docs/images/SendTokens4.jpeg)
 </Step>
@@ -40,7 +40,7 @@ Token transfers on Incentiv are executed through smart wallets using account abs
 
 - A prompt will appear asking you to verify your identity using biometric authentication (e.g., Touch ID or Face ID).
 - Confirm with biometrics or select Use a different passkey.
-- You can select "Cancel" to abort the transaction.
+- You can select **"Cancel"** to abort the transaction.
 
 ![Send Tokens](/docs/images/SendTokens5.jpeg)
 

@@ -3,7 +3,7 @@ title: Unified Token
 icon: "database"
 ---
 
-The Unified Token System streamlines blockchain interactions by allowing users to perform transactions and pay gas fees using any supported token. By combining Account Abstraction (AA) and an integrated decentralized exchange (DEX), it removes the need to hold a native gas token like \$CENT, while maintaining security, efficiency, and decentralization.
+The **Unified Token System** streamlines blockchain interactions by allowing users to perform transactions and pay gas fees using any supported token. By combining Account Abstraction (AA) and an integrated decentralized exchange (DEX), it removes the need to hold a native gas token like $CENT, while maintaining security, efficiency, and decentralization.
 
 # How It Works
 
@@ -11,13 +11,13 @@ The Unified Token System streamlines blockchain interactions by allowing users t
   
 <Step title="Step 1: Initiate a Transaction">
 
-Access the Incentiv Portal and choose either the “Swap” or “Send” function. This will display your available balances and open the interface for transaction setup.
+Access the Incentiv Portal and choose either the **“Swap”** or **“Send”** function. This will display your available balances and open the interface for transaction setup.
 
 </Step>
 <Step title="Step 2: Define Transaction Parameters">
 
-- For swaps: Select the token you want to exchange and the token you wish to receive.
-- For sends: Enter the recipient’s wallet address and select the token to transfer.
+- **For swaps:** Select the token you want to exchange and the token you wish to receive.
+- **For sends:** Enter the recipient’s wallet address and select the token to transfer.
 </Step> 
 <Step title="Step 3: Specify the Token Amount"> 
 
@@ -25,11 +25,11 @@ Enter the amount of tokens to swap or send. The system will display the estimate
 </Step>
 <Step title="Step 4: Select a Gas Token">
 
-Use the dropdown menu to choose which token to use for paying gas fees.
+Use the **dropdown menu** to choose which token to use for paying gas fees.
 
 - Only tokens with a sufficient balance to cover the projected fee will be available.
-- \$CENT is selected by default if present in the wallet.
-- Other supported testnet tokens include SMPL, BULL, and FLIP.
+- **$CENT** is selected by default if present in the wallet.
+- Other supported testnet tokens include **SMPL, BULL,** and **FLIP**.
 </Step>
 <Step title="Step 5: Review and Confirm">
 

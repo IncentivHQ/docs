@@ -3,7 +3,7 @@ title: Bundle Actions
 icon: "list"
 ---
 
-With Incentiv’s Bundle feature, you can seamlessly swap tokens and send them to a contact—all in a single transaction, even if you don't hold the target token yet.
+With **Incentiv’s Bundle** feature, you can seamlessly swap tokens and send them to a contact—all in a single transaction, even if you don't hold the target token yet.
 
  <Note> For this example, we are doing a swap and send bundle action </Note>
 
@@ -12,7 +12,7 @@ With Incentiv’s Bundle feature, you can seamlessly swap tokens and send them t
 <Step title="Step 1: Navigate and click the Swap button">
 
 * In the panel beside your nickname, or the pop-up widget, you can find action buttons.
-* Click “Swap” to set this as your first action in the bundle
+* Click **“Swap”** to set this as your first action in the bundle
 
 ![Bundle Actions](/docs/images/BundleActions1.jpeg)
 </Step> 
@@ -26,7 +26,7 @@ With Incentiv’s Bundle feature, you can seamlessly swap tokens and send them t
 </Step>
 <Step title="Step 3: Select Additional Actions"> 
 
-* Click “Send +“ button to add the swap action to the transaction.
+* Click **“Send +“** button to add the swap action to the transaction.
   ![Bundle Actions](/docs/images/BundleActions3.jpeg)
 </Step>
 <Step title="Step 4: Fill Token Amount and Recipient Address"> 
@@ -41,7 +41,7 @@ With Incentiv’s Bundle feature, you can seamlessly swap tokens and send them t
 <Step title="Step 5: Overview & Confirm"> 
 
 * Review the transaction details, including the amount and gas fees.
-* Click “Confirm” to initiate the transaction.
+* Click **“Confirm”** to initiate the transaction.
 
 ![Bundle Actions](/docs/images/BundleActions5.jpeg)
 </Step>
@@ -49,7 +49,7 @@ With Incentiv’s Bundle feature, you can seamlessly swap tokens and send them t
 
 * A prompt will appear, asking you to verify your identity using biometric authentication (e.g., Touch ID or Face ID).
 * Use your fingerprint or facial recognition to confirm the transaction.
-* You can select "Use a different passkey" or "Cancel" to abort the transaction.
+* You can select **"Use a different passkey"** or **"Cancel"** to abort the transaction.
 
 ![Bundle Actions](/docs/images/BundleActions6.jpeg)
 
