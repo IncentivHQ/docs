@@ -33,14 +33,21 @@ icon: "brackets"
 ## Quick start
 
 ```bash
-# 1. Clone the SDK repository (or copy only the /example folder)
-git clone https://github.com/incentiv-network/incentiv-dapp-sdk.git
-cd incentiv-dapp-sdk/example
+# 1. Clone the SDK repository
+git clone https://github.com/IncentivNetwork/incentiv-dapp-sdk.git
+cd incentiv-dapp-sdk
 
-# 2. Install dependencies – the SDK is pulled from the parent folder via the "file:" reference in package.json
+# 2. Build the SDK – this creates the dist/ folder required for the example to work
+npm install
+npm run build
+
+# 3. Go to the example folder
+cd example
+
+# 4. Install example dependencies – the SDK is pulled from the parent folder via the "file:" reference in package.json
 npm install
 
-# 3. Run the dev server (default: http://localhost:5173)
+# 5. Run the dev server (default: http://localhost:5173)
 npm run dev
 ```
 
