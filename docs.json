@@ -102,7 +102,13 @@
               "api-reference/IncentiView/Assets/asset"
             ]
           },
-          
+          {
+            "group": "NFTs",
+            "pages": [
+              "api-reference/IncentiView/NFT/nfts",
+              "api-reference/IncentiView/NFT/nft"
+            ]
+          },
           {
             "group": "Tools",
             "pages": [

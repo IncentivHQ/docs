@@ -1046,6 +1046,86 @@
           }
         }
       }
+    },
+    "/nfts": {
+      "get": {
+        "summary": "List NFTs",
+        "description": "Retrieve a list of NFTs available on the Incentiv blockchain.",
+        "parameters": [
+          {
+            "name": "symbol",
+            "in": "query",
+            "required": false,
+            "description": "Symbol of the NFT collection to filter by.",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "creator",
+            "in": "query",
+            "required": false,
+            "description": "Address of the creator to filter by.",
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Pagination offset.",
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of NFTs to return.",
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of NFTs.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "total": { "type": "integer" },
+                    "items": {
+                      "type": "array",
+                      "items": { "$ref": "#/components/schemas/NFT" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nfts/{assetId}": {
+      "get": {
+        "summary": "Get NFT Metadata",
+        "description": "Retrieve metadata and ownership information for a specific NFT by asset ID.",
+        "parameters": [
+          {
+            "name": "assetId",
+            "in": "path",
+            "required": true,
+            "description": "NFT asset identifier (e.g., contract address or token ID).",
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "NFT metadata and ownership information.",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/NFT" }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -1313,6 +1393,52 @@
           "token",
           "transactionHash",
           "logIndex"
+        ]
+      },
+      "NFT": {
+        "type": "object",
+        "properties": {
+          "assetId": {
+            "type": "string",
+            "description": "Unique identifier for the NFT."
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the NFT."
+          },
+          "symbol": {
+            "type": "string",
+            "description": "Symbol of the NFT collection."
+          },
+          "creator": {
+            "type": "string",
+            "description": "Address of the NFT creator."
+          },
+          "uri": {
+            "type": "string",
+            "description": "Token URI pointing to metadata."
+          },
+          "owner": {
+            "type": "string",
+            "description": "Current owner address of the NFT."
+          },
+          "type": {
+            "type": "string",
+            "description": "Type of the asset (e.g., 'erc721', 'erc1155')."
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Additional metadata for display, such as image, description, attributes."
+          }
+        },
+        "required": [
+          "assetId",
+          "name",
+          "symbol",
+          "creator",
+          "uri",
+          "owner",
+          "type"
         ]
       },
       "Error": {
