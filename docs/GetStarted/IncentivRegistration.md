@@ -61,3 +61,7 @@ If creating a new wallet, follow the steps outlined in Option 1 above.
 <Tip>
 Hey, you got a Badge for activating your First Smart Wallet on Incentiv
 </Tip>
+
+# Video Tutorial: Incentiv Registration
+
+<iframe width="660" height="415" src="https://www.youtube.com/embed/yZyN3pfQhv8?si=fmxScfyMOWCSKads" title="Incentiv Registration" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

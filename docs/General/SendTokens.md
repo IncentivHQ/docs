@@ -61,4 +61,4 @@ Token transfers on Incentiv are executed through **smart wallets** using **Accou
 
 # Video Tutorial: Send Tokens
 
-[[Incentiv Portal - Send.mp4 (11MB)]](media_Send%20Tokens/KQO8izhsYEopyL-Incentiv%20Portal%20-%20Send.mp4)
+<iframe width="660" height="415" src="https://www.youtube.com/embed/M8_s0WFw2ys?si=qn-25mm5fASaL5Sd" title="Send Tokens" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

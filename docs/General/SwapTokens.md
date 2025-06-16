@@ -57,4 +57,4 @@ Check the details and sign the transaction from the extension
 
 # Video Tutorial: Swap Tokens
 
-[[Incentiv Portal - Swap (new).mov (10MB)]](media_Swap%20Tokens/Y6WgPIZq59o7L2-Incentiv%20Portal%20-%20Swap%20\(new\).mov)
+<iframe width="660" height="415" src="https://www.youtube.com/embed/uBhh0q4lPHQ?si=JIXXV05eL31HbaYN" title="Swap Tokens" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
