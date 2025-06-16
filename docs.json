@@ -48,6 +48,16 @@
       {
         "tab": "Development",
         "groups": [
+          
+          {
+            "group": "Building on Incentiv",
+            "pages": [
+              "tools/network",
+              "tools/contracts",
+              "tools/dapps/sdk",
+              "tools/dapps/example"
+            ]
+          },
           {
             "group": "API Documentation",
             "pages": [
@@ -107,15 +117,6 @@
             "pages": [
               "api-reference/IncentiView/NFT/nfts",
               "api-reference/IncentiView/NFT/nft"
-            ]
-          },
-          {
-            "group": "Building on Incentiv",
-            "pages": [
-              "tools/network",
-              "tools/contracts",
-              "tools/dapps/sdk",
-              "tools/dapps/example"
             ]
           }
         ]
