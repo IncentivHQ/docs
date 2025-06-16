@@ -110,8 +110,10 @@
             ]
           },
           {
-            "group": "Tools",
+            "group": "Building on Incentiv",
             "pages": [
+              "tools/network",
+              "tools/contracts",
               "tools/dapps/sdk",
               "tools/dapps/example"
             ]
