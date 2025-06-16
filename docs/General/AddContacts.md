@@ -43,3 +43,8 @@ The **Add Contacts** feature allows users to save wallet addresses with custom l
 <Tip>
    Hey, you just earned a Badge for your new Contact Added on Incentiv\!
 </Tip>
+
+
+# Video Tutorial: Add Contacts
+
+<iframe width="660" height="415" src="https://www.youtube.com/embed/j4BTtADoNkA?si=SAlPPgX8w-h4ODOC" title="Add Contacts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

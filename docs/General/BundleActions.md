@@ -70,3 +70,8 @@ With **Incentiv’s Bundle** feature, you can seamlessly swap tokens and send th
 </Step>
 </Steps> 
  <Tip> Congratulations! You earned a Badge for completing your first bundle action on Incentiv </Tip>
+
+
+# Video Tutorial: Bundled Actions
+
+<iframe width="660" height="415" src="https://www.youtube.com/embed/iwgDBp_rWSs?si=J-Ws4iSN5lI80mw-" title="Bundled Actions" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
