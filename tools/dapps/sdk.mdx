@@ -29,12 +29,12 @@ The **Incentiv dApp SDK** solves this by:
 <CodeGroup>
 
 ```bash npm
-npm install @incentiv/dapp-sdk ethers        # ethers v5 is required
+npm install git+https://github.com/IncentivNetwork/incentiv-dapp-sdk.git ethers        # ethers v5 is required
 ```
 
 
 ```bash yarn
-yarn add @incentiv/dapp-sdk ethers
+yarn add https://github.com/IncentivNetwork/incentiv-dapp-sdk.git ethers
 ```
 
 </CodeGroup>
@@ -46,7 +46,7 @@ yarn add @incentiv/dapp-sdk ethers
 ## **Quick start**
 
 ```typescript [expandable]
-import { IncentivSigner, IncentivResolver } from "@incentiv/sdk";
+import { IncentivSigner, IncentivResolver } from "incentiv-dapp-sdk";
 import { ethers } from "ethers";
 
 /**
