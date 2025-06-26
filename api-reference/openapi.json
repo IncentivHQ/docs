@@ -1130,43 +1130,45 @@
   },
   "components": {
     "schemas": {
-      "Asset": {
-        "type": "object",
-        "properties": {
-          "assetId": {
-            "type": "string",
-            "description": "Unique identifier for the asset (e.g., contract address or symbol for native asset)."
-          },
-          "symbol": {
-            "type": "string",
-            "description": "Ticker symbol of the asset."
-          },
-          "name": {
-            "type": "string",
-            "description": "Name of the asset."
-          },
-          "decimals": {
-            "type": "integer",
-            "description": "Number of decimals the asset uses."
-          },
-          "type": {
-            "type": "string",
-            "description": "Type of asset (e.g., 'erc20', 'erc721', 'native')."
-          },
-          "totalSupply": {
-            "type": "string",
-            "description": "Total supply of the asset."
-          }
-        },
-        "required": [
-          "assetId",
-          "symbol",
-          "name",
-          "decimals",
-          "type",
-          "totalSupply"
-        ]
-      },
+     "Asset": {
+  "type": "object",
+  "properties": {
+    "assetId": { "type": "string" },
+    "contract": { "type": "string" },
+    "subAssetId": { "type": "string" },
+    "name": { "type": "string" },
+    "symbol": { "type": "string" },
+    "decimals": { "type": "integer" },
+    "type": { "type": "string" },
+    "totalSupply": { "type": "string" },
+    "uri": { "type": "string" },
+    "transferCount": { "type": "integer" },
+    "totalVolume": { "type": "string" },
+    "volumeDaily": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "totalHolders": { "type": "integer" },
+    "holdersDaily": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "iconUrl": { "type": "string", "format": "uri" },
+    "price": { "type": "number" },
+    "isVerified": { "type": "boolean" },
+    "isHidden": { "type": "boolean" },
+    "isListed": { "type": "boolean" },
+    "links": {
+      "type": "array",
+      "items": { "type": "object" }
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  },
+  "required": ["assetId", "symbol", "name", "decimals", "type", "totalSupply"]
+},
       "Block": {
         "type": "object",
         "properties": {
