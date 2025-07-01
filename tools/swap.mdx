@@ -1,0 +1,705 @@
+---
+title: "Incentiv Swap Integration"
+description: "Technical Guide"
+---
+
+# Incentiv Swap Integration Technical Guide
+
+## Overview
+
+This technical guide provides detailed information about integrating with the Incentiv DEX for swap operations. It covers the complete data flow from price discovery to swap execution.
+
+> **Important**: This guide now includes [Account Abstraction considerations](#account-abstraction-considerations) for swaps executed from IncentivAccount (AA) wallets, which have additional approval workflows and fee mechanisms.
+
+## System Architecture
+
+```
+┌─────────────┐     ┌───────────┐     ┌───────────┐
+│   Mobile App        │ ──▶│   Backend API    │──▶ │   Blockchain     │
+│                     │     │                  │     │                  │
+│ - Get Prices        │     │ - Route Calc     │     │ - DEX Pairs      │
+│ - Get Routes        │     │ - Price Sync     │     │ - Swap Router    │
+│ - Execute Swaps     │     │ - Cache Layer    │     │ - Token Registry │
+└─────────────┘     └───────────┘     └───────────┘
+                                                              │
+                                                              ▼
+                                                   ┌────────────┐
+                                                   │Account Abstraction│
+                                                   │ - IncentivAccount │
+                                                   │ - TransferGate    │
+                                                   │ - Reward Distrib. │
+                                                   └────────────┘
+```
+
+## Critical Information
+
+### 1. Price Source
+
+**ALL prices come from your DEX liquidity pools**, not external oracles:
+
+- Prices calculated from actual pair reserves
+- USD prices derived from routes to stablecoins
+- Updates every 10 seconds from blockchain events
+
+### 2. Required Configuration
+
+**MUST have at least one stablecoin marked** in the database:
+
+```javascript
+// In MongoDB
+db.assets.updateOne(
+  { symbol: "USDC" }, 
+  { $set: { isStable: true } }
+)
+```
+
+Without this, NO prices will be calculated.
+
+### 3. Native Token Handling
+
+- Native CENT: `0x0000000000000000000000000000000000000000`
+- Wrapped CENT (WCENT): Check `Config.Blockchain.Contracts.WCENT`
+- API automatically handles conversion between native/wrapped
+
+## Data Flow for Swap Operations
+
+### Step 1: Price Discovery
+
+```javascript
+// Backend Service: AssetPriceSync.ts
+async syncPrices() {
+  // 1. Get all assets
+  const assets = await AssetModel.find({isDeleted: false});
+  
+  // 2. For each asset, find route to stablecoin
+  for(const asset of assets) {
+    const stablePair = PoolRoutingService.getBestStableRoute(asset._id);
+    if(!stablePair || stablePair.ratio === 0) continue;
+    
+    // 3. The ratio IS the USD price
+    asset.price = stablePair.ratio;
+    await asset.save();
+  }
+}
+```
+
+### Step 2: Route Calculation
+
+```javascript
+// Backend Service: PoolRoutingService.ts
+getRoutes(from: string, to: string): RouteInfo[] {
+  // 1. Try direct pair
+  const directPair = this.pairMap[`${from}-${to}`];
+  if(directPair) {
+    return [{
+      ratio: directPair.stats.ratio,
+      liquidity: directPair.stats.liquidityUsd,
+      route: [from, to],
+      usedPairs: [`${from}-${to}`]
+    }];
+  }
+  
+  // 2. Find multi-hop routes (up to 3 hops)
+  const routes = this.findMultiHopRoutes(from, to);
+  
+  // 3. Sort by liquidity (best first)
+  return routes.sort((a, b) => b.liquidity - a.liquidity);
+}
+```
+
+### Step 3: Exchange Rate Calculation
+
+```javascript
+// From pair reserves
+const reserve0 = parseFloat(pair.reserve0) / (10 ** token0.decimals);
+const reserve1 = parseFloat(pair.reserve1) / (10 ** token1.decimals);
+const ratio = reserve1 / reserve0; // Exchange rate
+
+// For multi-hop
+let totalRatio = 1;
+for(const hop of route) {
+  totalRatio *= hop.ratio;
+}
+```
+
+## API Integration Details
+
+### Getting Available Tokens
+
+```typescript
+interface TokenRequest {
+  endpoint: '/api/user/available-assets';
+  method: 'GET';
+  headers: {
+    'Authorization': `Bearer ${token}`;
+  };
+  queryParams?: {
+    search?: string;        // Filter by symbol
+    isNameSearch?: boolean; // Search by name instead
+    offset?: number;        // Pagination
+    limit?: number;         // Max 50
+  };
+}
+
+interface TokenResponse {
+  address: string;
+  type: 'NATIVE' | 'ERC20';
+  name: string;
+  symbol: string;
+  decimals: number;
+  iconUrl: string;
+  price: number;      // USD price from DEX
+  isHidden: boolean;
+}
+```
+
+### Getting Swap Routes
+
+```typescript
+interface SwapRouteRequest {
+  endpoint: '/api/user/swap-route';
+  method: 'GET';
+  headers: {
+    'Authorization': `Bearer ${token}`;
+  };
+  queryParams: {
+    from: string; // Token address (0x0 for native)
+    to: string;   // Token address (0x0 for native)
+  };
+}
+
+interface SwapRouteResponse {
+  ratio: number;        // Exchange rate
+  liquidity: number;    // USD liquidity
+  route: string[];      // Token path
+  usedPairs: string[];  // For debugging
+}[]
+```
+
+### Executing Swaps (Smart Contract)
+
+```solidity
+// Standard Uniswap V2 Router Interface
+interface IUniswapV2Router {
+  function swapExactTokensForTokens(
+    uint amountIn,
+    uint amountOutMin,
+    address[] calldata path,
+    address to,
+    uint deadline
+  ) external returns (uint[] memory amounts);
+  
+  function swapExactETHForTokens(
+    uint amountOutMin,
+    address[] calldata path,
+    address to,
+    uint deadline
+  ) external payable returns (uint[] memory amounts);
+}
+```
+
+## Complete Integration Example
+
+```typescript
+class IncentivSwapSDK {
+  private baseURL: string;
+  private authToken: string;
+  private routerAddress: string;
+  
+  constructor(config: SDKConfig) {
+    this.baseURL = config.apiURL;
+    this.authToken = config.authToken;
+    this.routerAddress = config.routerAddress;
+  }
+  
+  // Get current price of any token in USD
+  async getTokenPriceUSD(tokenAddress: string): Promise<number> {
+    const assets = await this.getAvailableAssets();
+    const token = assets.find(a => a.address === tokenAddress);
+    return token?.price || 0;
+  }
+  
+  // Get best swap route with all details
+  async getSwapQuote(
+    fromToken: string,
+    toToken: string,
+    amountIn: string
+  ): Promise<SwapQuote> {
+    // Normalize addresses
+    const from = fromToken || '0x0000000000000000000000000000000000000000';
+    const to = toToken || '0x0000000000000000000000000000000000000000';
+    
+    // Get routes from API
+    const routes = await this.getSwapRoutes(from, to);
+    if (!routes || routes.length === 0) {
+      throw new Error('No swap route available');
+    }
+    
+    // Best route is first (highest liquidity)
+    const bestRoute = routes[0];
+    
+    // Calculate output
+    const amountInNumber = parseFloat(amountIn);
+    const amountOut = amountInNumber * bestRoute.ratio;
+    
+    // Get USD values
+    const [fromPrice, toPrice] = await Promise.all([
+      this.getTokenPriceUSD(from),
+      this.getTokenPriceUSD(to)
+    ]);
+    
+    const valueInUSD = amountInNumber * fromPrice;
+    const valueOutUSD = amountOut * toPrice;
+    
+    // Calculate price impact
+    const priceImpact = this.calculatePriceImpact(
+      valueInUSD,
+      bestRoute.liquidity
+    );
+    
+    return {
+      amountIn,
+      amountOut: amountOut.toString(),
+      path: bestRoute.route,
+      exchangeRate: bestRoute.ratio,
+      priceImpact,
+      liquidityUSD: bestRoute.liquidity,
+      valueInUSD,
+      valueOutUSD,
+      gasCost: this.estimateGasCost(bestRoute.route.length)
+    };
+  }
+  
+  // Build transaction for swap execution
+  async buildSwapTransaction(
+    quote: SwapQuote,
+    userAddress: string,
+    slippageTolerance: number = 0.5 // 0.5%
+  ): Promise<TransactionRequest> {
+    const router = new ethers.Contract(
+      this.routerAddress,
+      UNISWAP_V2_ROUTER_ABI,
+      provider
+    );
+    
+    const deadline = Math.floor(Date.now() / 1000) + 1200; // 20 minutes
+    const amountOutMin = this.calculateMinimumOutput(
+      quote.amountOut,
+      slippageTolerance
+    );
+    
+    // Handle native token swaps
+    if (quote.path[0] === '0x0000000000000000000000000000000000000000') {
+      // Swap from native token
+      return router.populateTransaction.swapExactETHForTokens(
+        amountOutMin,
+        quote.path.map(this.convertNativeToWrapped),
+        userAddress,
+        deadline,
+        { value: ethers.utils.parseEther(quote.amountIn) }
+      );
+    } else if (quote.path[quote.path.length - 1] === '0x0000000000000000000000000000000000000000') {
+      // Swap to native token
+      return router.populateTransaction.swapExactTokensForETH(
+        ethers.utils.parseUnits(quote.amountIn, 18),
+        amountOutMin,
+        quote.path.map(this.convertNativeToWrapped),
+        userAddress,
+        deadline
+      );
+    } else {
+      // Token to token swap
+      return router.populateTransaction.swapExactTokensForTokens(
+        ethers.utils.parseUnits(quote.amountIn, 18),
+        amountOutMin,
+        quote.path,
+        userAddress,
+        deadline
+      );
+    }
+  }
+  
+  private calculatePriceImpact(
+    tradeValueUSD: number,
+    liquidityUSD: number
+  ): number {
+    // Simplified constant product formula
+    const impact = (tradeValueUSD / (liquidityUSD + tradeValueUSD)) * 100;
+    return Math.min(impact, 100);
+  }
+  
+  private calculateMinimumOutput(
+    expectedOutput: string,
+    slippageTolerance: number
+  ): string {
+    const output = parseFloat(expectedOutput);
+    const minOutput = output * (1 - slippageTolerance / 100);
+    return ethers.utils.parseUnits(minOutput.toString(), 18).toString();
+  }
+  
+  private convertNativeToWrapped(address: string): string {
+    if (address === '0x0000000000000000000000000000000000000000') {
+      return process.env.WCENT_ADDRESS!;
+    }
+    return address;
+  }
+  
+  private estimateGasCost(hopCount: number): number {
+    // Rough estimates
+    const baseGas = 150000;
+    const perHopGas = 50000;
+    return baseGas + (perHopGas * (hopCount - 1));
+  }
+}
+```
+
+## Price Sync Deep Dive
+
+### How Prices are Bootstrapped
+
+1. **Initial State**: All prices start at 0
+2. **Stablecoin Marking**: Admin marks USDC/USDT as `isStable: true`
+3. **First Sync**:
+   - Finds all pairs containing stablecoin
+   - Calculates ratios from reserves
+   - Sets initial prices
+4. **Propagation**:
+   - Tokens paired with priced tokens get prices
+   - Multi-hop routes extend price discovery
+   - Eventually all connected tokens have prices
+
+### Sync Services Interaction
+
+```
+SwapFactorySync (monitors factory)
+    ↓ Creates PairModel entries
+SwapPairSync (monitors pairs)
+    ↓ Updates reserves & ratios
+AssetPriceSync (calculates USD prices)
+    ↓ Uses PoolRoutingService
+Database (stores final prices)
+```
+
+### Common Sync Issues
+
+1. **No Prices Updating**
+   - Check: `db.assets.find({isStable: true})` - Must have results
+   - Check: Backend logs for "AssetPriceSync: Syncing asset prices..."
+   - Fix: Mark a stablecoin and restart services
+2. **Partial Price Updates**
+   - Cause: Tokens not connected to stablecoin via pairs
+   - Check: `PoolRoutingService.getRoutes(tokenAddress, stablecoinAddress)`
+   - Fix: Add liquidity to connect isolated tokens
+3. **Stale Prices**
+   - Check: `asset.updatedAt` timestamps
+   - Check: Sync service health
+   - Fix: Restart sync services
+
+## Monitoring & Debugging
+
+### Health Checks
+
+```javascript
+// Check if prices are updating
+async function checkPriceHealth() {
+  const assets = await fetch('/api/user/available-assets');
+  const recentlyUpdated = assets.filter(a => 
+    Date.now() - new Date(a.updatedAt).getTime() < 60000
+  );
+  
+  console.log(`Price health: ${recentlyUpdated.length}/${assets.length} updated in last minute`);
+}
+
+// Check route availability
+async function checkRouteHealth(token1: string, token2: string) {
+  try {
+    const routes = await fetch(`/api/user/swap-route?from=${token1}&to=${token2}`);
+    console.log(`Routes available: ${routes.length}`);
+    console.log(`Best liquidity: $${routes[0]?.liquidity || 0}`);
+  } catch (error) {
+    console.error('No routes available');
+  }
+}
+```
+
+### Debug Queries
+
+```javascript
+// MongoDB queries for debugging
+
+// Find stablecoins
+db.assets.find({isStable: true})
+
+// Check pair liquidity
+db.pairs.find({"stats.liquidityUsd": {$gt: 0}}).sort({"stats.liquidityUsd": -1})
+
+// Find pairs for a token
+db.pairs.find({$or: [{token0: "0x..."}, {token1: "0x..."}]})
+
+// Check price update frequency
+db.assets.aggregate([
+  {$match: {price: {$gt: 0}}},
+  {$project: {
+    symbol: 1,
+    price: 1,
+    minutesSinceUpdate: {
+      $divide: [{$subtract: [new Date(), "$updatedAt"]}, 60000]
+    }
+  }}
+])
+```
+
+## Performance Optimization
+
+### Caching Strategy
+
+```typescript
+class SwapRouteCache {
+  private cache = new Map<string, CachedRoute>();
+  private readonly TTL = 60000; // 1 minute
+  
+  getCachedRoute(from: string, to: string): SwapRoute[] | null {
+    const key = `${from}-${to}`;
+    const cached = this.cache.get(key);
+    
+    if (cached && Date.now() - cached.timestamp < this.TTL) {
+      return cached.routes;
+    }
+    
+    return null;
+  }
+  
+  setCachedRoute(from: string, to: string, routes: SwapRoute[]) {
+    const key = `${from}-${to}`;
+    this.cache.set(key, {
+      routes,
+      timestamp: Date.now()
+    });
+  }
+}
+```
+
+### Batch Requests
+
+```typescript
+// Get multiple token prices in one request
+async function getBatchPrices(tokenAddresses: string[]) {
+  const assets = await fetch('/api/user/available-assets');
+  const priceMap = new Map(assets.map(a => [a.address, a.price]));
+  
+  return tokenAddresses.map(addr => ({
+    address: addr,
+    price: priceMap.get(addr) || 0
+  }));
+}
+```
+
+## Security Considerations
+
+1. **Slippage Protection**: Always use `amountOutMin`
+2. **Deadline**: Set reasonable transaction deadlines
+3. **Price Validation**: Compare with cached prices before execution
+4. **Gas Estimation**: Estimate gas with margin for safety
+5. **Route Validation**: Verify route tokens are whitelisted
+
+## Account Abstraction Considerations
+
+### Swaps from IncentivAccount (AA Accounts)
+
+When swaps are executed from Account Abstraction accounts (IncentivAccount), additional considerations apply:
+
+#### 1. TransferGate Approval System
+
+All transactions from IncentivAccount go through TransferGate checks:
+
+```javascript
+// IncentivAccount._call() flow for swaps
+1. Check TransferGate approval for router interaction
+2. Check approval for token transfers
+3. Execute swap if approved
+4. Handle reward distribution
+```
+
+#### 2. Token Approval Implications
+
+**Standard ERC20 Approvals**:
+
+- When approving tokens for the swap router, TransferGate checks apply
+- If the router address is blacklisted globally, approval will fail
+- User's outgoing blacklist settings are checked
+
+**Example Flow**:
+
+```typescript
+// From IncentivAccount, approving tokens for swap
+// This goes through TransferGate checks
+await token.approve(swapRouter, amount);
+// May result in:
+// - APPROVED: Proceeds normally
+// - GLOBAL_BLACKLIST: Transaction reverts
+// - OUTGOING_BLACKLIST: Transaction reverts
+```
+
+#### 3. Swap Execution Scenarios
+
+**Scenario 1: Direct Token Swap**
+
+```
+User (IncentivAccount) → Swap Router → DEX Pair → Recipient
+         ↓
+   TransferGate checks apply here
+```
+
+**Scenario 2: Token Transfer with Whitelist**
+If the swap involves sending tokens to an address with whitelist enabled:
+
+```javascript
+// Swap output to whitelisted recipient
+if (recipient has whitelist && sender not whitelisted) {
+  // Transaction becomes PENDING
+  // Funds held in TransferGate
+  // Recipient must approve
+}
+```
+
+#### 4. Reward Distribution on Swaps
+
+Swap transactions from IncentivAccount trigger reward distribution:
+
+```javascript
+// After successful swap execution
+rewardDistribution.pullFee({
+  target: swapRouter,
+  value: 0, // For token swaps
+  gasUsed: actualGasUsed
+});
+
+// Fees may be taken in:
+// - Native token (CENT)
+// - Swap output token
+```
+
+### Implementation Differences
+
+#### For EOA (Regular) Accounts:
+
+```typescript
+// Direct execution
+await router.swapExactTokensForTokens(...);
+```
+
+#### For IncentivAccount (AA):
+
+```typescript
+// Goes through UserOperation flow
+const userOp = {
+  sender: incentivAccount,
+  callData: router.interface.encodeFunctionData('swapExactTokensForTokens', [...]),
+  // ... other UserOp fields
+};
+
+// Execution includes:
+// 1. TransferGate checks
+// 2. Potential pending status
+// 3. Reward distribution
+await entryPoint.handleOps([userOp], bundler);
+```
+
+### Best Practices for AA-Compatible Swaps
+
+1. **Check Account Type**:
+
+```typescript
+async function isAAAccount(address: string): Promise<boolean> {
+  // Check if address is a smart contract
+  const code = await provider.getCode(address);
+  return code !== '0x';
+}
+```
+
+2. **Handle Pending Transactions**:
+
+```typescript
+// Monitor for pending transaction events
+transferGate.on('PendingTransactionCreated', (pendingId, sender, target) => {
+  if (target === swapRouter) {
+    // Notify user their swap is pending approval
+  }
+});
+```
+
+3. **Pre-check Approvals**:
+
+```typescript
+// Before initiating swap from AA account
+const approvalResult = await transferGate.checkApproval(
+  swapRouter,
+  0,
+  swapCalldata
+);
+
+if (approvalResult.reject !== APPROVED) {
+  // Handle rejection or pending status
+  throw new Error(`Swap blocked: ${getRejectReason(approvalResult.reject)}`);
+}
+```
+
+4. **Account for Reward Fees**:
+
+```typescript
+// When calculating swap amounts, reserve extra for fees
+const feeInfo = await rewardDistribution.getFee(
+  swapRouter,
+  0,
+  swapCalldata,
+  estimatedGas
+);
+
+const totalRequired = swapAmount + feeInfo.fee;
+```
+
+### Migration Considerations
+
+If migrating an existing swap interface to support AA accounts:
+
+1. **Detect AA Accounts**: Identify when user is using IncentivAccount
+2. **Adjust UI**: Show additional status for pending transactions
+3. **Handle New States**: Support approved/rejected/pending flows
+4. **Fee Display**: Show reward distribution fees in swap preview
+5. **Error Messages**: Provide clear feedback for TransferGate rejections
+
+### Common Issues with AA Swaps
+
+1. **"Transaction Pending"**
+   - Swap output address has whitelist enabled
+   - Solution: Recipient must approve the transaction
+2. **"Global Blacklist"**
+   - Router or token address is globally blacklisted
+   - Solution: Contact platform administrators
+3. **"Insufficient Balance for Fees"**
+   - Account lacks funds for reward distribution
+   - Solution: Ensure account has extra CENT for fees
+4. **"Approval Failed"**
+   - Token approval blocked by TransferGate
+   - Solution: Check blacklist settings
+
+## Summary
+
+The Incentiv swap system provides real-time exchange rates directly from DEX liquidity pools. Key points:
+
+1. **Prices come from DEX pairs**, not oracles
+2. **Must have stablecoin configured** for USD pricing
+3. **Routes are optimized by liquidity** automatically
+4. **Native token** requires special handling (0x0 address)
+5. **Updates every 10 seconds** from blockchain events
+6. **Account Abstraction** adds approval workflows and fees
+
+For successful integration:
+
+- Always check route availability before showing swap UI
+- Cache responses appropriately
+- Handle edge cases (no route, low liquidity)
+- Monitor price sync health
+- Use proper slippage protection
+- **For AA accounts**: Handle TransferGate approvals and pending states
+- **Consider reward fees** when calculating required balances

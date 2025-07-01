@@ -12,9 +12,10 @@
         "eyebrows": "section"
        },
   "navigation": {
-    "tabs": [
+    "dropdowns": [
       {
-        "tab": "Guides",
+        "dropdown": "Guides",
+        "icon": "book-open",
         "groups": [
           {
             "group": "Get Started",
@@ -24,7 +25,7 @@
               "docs/GetStarted/GetTestnetTokens"
             ]
           },
-  {
+          {
             "group": "General",
             "pages": [
               "docs/General/AddContacts",
@@ -46,7 +47,8 @@
       },
       
       {
-        "tab": "Development",
+      "dropdown": "API References",
+      "icon": "square-terminal",
         "groups": [
           
           {
