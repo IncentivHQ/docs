@@ -3,7 +3,15 @@ title: "Contacts"
 icon: "user-plus"
 ---
 
-The **Contacts** feature allows users to save wallet addresses with custom labels for easier identification. Once added, these contacts can be selected during transactions, streamlining token transfers and reducing the risk of errors.
+## Table of Contents
+- [Add a New Contact](#add-a-new-contact)
+- [Delete a Contact](#delete-a-contact)
+- [Favorite a Contact](#favorite-a-contact)
+- [Video Tutorial](#video-tutorial)
+
+The **Contacts** feature allows users to save, delete, and favorite wallet addresses with custom labels for easier identification. Once added, these contacts can be selected during transactions, streamlining token transfers and reducing the risk of errors.
+
+## Add a New Contact
 
 <Steps>
   <Step title="Step 1: Access the My Contacts Section">
@@ -44,7 +52,36 @@ The **Contacts** feature allows users to save wallet addresses with custom label
    Hey, you just earned a Badge for your new Contact Added on Incentiv\!
 </Tip>
 
+## Delete a Contact
 
-# Video Tutorial: Add Contacts
+<Steps>
+  <Step title="Step 1: Open the Contact List">
+    Navigate to your **Contacts** section where all saved contacts are shown.
+  </Step>
+  <Step title="Step 2: Click the Trash Icon">
+    Click the **trash icon** next to the contact you want to delete.
+  </Step>
+  <Step title="Step 3: Confirm Deletion">
+    Confirm the action to permanently remove the contact from your list.
+
+    This action cannot be undone.
+
+  </Step>
+</Steps>
+
+## Favorite a Contact
+<Steps>
+  <Step title="Step 1: Open the Contact List">
+    Go to your **Contacts** section where all saved entries are displayed.
+  </Step>
+  <Step title="Step 2: Tap the Heart Icon">
+    Find the contact you want to favorite and click the **heart icon** beside their name.
+  </Step>
+  <Step title="Step 3: View Favorites Easily">
+    Favorited contacts are now pinned or prioritized in your list for quick access during transactions.
+  </Step>
+</Steps>
+
+## Video Tutorial
 
 <iframe width="660" height="415" src="https://www.youtube.com/embed/j4BTtADoNkA?si=SAlPPgX8w-h4ODOC" title="Add Contacts" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
