@@ -1,0 +1,155 @@
+---
+title: 'Passkeys'
+---
+
+# Tap to Unlock: How Passkeys and Smart Wallets Are Redefining Crypto Access
+
+Forget everything you thought you knew about crypto wallets.
+
+No more writing down recovery phrases. 
+No browser extensions.
+No panic if you lose your phone.
+
+With passkeys and smart contract wallets on **Incentiv**, your next wallet could be as simple and secure as unlocking your device. Let’s break down how this shift works, and why it’s a game-changer for both new and experienced users.
+
+## A New Kind of Wallet Experience
+
+Creating a wallet on Incentiv feels like signing into an app. It is fast, seamless, and secure.  
+
+- No seed phrase appears.  
+- No backup instructions to follow.  
+- You just use your phone’s Face ID, fingerprint, or system password to confirm.  
+
+**That’s it.**
+
+This is made possible through a combination of **passkeys** and **Account Abstraction (AA)**. Together, they create a smarter kind of wallet that is easier to use and much harder to lose.
+
+## What Makes Passkeys Different
+
+Passkeys are already integrated into most modern devices. You use them every time you:
+
+- Unlock your laptop with a fingerprint  
+- Approve a payment using Face ID  
+- Tap “Sign in with Google”  
+
+Instead of relying on a typed password, you authenticate using your fingerprint, face, or device PIN.
+
+Behind the scenes, a private-public key pair handles the verification process. This system proves your identity without ever storing or transmitting a password.
+
+**In the context of crypto, this brings major advantages:**
+
+- No passwords or seed phrases to manage  
+- Your private keys stay securely on your device  
+- Everything works smoothly across devices that support **WebAuthn** and **FIDO2** standards  
+
+All of this replaces the need for traditional private keys while maintaining the strength of modern cryptography.
+
+## What’s Happening Under the Hood
+
+On Incentiv, passkeys work because the network uses **Account Abstraction**.
+
+**In simple terms:**
+
+- Every user transaction is sent to an **EntryPoint** smart contract  
+- Signature checks happen in the **wallet logic**, not on the **consensus layer**  
+- This allows wallets to support **alternative signature curves** like **P256** (used by passkeys)  
+- Ethereum-style consensus still runs on **secp256k1**, so core security remains untouched  
+
+This architecture gives wallets new powers without changing the blockchain itself.
+
+## Your Wallet, On-Chain and Upgradeable
+
+When you create a wallet on Incentiv, you’re not just opening an account, you’re deploying a smart contract wallet directly on-chain. This wallet uses your device-native passkey to sign actions, giving you seamless and secure access.
+
+It also supports multiple keys, meaning you’re not limited to just one device or method of access. You can:
+
+- **Authorize** phones, laptops, or other trusted devices  
+- **Instantly revoke access** if one is lost or stolen  
+- **Update and manage access anytime**, without redeploying  
+
+Because the wallet logic lives on-chain, there’s no need to start over, your wallet grows with you.
+
+
+## What Happens If You Lose Your Phone?
+
+**No panic.**
+
+Incentiv wallets are designed for **multi-key recovery**. That means:
+
+- You can authorize a backup device or EOA  
+- If one key is lost, use another to access your wallet  
+- Revoke access from the lost device with a single call  
+
+No seed phrase needed. No risky backups. Just better design.
+
+## EOAs Are Still Welcome
+
+If you’re still using MetaMask or another EOA-based wallet, there's no need to switch right away.
+
+Incentiv lets you:
+
+- **Connect** your existing EOA directly to your new passkey wallet  
+- **Fund** your passkey wallet from your EOA  
+- Set your EOA as a **backup signer** 
+- **Keep your seed phrase** for peace of mind  
+
+EOAs and passkeys aren’t competitors, they complement each other. Incentiv’s Account Abstraction logic supports multiple authentication methods, allowing them to work together seamlessly.
+
+## Security Prompts from Your Device? That’s Normal
+
+You might notice your phone asking for Face ID or your laptop requesting a system password when using your wallet.  
+
+That’s not a feature from Incentiv, it’s your device doing its job to keep you safe.
+
+- Your passkey is protected by your **device’s secure hardware**  
+- All authentication **stays on your device** and is never shared  
+- Only your **face, fingerprint, or system login** can approve actions  
+
+These prompts are part of your device’s native security, no extra steps required.
+
+## Ready for Recovery: Social Recovery Infrastructure
+
+One of the most exciting upcoming features in Incentiv wallets is **social recovery**. While not live yet, the infrastructure is already in place.
+
+Users will be able to:
+
+- Choose **trusted contacts** or **backup wallets** for recovery  
+- Set **custom rules**, such as requiring approval from 2 of 3 guardians  
+- Recover access transparently and securely, **on-chain**, without central authority  
+
+When available, it will feel much like **“Forgot Password”**, but with decentralized security.
+
+## Developer and UX Benefits
+
+This isn’t just better for users, it’s a game-changer for developers too.
+
+With Incentiv’s passkey-enabled wallets:
+
+- Developers can build dApps without teaching users about keys or seed phrases  
+- Users don’t need to learn what a seed phrase or gas fee is  
+- The ecosystem becomes safer, simpler, and more accessible to the next billion users
+
+This isn’t a shortcut. It’s a smarter wallet architecture, combining usability and security without compromise.
+
+## What Powers It All
+
+Every user action in Incentiv is packaged into a UserOperation and routed through the EntryPoint contract, the core of Account Abstraction.
+
+**Key Highlights:**
+
+- **Signature validation** is handled within the wallet logic, not at the base chain layer  
+- Support for **P256** allows passkey login from any compliant device  
+- Wallets are deployed **deterministically** via the Account Factory for predictable addresses  
+- **Multiple authentication methods** supported: EOAs, passkeys, multisig, and future schemes  
+- All key authorization logic is managed via **smart contracts**  
+- Includes **gas-optimized paths** for efficient signature verification and key management  
+
+## Try It Now
+
+You don’t need an extension. You don’t need a seed phrase. You just need your phone, laptop, or any passkey-ready device.
+
+**Get started on the Incentiv Testnet:** [Incentiv Portal](https://testnet.incentiv.net)
+
+The next generation of wallets does not feel like crypto at all.  
+It feels like unlocking your phone, and that’s the point.
+
