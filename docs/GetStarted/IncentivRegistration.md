@@ -2,59 +2,42 @@
 title: Incentiv Registration
 icon: "user"
 ---
+
+# Start Your Journey on Incentiv
+
+Choose how you'd like to begin:
+
+**"Web3 is my thing"** – For experienced Web3 users.  
+**"I'm just getting started"** – For beginners with guided support.
+
+## Getting Started with an Incentiv Smart Wallet (Passkey Login)
+
 <Steps>
-<Step title="Step 1: Select Your Web3 Journey">
+<Step title="Step 1: Select Guided Onboarding">
 
-Choose how you'd like to proceed:
-
-**"Web3 is my thing"** – For experienced Web3 users.
-
-**"I'm just getting started"** – For those new to blockchain, with guided support.
-</Step>
-
-<Step title="Step 2: Create a Wallet or Connect an Existing One">
-
-### Option 1: I'm just getting started
-
-1. Click on **"I'm just getting started."**
+Click **"I'm just getting started."**
 
 ![Incentiv Registration](/docs/images/IncentivRegistration1.png)
 
-2. Select **"Create my first wallet."**
+Choose **"Create my first wallet."**
 
 ![Incentiv Registration](/docs/images/IncentivRegistration2.png)
+</Step>
 
-3. Assign a **nickname** to your wallet for easy identification (or let the system generate one by clicking **"Decide for me"**).
+<Step title="Step 2: Name and Secure Your Wallet">
+
+Assign a **nickname** to your wallet, or click **"Decide for me"** to generate one.
 
 ![Incentiv Registration](/docs/images/IncentivRegistration3.png)
 
-4. Validate your identity using biometric authentication or your device passkeys (touch/face recognition).
+Authenticate using **biometrics** or your device's **passkey** (Face ID, fingerprint, etc.).
 
 ![Incentiv Registration](/docs/images/IncentivRegistration4.png)
-
-5. Your wallet is now connected to Incentiv, and you're ready to explore!
-</Step>
-</Steps>
-## Using an Existing Wallet
-<Steps>
-<Step title="Option 2: Web3 is my thing">
-
-Choose an option:
-
-- Use your existing wallet provider (MetaMask, WalletConnect, etc.).
-- Create an Incentiv Smart Wallet (for a new Web3 experience).
 </Step>
 
-<Note type="warning">
-If creating a new wallet, follow the steps outlined in Option 1 above.
-</Note>
+<Step title="Step 3: You're In!">
 
-<Step title="If using an existing wallet">
-
-1. Click "I'll use my existing wallet."
-2. Assign a nickname for easy identification (or let the system generate one).
-3. Choose your Wallet Provider (MetaMask or WalletConnect).
-4. Approve the network connection request in your wallet.
+Your Incentiv Smart Wallet is now ready to use, welcome aboard!
 </Step>
 </Steps>
 
@@ -62,6 +45,41 @@ If creating a new wallet, follow the steps outlined in Option 1 above.
 Hey, you got a Badge for activating your First Smart Wallet on Incentiv
 </Tip>
 
-# Video Tutorial: Incentiv Registration
+## Connecting with MetaMask
+
+<Steps>
+<Step title="Step 1: Select Web3 Option">
+
+1. Choose **"Web3 is my thing."**  
+2. Click **"I'll use my existing wallet."**
+</Step>
+
+<Step title="Step 2: Set Up and Connect">
+
+1. Assign a **nickname** for your wallet (or let the system choose).  
+2. Select **MetaMask** as your provider.  
+3. Approve the connection request in your MetaMask extension or app.
+</Step>
+</Steps>
+
+## Connecting with WalletConnect
+
+<Steps>
+<Step title="Step 1: Start from Web3 Path">
+
+1. Choose **"Web3 is my thing."**  
+2. Click **"I'll use my existing wallet."**
+</Step>
+
+<Step title="Step 2: Link Your Wallet">
+
+1. Assign a **nickname** (or click **"Decide for me"**).  
+2. Select **WalletConnect** as your method.  
+3. Scan the QR code using your mobile wallet app and approve the request.
+</Step>
+</Steps>
+
+## Video Tutorial: Incentiv Registration
 
 <iframe width="660" height="415" src="https://www.youtube.com/embed/yZyN3pfQhv8?si=fmxScfyMOWCSKads" title="Incentiv Registration" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
