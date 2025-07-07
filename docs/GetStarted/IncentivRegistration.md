@@ -10,6 +10,11 @@ Choose how you'd like to begin:
 **"Web3 is my thing"** – For experienced Web3 users.  
 **"I'm just getting started"** – For beginners with guided support.
 
+## Table of Contents
+- [Incentiv Smart Wallet](#incentiv-smart-wallet)
+- [Metamask](#metamask)
+- [Wallet Connect](#wallet-connect)
+
 ## Getting Started with an Incentiv Smart Wallet (Passkey Login)
 
 <Steps>
