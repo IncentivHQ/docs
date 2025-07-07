@@ -3,13 +3,13 @@ title: "Contacts"
 icon: "user-plus"
 ---
 
+The **Contacts** feature allows users to save, delete, and favorite wallet addresses with custom labels for easier identification. Once added, these contacts can be selected during transactions, streamlining token transfers and reducing the risk of errors.
+
 ## Table of Contents
 - [Add a New Contact](#add-a-new-contact)
 - [Delete a Contact](#delete-a-contact)
 - [Favorite a Contact](#favorite-a-contact)
 - [Video Tutorial](#video-tutorial)
-
-The **Contacts** feature allows users to save, delete, and favorite wallet addresses with custom labels for easier identification. Once added, these contacts can be selected during transactions, streamlining token transfers and reducing the risk of errors.
 
 ## Add a New Contact
 
