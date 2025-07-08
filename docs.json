@@ -38,6 +38,14 @@
           },
           
           {
+            "group": "Educational",
+            "pages": [
+              "docs/Education/AccountAbstraction",
+              "docs/Education/Passkeys"
+            ]
+          },
+          
+          {
             "group": "Others",
             "pages": [
               "docs/GetStarted/TermsConditions"
