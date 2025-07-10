@@ -1,0 +1,167 @@
+---
+title: "Bundler Creation"
+description: "Description of your new file."
+---
+
+# Building a Bundler on the Incentiv Blockchain
+
+Bundlers play a key role in the **Account Abstraction (AA)** flow on the Incentiv blockchain by monitoring incoming **UserOperations**, validating them, bundling them into standard transactions, and submitting them to miners.
+
+This guide will walk you through:
+
+- What is a Bundler?
+- Prerequisites and environment setup
+- Building the bundler logic
+- Submitting transactions
+- Verifying success on-chain
+
+---
+
+## What is a Bundler?
+
+A **Bundler** is a node service responsible for:
+
+- Receiving **UserOperations** from smart wallets
+- Validating UserOps (signature, gas, nonce, etc.)
+- Bundling them into one or more standard Ethereum transactions
+- Submitting them to the blockchain (via JSON-RPC or custom RPC nodes)
+
+Incentiv’s Bundlers communicate with:
+
+- The **EntryPoint contract**
+- The **Incentiv node RPC**
+- Optionally, the **Indexer (IncentiView)** for syncing metadata
+
+---
+
+## Prerequisites
+
+Before starting, make sure you have:
+
+- Familiarity with **Ethereum JSON-RPC**, **Ethers.js**, and **Node.js**
+- Access to the **Incentiv testnet RPC**
+- Access to the **EntryPoint contract address**
+- A wallet with **CENT** to pay for gas (test tokens)
+
+---
+
+## 1. Project Setup
+
+```
+mkdir incentiv-bundler
+cd incentiv-bundler
+npm init -y
+npm install ethers dotenv
+```
+
+Create a `.env` file:
+
+```
+RPC_URL=https://rpc.testnet.incentiv.net
+PRIVATE_KEY=0xabc123...       # Bundler's funded private key
+ENTRYPOINT=0xEntryPoint...     # Provided by Incentiv
+```
+
+---
+
+## 2. Connect to the Blockchain
+
+```
+// bundler.js
+require("dotenv").config();
+const { ethers } = require("ethers");
+
+const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL);
+const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+
+console.log("Bundler wallet address:", wallet.address);
+```
+
+---
+
+## 3. Fetch UserOperations
+
+```
+async function getPendingUserOps() {
+  const response = await fetch("https://indexer.testnet.incentiv.net/api/useroperations?status=pending");
+  const { items } = await response.json();
+  return items;
+}
+```
+
+---
+
+## 4. Validate UserOperation
+
+You must simulate or verify:
+
+- `signature`
+- `nonce` and replay protection
+- `prefund` value
+- `paymaster` if present
+
+> Use `eth_call` with `EntryPoint.simulateValidation()` if available.
+
+---
+
+## 5. Bundle and Submit
+
+```
+async function bundleAndSubmit(userOps) {
+  const entryPoint = new ethers.Contract(
+    process.env.ENTRYPOINT,
+    [ "function handleOps(tuple(...)[] ops, address beneficiary)" ],
+    wallet
+  );
+
+  const tx = await entryPoint.handleOps(userOps, wallet.address, {
+    gasLimit: 8_000_000
+  });
+
+  console.log("Bundled tx sent:", tx.hash);
+  await tx.wait();
+  console.log("Bundled tx confirmed.");
+}
+```
+
+---
+
+## 6. Monitor the Result
+
+Use the IncentiView API or Explorer to confirm the UserOps are:
+
+- Marked as `success`
+- Linked to the transaction hash
+- Paid by the bundler (via miner reward or refund logic)
+
+---
+
+## 7. Optional: Run as a Service
+
+```
+setInterval(async () => {
+  const pending = await getPendingUserOps();
+  if (pending.length > 0) {
+    await bundleAndSubmit(pending);
+  }
+}, 5000); // Check every 5 seconds
+```
+
+Deploy with `pm2`, `Docker`, or a systemd service on a VM.
+
+---
+
+## Best Practices
+
+- Always **simulate validation** to avoid reverts
+- Monitor **gas usage** and avoid underpaying
+- Set up metrics/logging for UserOps processed
+- Keep up to date with **EntryPoint upgrades**
+
+---
+
+## Resources
+
+- Incentiv EntryPoint Contract
+- IncentiView Indexer API
+- [OpenZeppelin UserOp Validator Boilerplate](https://github.com/OpenZeppelin/account-abstraction)
