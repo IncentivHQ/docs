@@ -65,7 +65,8 @@
               "tools/network",
               "tools/contracts",
               "tools/dapps/sdk",
-              "tools/dapps/example"
+              "tools/dapps/example",
+              "tools/ui_sdk/ui-sdk"
             ]
           },
           {
