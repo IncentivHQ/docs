@@ -4,7 +4,6 @@ description: "Frontend UI toolkit to trigger login, signing, and wallet connecti
 icon: "code"
 ---
 
-
 ## Introduction
 
 UI-SDK is the go-to approach for implementing Account Abstraction (AA) capabilities in Incentiv applications by providing a streamlined interface for communicating with ERC-4337 bundlers. It supports both EOA (Externally Owned Account) and Passkey-based authentication methods for creating AA wallets.
@@ -184,6 +183,30 @@ import { WebAuthnCredential } from 'ui-sdk';
 
 The passkey account creation process involves registration, server communication, and subsequent authentication. Here's the complete flow:
 
+#### Authentication Flow Summary
+
+<AccordionGroup>
+  <Accordion title="Registration" defaultOpen icon="address-card">
+    - Call `registerPasskey()` with challenge from server
+    - Extract `credentialId` and create `WebAuthnPublicKey` from attestation object
+    - Send attestation data to server for verification and storage
+  </Accordion>
+  <Accordion title="Login" icon="right-to-bracket">
+    - Sign login challenge using `signPasskeyLoginChallenge()`
+    - Send signature to server for verification
+    - Retrieve public key and credential ID from server
+    - Create `WebAuthnCredential` object and initialize provider
+  </Accordion>
+  <Accordion title="Usage" icon="message-captions">
+    - Use the created provider for all Account Abstraction operations
+    - The provider handles WebAuthn signing automatically for transactions
+  </Accordion>
+</AccordionGroup>
+
+This approach provides a seamless, secure authentication experience while maintaining the full capabilities of Account Abstraction.
+
+Let us code these steps:
+
 <Steps>
   <Step title="Step 1: Register the Passkey">
     ```javascript
@@ -358,28 +381,6 @@ const handleLogin = async () => {
   return aaProvider;
 };
 ```
-
-#### Authentication Flow Summary
-
-<AccordionGroup>
-  <Accordion title="Registration" defaultOpen icon="address-card">
-    - Call `registerPasskey()` with challenge from server
-    - Extract `credentialId` and create `WebAuthnPublicKey` from attestation object
-    - Send attestation data to server for verification and storage
-  </Accordion>
-  <Accordion title="Login" icon="right-to-bracket">
-    - Sign login challenge using `signPasskeyLoginChallenge()`
-    - Send signature to server for verification
-    - Retrieve public key and credential ID from server
-    - Create `WebAuthnCredential` object and initialize provider
-  </Accordion>
-  <Accordion title="Usage" icon="message-captions">
-    - Use the created provider for all Account Abstraction operations
-    - The provider handles WebAuthn signing automatically for transactions
-  </Accordion>
-</AccordionGroup>
-
-This approach provides a seamless, secure authentication experience while maintaining the full capabilities of Account Abstraction.
 
 ## <Icon icon="arrow-right-arrow-left" size={24} /> Transaction Operations
 
