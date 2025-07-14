@@ -40,7 +40,7 @@
           {
             "group": "Educational",
             "pages": [
-              "docs/Education/AccountAbstraction",
+              "docs/Education/AdvancedAccountAbstraction",
               "docs/Education/Passkeys"
             ]
           },
