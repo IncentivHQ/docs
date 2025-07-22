@@ -1,0 +1,135 @@
+---
+title: "Testnet V2 Miner Deployment"
+description: "Description of your new file."
+---
+
+Follow this guide to build and run an Incentiv Testnet V2 miner.
+
+### 1. Requirements
+
+Make sure you have the following requirements in order to build and run the client:
+
+- Git
+- Go v1.22
+- make
+
+### 2. Clone and Install
+
+```bash
+# Create a directory for the node
+mkdir node
+cd node
+
+# Clone the client
+git clone https://github.com/IncentivNetwork/incentum-pow.git client
+cd client
+
+# Build the client
+make geth
+```
+
+### 3. Prepare Account and Environment
+
+```bash
+# Go back to node directory
+cd node
+
+# Create a data directory and generate a new account
+mkdir data
+./client/build/bin/geth account new --datadir data/
+
+# Store the generated password
+echo "YOUR_PASSWORD_HERE" > pwd.txt
+```
+
+**Note:** Replace `YOUR_PASSWORD_HERE` with the entered password in the line above
+
+**Note:** Keep track of the generated address\!
+
+### 4. Prepare `genesis.json`
+
+Use the following `genesis.json` to initialize the chain. `genesis.json` must be located in the `node/` direcotry.
+
+```json
+{
+  "config": {
+    "chainId": 28802,
+    "homesteadBlock": 0,
+    "eip150Block": 0,
+    "eip155Block": 0,
+    "eip158Block": 0,
+    "byzantiumBlock": 0,
+    "constantinopleBlock": 0,
+    "petersburgBlock": 0,
+    "istanbulBlock": 0,
+    "berlinBlock": 0,
+    "londonBlock": 0
+  },
+  "alloc": {
+    "0x3d8eBBDa14e61a0f6B278112EcB99cd895Bcbf3e": {
+      "balance": "500000000000000000000000000000"
+    },
+    "0x683d8cb71DC0caa58AD75986292F22d830B87B75": {
+      "balance": "500000000000000000000000000000"
+    }
+  },
+  "coinbase": "0x0000000000000000000000000000000000000000",
+  "difficulty": "0x1",
+  "gasLimit": "0x1C9C380",
+  "nonce": "0x0000000000000000000000000000000000000042",
+  "mixhash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "timestamp": "0x00"
+}
+```
+
+Initialize the chain with `genesis.json`
+
+```bash
+./client/build/bin/geth init --datadir data/ genesis.json
+```
+
+### 5. Run the Client
+
+It's recommended to create a run script to run the client with the right params. Create the run script with:
+
+```bash
+touch run.sh
+chmod +x run.sh
+vi run.sh
+```
+
+Add the following contents:
+
+```bash
+#!/bin/bash
+./client/build/bin/geth \
+  --datadir data \
+  --networkid 28802 \
+  --http \
+  --http.addr "0.0.0.0" \
+  --http.vhosts "*" \
+  --http.port 8545 \
+  --http.api "eth,net,web3,debug,txpool,personal,miner" \
+  --mine \
+  --miner.threads 1 \
+  --unlock "YOUR_ACCOUNT_ADDRESS_HERE" \
+  --password pwd.txt \
+  --miner.etherbase "YOUR_ACCOUNT_ADDRESS_HERE" \
+  --http.corsdomain "*" \
+  --miner.gasprice "1" \
+  --txpool.pricelimit "1" \
+  --allow-insecure-unlock \
+  --rpc.allow-unprotected-txs \
+  --bootnodes=enode://3cfd9dcbe3333eac423803d967bd9a5f3e44451a5c2e5373c1d26c25c98d7d3194d6623c6fb4f465cc72c38f14807cb993f7a11b71160266c02fbdfcc9661797@57.129.137.109:30303
+```
+
+**_Note:_** Replace `YOUR_ACCOUNT_ADDRESS_HERE` with the address generated in step 3
+
+**_Node:_** Adjust `--miner.threads 1` based on your machines capabilities\!
+
+Run the client using:
+
+```bash
+./run.sh
+```
