@@ -8,7 +8,7 @@ icon: "book"
 Get started with Incentiv Public Testnet and experience seamless blockchain interactions. Access the testnet at: [testnet.incentiv.io](https://testnet.incentiv.io)
 
 <Note>
-  Hey, for a detailed registration process, go to [Incentiv Registration](https://docs.incentiv.net/docs/GetStarted/IncentivRegistration)
+  Hey, for a detailed registration process, go to [Incentiv Registration](/docs/GetStarted/Incentiv_Registration)
 </Note>
 
 ## Network and Transaction Processing
@@ -27,18 +27,18 @@ The platform continuously tracks user engagement metrics via **My Badges**, ensu
 
 My Badges is a **gamified badge system** integrated into the Incentiv Portal that rewards users for completing key on-chain actions. These badges track user progress and encourage exploration of the Incentiv ecosystem. Already live on the Public Testnet, the system provides early feedback and helps evaluate user behavior patterns critical to incentive modeling.
 
-| Badge                             | Description                                                                                              | Guide                                                                                   |
-| --------------------------------- | -------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| **Create Wallet Completed**       | Created your AA Wallet using Incentiv’s account abstraction system.                                      | [Incentiv Registration](https://docs.incentiv.net/docs/GetStarted/IncentivRegistration) |
-| **Get Testnet Tokens Completed**  | Claimed testnet tokens from the Incentiv Faucet.                                                         | [Get Testnet Tokens](https://docs.incentiv.net/docs/GetStarted/GetTestnetTokens)        |
-| **Send Tokens Completed**         | Successfully sent a token to another wallet.                                                             | [Send Tokens](https://docs.incentiv.net/docs/General/SendTokens)                        |
-| **Add Contact Completed**         | Added another user to your address book in the portal.                                                   | [Add Contacts](https://docs.incentiv.net/docs/General/AddContacts)                      |
-| **Swap Tokens Completed**         | Swapped one token for another via the built-in DEX.                                                      | [Swap Tokens](https://docs.incentiv.net/docs/General/SwapTokens)                        |
-| **Bundle Actions Completed**      | Successfully create a multi-action transaction                                                           | [Bundle Actions](https://docs.incentiv.net/docs/General/BundleActions)                  |
-| **Unified Token**                 | Select which token to use for transaction fees, allowing flexible gas payments across supported assets.  | [**Unified Tokens**](https://docs.incentiv.net/docs/General/UnifiedToken)               |
-| **Whitelist / Blacklist Updated** | Configured or accepted the token transfer rules within the Incentiv Portal enabling compliant transfers. | Whitelist and Blacklist                                                                 |
-| **Claim Rewards Completed**       | Claimed the earned rewards from the Incentiv Plus                                                        | Claim Rewards                                                                           |
-| **Play Game Completed**           | Completed a game interaction or on-chain game trigger integrated into the Incentiv ecosystem.            | Play Games                                                                              |
+| Badge                             | Description                                                                                              | Guide                                                                            |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| **Create Wallet Completed**       | Created your AA Wallet using Incentiv’s account abstraction system.                                      | [Incentiv Registration](/docs/GetStarted/Incentiv_Registration)                  |
+| **Get Testnet Tokens Completed**  | Claimed testnet tokens from the Incentiv Faucet.                                                         | [Get Testnet Tokens](https://docs.incentiv.net/docs/GetStarted/GetTestnetTokens) |
+| **Send Tokens Completed**         | Successfully sent a token to another wallet.                                                             | [Send Tokens](https://docs.incentiv.net/docs/General/SendTokens)                 |
+| **Add Contact Completed**         | Added another user to your address book in the portal.                                                   | [Add Contacts](https://docs.incentiv.net/docs/General/AddContacts)               |
+| **Swap Tokens Completed**         | Swapped one token for another via the built-in DEX.                                                      | [Swap Tokens](https://docs.incentiv.net/docs/General/SwapTokens)                 |
+| **Bundle Actions Completed**      | Successfully create a multi-action transaction                                                           | [Bundle Actions](https://docs.incentiv.net/docs/General/BundleActions)           |
+| **Unified Token**                 | Select which token to use for transaction fees, allowing flexible gas payments across supported assets.  | [**Unified Tokens**](https://docs.incentiv.net/docs/General/UnifiedToken)        |
+| **Whitelist / Blacklist Updated** | Configured or accepted the token transfer rules within the Incentiv Portal enabling compliant transfers. | Whitelist and Blacklist                                                          |
+| **Claim Rewards Completed**       | Claimed the earned rewards from the Incentiv Plus                                                        | Claim Rewards                                                                    |
+| **Play Game Completed**           | Completed a game interaction or on-chain game trigger integrated into the Incentiv ecosystem.            | Play Games                                                                       |
 
 <Note>
   **Coming Soon\!**

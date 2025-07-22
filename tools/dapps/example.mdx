@@ -62,9 +62,9 @@ Network and contract settings live in **`src/config.ts`**:
 ```typescript
 const Config = {
   Environments: {
-    Local:   { Portal: "http://localhost:8080", RPC: "https://rpc1.testnet.incentiv.net", Contract: "0x…" },
-    Staging: { Portal: "https://staging.incentiv.net", RPC: "https://rpc.staging.incentiv.net", Contract: "0x…" },
-    Testnet: { Portal: "https://testnet.incentiv.net", RPC: "https://rpc1.testnet.incentiv.net", Contract: "0x…" }
+    Local:   { Portal: "http://localhost:8080", RPC: "https://rpc2.testnet.incentiv.io", Contract: "0x…" },
+    TestnetBeta: { Portal: "https://testnet.incentiv.net", RPC: "https://rpc1.testnet.incentiv.net", Contract: "0x…" },
+	TestnetAlpha: { Portal: "https://testnet.incentiv.io", RPC: "https://rpc2.testnet.incentiv.io", Contract: "0x…" }
   },
   ABI: [ /* simplified Storage ABI */ ]
 };
@@ -95,7 +95,7 @@ Reusable modal component used for success/error feedback.
 
 ## Runtime flow
 
-```mermaid [expandable]
+```mermaid expandable
 sequenceDiagram
     participant User
     participant Example dApp
@@ -135,15 +135,7 @@ Ensure your production host allows pop‑ups for the Incentiv Portal domain.
 
 ## Video: Incentiv dApp SDK Example
 
-<iframe
-  width="560"
-  height="315"
-  src="https://www.youtube.com/embed/YZxNG00gXQg"
-  title="Incentiv dApp SDK"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowfullscreen
-></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/YZxNG00gXQg" title="Incentiv dApp SDK" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen />
 
 ## License
 
