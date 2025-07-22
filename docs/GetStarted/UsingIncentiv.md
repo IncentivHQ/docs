@@ -5,7 +5,7 @@ icon: "book"
 
 ## Public Testnet
 
-Get started with Incentiv Public Testnet and experience seamless blockchain interactions. Access the testnet at: [testnet.incentiv.net](https://testnet.incentiv.net)
+Get started with Incentiv Public Testnet and experience seamless blockchain interactions. Access the testnet at: [testnet.incentiv.io](https://testnet.incentiv.io)
 
 <Note>
   Hey, for a detailed registration process, go to [Incentiv Registration](https://docs.incentiv.net/docs/GetStarted/IncentivRegistration)

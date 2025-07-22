@@ -1,5 +1,5 @@
 ---
-title: Terms & Conditions for Incentiv Testnet Participation
+title: "Terms & Conditions for Incentiv Testnet Participation"
 icon: "file"
 ---
 
@@ -9,7 +9,7 @@ Welcome to the Incentiv testnet (the "**Testnet**", "**Incentiv Testnet**") made
 
 ## 2. Agreement to Terms
 
-By accessing and using the Testnet, you ("**User**") agree to comply with and be bound by these Terms and Conditions ("**Agreement**" or "Terms") and to our Privacy Policy as published on [https://incentiv.net](https://incentiv.net/)  (the "**Privacy Policy**") and any other agreements or terms as set forth by the Incentiv. These Terms constitute a binding obligation between you and Incentiv. If you do not agree, you should not participate in the Testnet.
+By accessing and using the Testnet, you ("**User**") agree to comply with and be bound by these Terms and Conditions ("**Agreement**" or "Terms") and to our Privacy Policy as published on https://incentiv.io/ (the "**Privacy Policy**") and any other agreements or terms as set forth by the Incentiv. These Terms constitute a binding obligation between you and Incentiv. If you do not agree, you should not participate in the Testnet.
 
 The Agreement applies to your access to and use of the websites, platform, software, technologies, features, and other online products and  services (collectively, the "**Services**") provided or made available by Incentiv.
 
@@ -25,11 +25,11 @@ The Testnet is designed to improve the operational experience, security, and des
 
 By participating in the Testnet, you represent and warrant that:
 
-* You are at least 18 years old or the legal age in your jurisdiction.
-* You have the full authority to accept these terms.
-* You are not the subject of sanctions administered or enforced by any country or government or otherwise designated on any list of prohibited or restricted parties (including but not limited to the lists maintained by the United Nations Security Council, the U.S. Government (including but not limited to the Office of Foreign Assets Control), the European Union or its Member States, or other applicable government authority) or a citizen or organized or resident in a country or territory that is the  subject of country-wide or territory-wide sanctions (including without limitation Cuba, Democratic  People's Republic of Korea, the Crimea, Donetsk, and Luhansk regions, Russian Federation, Republic of Belarus, Iran or Syria);
-* You are not barred from participating under any  applicable laws, statutes, ordinances, rules, regulations, judgments, injunctions, orders and  decrees ("**Applicable Laws**");
-* You will not use a virtual private network (VPN) or other tool to circumvent any geo block or other restrictions that we may have implemented for participants  in the Testnet;
+- You are at least 18 years old or the legal age in your jurisdiction.
+- You have the full authority to accept these terms.
+- You are not the subject of sanctions administered or enforced by any country or government or otherwise designated on any list of prohibited or restricted parties (including but not limited to the lists maintained by the United Nations Security Council, the U.S. Government (including but not limited to the Office of Foreign Assets Control), the European Union or its Member States, or other applicable government authority) or a citizen or organized or resident in a country or territory that is the  subject of country-wide or territory-wide sanctions (including without limitation Cuba, Democratic  People's Republic of Korea, the Crimea, Donetsk, and Luhansk regions, Russian Federation, Republic of Belarus, Iran or Syria);
+- You are not barred from participating under any  applicable laws, statutes, ordinances, rules, regulations, judgments, injunctions, orders and  decrees ("**Applicable Laws**");
+- You will not use a virtual private network (VPN) or other tool to circumvent any geo block or other restrictions that we may have implemented for participants  in the Testnet;
 
 ## 5. Duration of the Testnet
 
@@ -45,18 +45,18 @@ Incentiv may, in its sole discretion, decide to delete, wipe or otherwise remove
 
 ## 8. No Guarantees and Disclaimers
 
-* The Testnet is provided "as is" and "as available" without any warranties.
-* The Testnet may experience failures, downtime or security vulnerabilities.
-* The developers of Incentiv are not liable for any losses, damages, or disruptions resulting from the use of the Testnet.
+- The Testnet is provided "as is" and "as available" without any warranties.
+- The Testnet may experience failures, downtime or security vulnerabilities.
+- The developers of Incentiv are not liable for any losses, damages, or disruptions resulting from the use of the Testnet.
 
 ## 9. Prohibited Activities
 
 Users must not:
 
-* Exploit vulnerabilities, bugs, or security flaws for malicious purposes.
-* Use the Testnet for illegal, fraudulent, or unauthorized purposes.
-* Attempt to exchange, sell, or monetize Test Tokens.
-* Attempt to exchange, sell, buy or transfer any other tokens into the Testnet or any wallet created on the Incentiv Testnet. Such activity is most likely to result in a permanent loss of the transferred assets.
+- Exploit vulnerabilities, bugs, or security flaws for malicious purposes.
+- Use the Testnet for illegal, fraudulent, or unauthorized purposes.
+- Attempt to exchange, sell, or monetize Test Tokens.
+- Attempt to exchange, sell, buy or transfer any other tokens into the Testnet or any wallet created on the Incentiv Testnet. Such activity is most likely to result in a permanent loss of the transferred assets.
 
 ## 10. Data Collection and Privacy
 
@@ -64,9 +64,9 @@ By using the Testnet, you acknowledge and agree that certain data, such as trans
 
 In our efforts to provide helpful resources, we may include links to third-party service providers on our website or through the Testnet. Please be aware of the following:
 
-* **No Endorsement:** We do not endorse or make any representations about these third-party services. The inclusion of any link does not imply our approval or recommendation.
-* **User Responsibility:** It is the user's responsibility to review and understand the privacy policies and terms of service of any third-party provider before engaging with their services. We encourage you to read these policies to understand how your personal information may be collected, used, and shared.
-* **Limited Control:** We have no control over the practices or performance of these third-party services and cannot be held liable for any consequences arising from your use of them, including but not limited to any performance issues, service outages, or data breaches. Any interactions you have with these providers are solely between you and the provider, and we are not responsible for any issues that may arise.
+- **No Endorsement:** We do not endorse or make any representations about these third-party services. The inclusion of any link does not imply our approval or recommendation.
+- **User Responsibility:** It is the user's responsibility to review and understand the privacy policies and terms of service of any third-party provider before engaging with their services. We encourage you to read these policies to understand how your personal information may be collected, used, and shared.
+- **Limited Control:** We have no control over the practices or performance of these third-party services and cannot be held liable for any consequences arising from your use of them, including but not limited to any performance issues, service outages, or data breaches. Any interactions you have with these providers are solely between you and the provider, and we are not responsible for any issues that may arise.
 
 ## 11. Third-Party Services
 
