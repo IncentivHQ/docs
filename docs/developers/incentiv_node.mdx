@@ -105,25 +105,7 @@ cd client
 make geth
 ```
 
-### 2. Prepare Account and Environment
-
-```bash
-# Go back to node directory
-cd node
-
-# Create a data directory and generate a new account
-mkdir data
-./client/build/bin/geth account new --datadir data/
-
-# Store the generated password
-echo "YOUR_PASSWORD_HERE" > pwd.txt
-```
-
-**Note:** Replace `YOUR_PASSWORD_HERE` with the entered password in the line above
-
-**Note:** Keep track of the generated address\!
-
-### 3. Prepare `genesis.json`
+### 2. Prepare `genesis.json`
 
 Use the following `genesis.json` to initialize the chain. `genesis.json` must be located in the `node/` direcotry.
 
