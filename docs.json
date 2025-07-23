@@ -62,8 +62,8 @@
           {
             "group": "Building on Incentiv",
             "pages": [
-              "tools/network",
-              "tools/contracts",
+              "docs/developers/network",
+              "docs/developers/contracts",
               "tools/dapps/sdk",
               "tools/dapps/example",
               "tools/ui_sdk/ui-sdk"
