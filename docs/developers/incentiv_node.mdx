@@ -1,0 +1,201 @@
+---
+title: "Deploying an Incentiv Node"
+description: "Deploying an Incentiv Node on BetaNet"
+---
+
+## Introduction
+
+RPC nodes play a crucial role in the Incentiv ecosystem by providing access to blockchain data for frontend applications, wallets, indexers, and backends. They do not mine or validate blocks — instead, they expose the RPC interface used by applications to:
+
+- Query blocks, transactions, and smart contract state
+- Submit transactions to be picked up by miners
+- Monitor the network state
+
+---
+
+## Prerequisites
+
+Before installing the node software, ensure you have the following:
+
+### System Requirements
+
+- A machine running **Ubuntu 22.04\+** or **macOS 12\+**
+- Minimum hardware:
+  - **CPU**: 2\+ cores
+  - **RAM**: 8 GB\+
+  - **Disk**: 500 GB SSD (recommended)
+  - **Network**: Stable internet connection
+
+### Required Tools
+
+- [Git](https://git-scm.com/) — for cloning repositories
+- [Make](https://www.gnu.org/software/make/) — for building the node binary
+- **Go v1.22** — required to build and run the node (see below for installation instructions)
+- Sudo/root access
+- Familiarity with terminal commands
+
+<AccordionGroup>
+  <Accordion title="Installing Go" description="Installing Go v1.22 on Ubuntu" icon="download">
+    1. **Remove any existing Go installation** (optional but recommended):
+
+    ```bash
+    sudo rm -rf /usr/local/go
+    ```
+
+    2. **Download Go v1.22:**
+
+    ```bash
+    wget https://go.dev/dl/go1.22.0.linux-amd64.tar.gz
+    ```
+
+    3. **Extract and install:**
+
+    ```
+    sudo tar -C /usr/local -xzf go1.22.0.linux-amd64.tar.gz
+    ```
+
+    4. **Update your environment variables:**
+
+       Add the following lines to your shell configuration file (e.g., ~/.bashrc, ~/.zshrc, or ~/.profile):
+
+    ```bash
+    export PATH=$PATH:/usr/local/go/bin
+    export GOPATH=$HOME/go
+    export PATH=$PATH:$GOPATH/bin
+    ```
+
+    Apply the changes:
+
+    ```bash
+    source ~/.zshrc  # or ~/.bash_profile depending on your shell
+    ```
+
+    5. **Verify installation:**
+
+    ```bash
+    go version
+    ```
+
+    Expected output:
+
+    ```bash
+    go version go1.22.0 darwin/amd64
+    ```
+  </Accordion>
+  <Accordion title="Install git & make" icon="download">
+    ```bash
+      sudo apt update
+      sudo apt install -y git make
+    ```
+  </Accordion>
+</AccordionGroup>
+
+### 1. Clone and Install
+
+```bash
+# Create a directory for the node
+mkdir node
+cd node
+
+# Clone the client
+git clone https://github.com/IncentivNetwork/incentum-pow.git client
+cd client
+
+# Build the client
+make geth
+```
+
+### 2. Prepare Account and Environment
+
+```bash
+# Go back to node directory
+cd node
+
+# Create a data directory and generate a new account
+mkdir data
+./client/build/bin/geth account new --datadir data/
+
+# Store the generated password
+echo "YOUR_PASSWORD_HERE" > pwd.txt
+```
+
+**Note:** Replace `YOUR_PASSWORD_HERE` with the entered password in the line above
+
+**Note:** Keep track of the generated address\!
+
+### 3. Prepare `genesis.json`
+
+Use the following `genesis.json` to initialize the chain. `genesis.json` must be located in the `node/` direcotry.
+
+```json
+{
+  "config": {
+    "chainId": 28802,
+    "homesteadBlock": 0,
+    "eip150Block": 0,
+    "eip155Block": 0,
+    "eip158Block": 0,
+    "byzantiumBlock": 0,
+    "constantinopleBlock": 0,
+    "petersburgBlock": 0,
+    "istanbulBlock": 0,
+    "berlinBlock": 0,
+    "londonBlock": 0
+  },
+  "alloc": {
+    "0x3d8eBBDa14e61a0f6B278112EcB99cd895Bcbf3e": {
+      "balance": "500000000000000000000000000000"
+    },
+    "0x683d8cb71DC0caa58AD75986292F22d830B87B75": {
+      "balance": "500000000000000000000000000000"
+    }
+  },
+  "coinbase": "0x0000000000000000000000000000000000000000",
+  "difficulty": "0x1",
+  "gasLimit": "0x1C9C380",
+  "nonce": "0x0000000000000000000000000000000000000042",
+  "mixhash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "timestamp": "0x00"
+}
+```
+
+Initialize the chain with `genesis.json`
+
+```bash
+./client/build/bin/geth init --datadir data/ genesis.json
+```
+
+### 4. Run the Client
+
+It's recommended to create a run script to run the client with the right params. Create the run script with:
+
+```bash
+touch run.sh
+chmod +x run.sh
+vi run.sh
+```
+
+Add the following contents:
+
+```bash
+#!/bin/bash
+./client/build/bin/geth \
+  --datadir data \
+  --networkid 28802 \
+  --http \
+  --http.addr "0.0.0.0" \
+  --http.vhosts "*" \
+  --http.port 8545 \
+  --http.api "eth,net,web3,debug,txpool,personal" \
+  --http.corsdomain "*" \
+  --txpool.pricelimit "1" \
+  --rpc.allow-unprotected-txs \
+  --bootnodes=enode://3cfd9dcbe3333eac423803d967bd9a5f3e44451a5c2e5373c1d26c25c98d7d3194d6623c6fb4f465cc72c38f14807cb993f7a11b71160266c02fbdfcc9661797@57.129.137.109:30303
+```
+
+Run the client using:
+
+```bash
+./run.sh
+```

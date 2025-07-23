@@ -3,11 +3,11 @@
   "info": {
     "title": "IncentiView Indexer API",
     "description": "API endpoint for listing blocks from the Incentiv Blockchain via the IncentiView indexer.",
-    "version": "1.0.0"
+    "version": "2.0.0"
   },
   "servers": [
     {
-      "url": "https://indexer.testnet.incentiv.net/api"
+      "url": "https://indexer.testnet.incentiv.io/api"
     }
   ],
   "paths": {
