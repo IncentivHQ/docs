@@ -1,8 +1,9 @@
 ---
-title: Advanced Account Abstraction
+title: "Understanding Advanced Account Abstraction (AAA)"
+sidebarTitle: "Advanced Account Abstraction"
 ---
 
-# Understanding Advanced Account Abstraction (AAA)
+# 
 
 **Advanced Account Abstraction (AAA)** is a major leap forward in how users interact with blockchain. By replacing traditional Externally Owned Accounts (EOAs) with smart contract wallets, AAA eliminates many of the pain points users face today, like managing seed phrases, paying gas manually, or repeatedly approving transactions.
 
@@ -14,31 +15,26 @@ AAA is made possible by the ERC-4337 standard, which introduces a new transactio
 
 ERC-4337 introduces:
 
-- **UserOperations:** Instead of normal transactions, users submit custom operation requests.  
-- **Bundlers:** These collect UserOperations and send them to the blockchain.  
-- **EntryPoint:** A smart contract that securely processes these requests.  
+- **UserOperations:** Instead of normal transactions, users submit custom operation requests.
+- **Bundlers:** These collect UserOperations and send them to the blockchain.
+- **EntryPoint:** A smart contract that securely processes these requests.
 - **Paymasters:** Optional components that can cover gas or enable alternative payment flows.
 
 ## What AAA Enables
 
 With AAA, wallets become programmable, extensible, and tailored to each user’s needs. Some of the most powerful capabilities include:
 
-- **Bundled Actions**  
+- **Bundled Actions**\
   Combine multiple steps, like token approval and swapping, into a single seamless transaction.
-
-- **Gas Sponsorship**  
+- **Gas Sponsorship**\
   Pay gas using stablecoins or ERC-20 tokens, or let a dApp sponsor the fees entirely via a Paymaster.
-
-- **Account Recovery**  
+- **Account Recovery**\
   Use trusted contacts, hardware devices, or social recovery to regain access without a seed phrase.
-
-- **Multisig and Device-Level Security**  
+- **Multisig and Device-Level Security**\
   Add multiple layers of protection by requiring multiple signers or device-based approvals.
-
-- **Auto-Approve for Trusted Flows**  
+- **Auto-Approve for Trusted Flows**\
   Skip redundant confirmations for recurring or safe actions.
-
-- **Automated Behaviors**  
+- **Automated Behaviors**\
   Set up logic like recurring payments, spending caps, or income splitting, all directly inside the wallet.
 
 These features dramatically improve UX and reduce friction, making wallets feel like intelligent assistants rather than static key managers.
@@ -49,7 +45,7 @@ Under AAA, smart wallets do not send standard blockchain transactions. Instead, 
 
 From there:
 
-1. Bundlers pick up these UserOperations and package them into a single bundled transaction. The bundle is sent to the EntryPoint contract for secure execution.  
+1. Bundlers pick up these UserOperations and package them into a single bundled transaction. The bundle is sent to the EntryPoint contract for secure execution.
 2. If a Paymaster is involved, it can conditionally approve and pay for gas fees on the user’s behalf.
 
 This modular design allows wallets to be highly customizable, enabling new features without protocol-level changes.
@@ -58,10 +54,10 @@ This modular design allows wallets to be highly customizable, enabling new featu
 
 Want to see AAA in action? The Incentiv Explorer makes it easy to observe how Account Abstraction operates under the hood. You can:
 
-- Browse every UserOperation, see which bundle it belongs to, and who the Bundler was  
-- Inspect each Bundle Transaction, including total gas used and operation count  
-- View Paymaster involvement and alternative gas payments  
-- Search specific operation hashes for deep inspection  
+- Browse every UserOperation, see which bundle it belongs to, and who the Bundler was
+- Inspect each Bundle Transaction, including total gas used and operation count
+- View Paymaster involvement and alternative gas payments
+- Search specific operation hashes for deep inspection
 
 Incentiv helps developers, analysts, and curious users track and understand AAA activity in real time.
 
