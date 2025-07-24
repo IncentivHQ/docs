@@ -138,8 +138,8 @@
       "anchors": [
         
         {
-          "anchor": "Try the Testnet",
-          "href": "https://testnet.incentiv.net/",
+          "anchor": "Migrate Testnet",
+          "href": "https://testnet.incentiv.io/",
           "icon": "key"
         },
         {
