@@ -20,7 +20,6 @@
           {
             "group": "Get Started",
             "pages": [
-              "docs/GetStarted/TestnetMigration",
               "docs/GetStarted/UsingIncentiv",
               "docs/GetStarted/Incentiv_Registration",
               "docs/GetStarted/GetTestnetTokens"
