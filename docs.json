@@ -71,6 +71,12 @@
             ]
           },
           {
+            "group": "Tools",
+            "pages": [
+              "developers/dataindexer"
+            ]
+          },
+          {
             "group": "API Documentation",
             "pages": [
               "api-reference/introduction"
