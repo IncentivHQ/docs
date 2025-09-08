@@ -22,7 +22,8 @@
             "pages": [
               "docs/GetStarted/UsingIncentiv",
               "docs/GetStarted/Incentiv_Registration",
-              "docs/GetStarted/GetTestnetTokens"
+              "docs/GetStarted/GetTestnetTokens",
+              "docs/GetStarted/TestnetMigration"
             ]
           },
           {
