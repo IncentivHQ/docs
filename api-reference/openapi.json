@@ -279,7 +279,70 @@
         }
       }
     },
-   "/account/{address}/useroperations": {
+    "/account/{address}/useroperations": {
+         "get": {
+        "summary": "Get Account User Operation Activity",
+        "description": "Retrieve both incoming and outgoing user operations for a specific account address.",
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "required": true,
+            "description": "Account address to retrieve user operation activity for.",
+            "schema": { "type": "string" },
+            "example": "0x123abc456def7890"
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "required": false,
+            "description": "Filter by direction of the user operation: 'incoming', 'outgoing', or 'all' (default).",
+            "schema": {
+              "type": "string",
+              "enum": ["incoming", "outgoing", "all"],
+              "default": "all"
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Offset for pagination.",
+            "schema": { "type": "integer" },
+            "example": 0
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of user operations to return.",
+            "schema": { "type": "integer" },
+            "example": 25
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of user operations initiated by or received by the account.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/UserOperation" }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Account not found",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" }
+              }
+            }
+          }
+        }
+      }
+    },
     "/account/{address}/userop-activity": {
       "get": {
         "summary": "Get Account User Operation Activity",
