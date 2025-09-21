@@ -121,7 +121,8 @@
             "pages": [
               "api-reference/IncentiView/Account/account-assets",
               "api-reference/IncentiView/Account/account-transfers",
-              "api-reference/IncentiView/Account/account-userops"
+              "api-reference/IncentiView/Account/account-userops",
+              "api-reference/IncentiView/Account/account-userops-activity"
             ]
           },
           {
