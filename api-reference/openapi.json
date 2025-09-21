@@ -279,18 +279,30 @@
         }
       }
     },
-    "/account/{address}/useroperations": {
+   "/account/{address}/useroperations": {
+    "/account/{address}/userop-activity": {
       "get": {
-        "summary": "Get Account User Operations",
-        "description": "List all user operations submitted by a specific account address.",
+        "summary": "Get Account User Operation Activity",
+        "description": "Retrieve both incoming and outgoing user operations for a specific account address.",
         "parameters": [
           {
             "name": "address",
             "in": "path",
             "required": true,
-            "description": "Account address to retrieve user operations for.",
+            "description": "Account address to retrieve user operation activity for.",
             "schema": { "type": "string" },
             "example": "0x123abc456def7890"
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "required": false,
+            "description": "Filter by direction of the user operation: 'incoming', 'outgoing', or 'all' (default).",
+            "schema": {
+              "type": "string",
+              "enum": ["incoming", "outgoing", "all"],
+              "default": "all"
+            }
           },
           {
             "name": "offset",
@@ -311,7 +323,7 @@
         ],
         "responses": {
           "200": {
-            "description": "List of user operations submitted by the account.",
+            "description": "List of user operations initiated by or received by the account.",
             "content": {
               "application/json": {
                 "schema": {
@@ -322,7 +334,7 @@
             }
           },
           "404": {
-            "description": "Account not found",
+            "description": "Account not found or no activity.",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/Error" }
