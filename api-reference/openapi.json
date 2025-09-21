@@ -3,7 +3,7 @@
   "info": {
     "title": "IncentiView Indexer API",
     "description": "API endpoint for listing blocks from the Incentiv Blockchain via the IncentiView indexer.",
-    "version": "2.0.0"
+    "version": "2.1.0"
   },
   "servers": [
     {
@@ -281,8 +281,8 @@
     },
     "/account/{address}/useroperations": {
          "get": {
-        "summary": "Get Account User Operation Activity",
-        "description": "Retrieve both incoming and outgoing user operations for a specific account address.",
+        "summary": "Get Account User Operations",
+        "description": "Retrieve outgoing user operations for a specific account address.",
         "parameters": [
           {
             "name": "address",
@@ -291,17 +291,6 @@
             "description": "Account address to retrieve user operation activity for.",
             "schema": { "type": "string" },
             "example": "0x123abc456def7890"
-          },
-          {
-            "name": "direction",
-            "in": "query",
-            "required": false,
-            "description": "Filter by direction of the user operation: 'incoming', 'outgoing', or 'all' (default).",
-            "schema": {
-              "type": "string",
-              "enum": ["incoming", "outgoing", "all"],
-              "default": "all"
-            }
           },
           {
             "name": "offset",
@@ -322,7 +311,7 @@
         ],
         "responses": {
           "200": {
-            "description": "List of user operations initiated by or received by the account.",
+            "description": "List of user operations initiated by the account.",
             "content": {
               "application/json": {
                 "schema": {
