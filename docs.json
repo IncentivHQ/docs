@@ -34,7 +34,8 @@
               "docs/General/ReceiveTokens",
               "docs/General/SwapTokens",
               "docs/General/BundleActions",
-              "docs/General/UnifiedToken"
+              "docs/General/UnifiedToken",
+              "docs/General/RecoverySeeds"
             ]
           },
           
