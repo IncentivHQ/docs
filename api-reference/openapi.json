@@ -368,7 +368,7 @@
             "name": "limit",
             "in": "query",
             "required": false,
-            "description": "Maximum number of user operations to return.",
+            "description": "Maximum number of user operations to return (default: 10 ).",
             "schema": { "type": "integer" },
             "example": 25
           }
