@@ -7,17 +7,27 @@ The **Incentiv Testnet v2** is your starting point for building, testing, and ex
 
 Whether you're developing tools, benchmarking performance, or just getting familiar with the basics, the testnet gives you a stable, up-to-date space to interact with the network.
 
+import { useEffect } from "react";
+
+export const AddNetworkButton = () => {
+  useEffect(() => {
+    const ethereum = window.ethereum;
+    if (!ethereum) return;
+  }, []);
+
+  return (
+    <button onClick={() => addIncentivNetwork()} style={{ border: "none", background: "none", cursor: "pointer" }}>
+      <img src="../images/AddNetwork.png" alt="Add Incentiv Network" />
+    </button>
+  );
+};
+
 ## Mainnet Network Configuration
 
 Click the button below to add the network to your MetaMask
 
-<img
-  src="/docs/images/AddNetwork.png"
-  alt="Add Network to MetaMask"
-  title="Add Network"
-  id="add-incentiv-btn"
-  style={{ width:"32%" }}
-/>
+<AddNetworkButton />
+
 
 ### Mainnet Connection Parameters
 
