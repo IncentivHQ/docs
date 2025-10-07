@@ -2,6 +2,13 @@
  * add-incentiv-network.js
  * Utility script to add or switch to the Incentiv Chain in MetaMask or any EIP-1193 wallet.
  */
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("add-incentiv-btn");
+  if (btn) {
+    btn.addEventListener("click", addIncentivNetwork);
+  }
+});
+
 
 (function () {
   const INCENTIV_PARAMS = {
