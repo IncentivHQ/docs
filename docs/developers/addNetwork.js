@@ -3,19 +3,6 @@
  * Utility script to add or switch to the Incentiv Chain in MetaMask or any EIP-1193 wallet.
  */
 
-// Bind click after DOM is ready (handles both early/late script loads)
-function bindAddIncentivButton() {
-  const btn = document.getElementById("add-incentiv-btn");
-  if (btn) {
-    btn.addEventListener("click", () => window.addIncentivNetwork && window.addIncentivNetwork());
-  }
-}
-
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", bindAddIncentivButton);
-} else {
-  bindAddIncentivButton();
-}
 
 (function () {
   const INCENTIV_PARAMS = {
