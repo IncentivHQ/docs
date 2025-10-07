@@ -2,29 +2,33 @@
  * add-incentiv-network.js
  * Utility script to add or switch to the Incentiv Chain in MetaMask or any EIP-1193 wallet.
  */
-document.addEventListener("DOMContentLoaded", () => {
+
+// Bind click after DOM is ready (handles both early/late script loads)
+function bindAddIncentivButton() {
   const btn = document.getElementById("add-incentiv-btn");
   if (btn) {
-    btn.addEventListener("click", addIncentivNetwork);
+    btn.addEventListener("click", () => window.addIncentivNetwork && window.addIncentivNetwork());
   }
-});
+}
 
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", bindAddIncentivButton);
+} else {
+  bindAddIncentivButton();
+}
 
 (function () {
   const INCENTIV_PARAMS = {
     chainIdDecimal: 24101, // 0x5e25
     chainName: "Incentiv",
-    nativeCurrency: {
-      name: "CENT",
-      symbol: "CENT",
-      decimals: 18,
-    },
+    nativeCurrency: { name: "CENT", symbol: "CENT", decimals: 18 },
     rpcUrls: ["https://rpc.incentiv.io"],
     blockExplorerUrls: ["https://explorer.incentiv.io"],
   };
 
   async function addOrSwitchNetwork(params) {
-    if (!window.ethereum) {
+    const { ethereum } = window;
+    if (!ethereum) {
       alert("Wallet Not Supported. Please install MetaMask or a compatible wallet.");
       return;
     }
@@ -32,27 +36,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const chainIdHex = "0x" + Number(params.chainIdDecimal).toString(16); // 0x5e25
 
     try {
-      // Try switching first (if already added)
-      await window.ethereum.request({
+      await ethereum.request({
         method: "wallet_switchEthereumChain",
         params: [{ chainId: chainIdHex }],
       });
       console.info("Switched to Incentiv Network");
     } catch (switchErr) {
       if (switchErr && switchErr.code === 4902) {
-        // Not added → add the chain
         try {
-          await window.ethereum.request({
+          await ethereum.request({
             method: "wallet_addEthereumChain",
-            params: [
-              {
-                chainId: chainIdHex,
-                chainName: params.chainName,
-                nativeCurrency: params.nativeCurrency,
-                rpcUrls: params.rpcUrls,
-                blockExplorerUrls: params.blockExplorerUrls,
-              },
-            ],
+            params: [{
+              chainId: chainIdHex,
+              chainName: params.chainName,
+              nativeCurrency: params.nativeCurrency,
+              rpcUrls: params.rpcUrls,
+              blockExplorerUrls: params.blockExplorerUrls,
+            }],
           });
           console.info("Incentiv Network added to MetaMask");
         } catch (addErr) {
