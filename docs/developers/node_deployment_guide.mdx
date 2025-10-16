@@ -1,0 +1,250 @@
+---
+title: "Incentiv Mainnet — Full Node Deployment Guide"
+description: "This guide walks you through building, configuring, and running an Incentiv mainnet full node as a resilient `systemd` service. "
+---
+
+## Quick facts
+
+- **Client**: Incentum (Geth-based)
+- **Chain ID**: `24101`
+- **Consensus**: Ethash (PoW)
+- **Target block time**: ~13s (difficulty-governed)
+- **RPC (local by default)**: HTTP `:8545`, WS `:8546`
+- **Datadir**: `~/incentiv/node/data` (in this guide)
+
+---
+
+<Steps>
+  <Step title="Prerequisites">
+    Install the following:
+
+    - **Git**
+    - **Go** (version 0.22 or later)
+    - **make**
+
+    Debian/Ubuntu example:
+
+    ```bash
+    sudo apt update
+    sudo apt install -y git build-essential
+    # Install Go 1.22+ from golang.org (or your package manager if it ships 1.22+)
+    ```
+  </Step>
+  <Step title="Clone & Build the Client">
+    ```bash
+    # Create a project directory and navigate into it
+    mkdir -p ~/incentiv/node
+    cd ~/incentiv/node
+    
+    # Clone the client repository
+    git clone https://github.com/IncentivNetwork/incentum-pow.git client
+    cd client
+    
+    # Build the client executable
+    make geth
+    
+    # The binary will be at:
+    # ./build/bin/geth
+    ```
+  </Step>
+  <Step title="Account & Environment Setup">
+    Create a data directory and generate a new account (you’ll be prompted for a password):
+
+    ```bash
+    # Navigate to the node directory
+    cd ~/incentiv/node
+    
+    # Create a directory for blockchain data
+    mkdir -p data
+    
+    # Generate a new account
+    ./client/build/bin/geth account new --datadir data/
+    ```
+
+    **Save your password** to a file that your `systemd` service can read:
+
+    <Tabs>
+      <Tab title="cat">
+        ```shellscript
+        cat > pwd.txt
+        # Type your password here
+        # Press Enter, then press Ctrl+D (to save and exit)
+        ```
+      </Tab>
+      <Tab title="nano">
+        ```shellscript
+        nano pwd.txt
+        # Type your password.
+        # Ctrl+O (Save), Enter, Ctrl+X (Exit).
+        ```
+      </Tab>
+    </Tabs>
+    <Note>
+      **Note your public address** (e.g. `0x...`) for the service config.
+    </Note>
+     
+  </Step>
+  <Step title="Create the genesis.json File">
+    Create the `genesis.json` file, which defines the initial state of the Mainnet blockchain.
+
+    ```bash
+    # Create and open the genesis file for editing
+    nano ~/incentiv/node/genesis.json
+    ```
+
+    Paste the following **as-is** and save:
+
+    ```json
+    {
+      "config": {
+        "chainId": 24101,
+        "homesteadBlock": 0,
+        "eip150Block": 0,
+        "eip155Block": 0,
+        "eip158Block": 0,
+        "byzantiumBlock": 0,
+        "constantinopleBlock": 0,
+        "petersburgBlock": 0,
+        "istanbulBlock": 0,
+        "berlinBlock": 0,
+        "londonBlock": 0,
+        "feePoolBlock": 0,
+        "zeroRewardBlock": 0,
+        "fastBlock": 0,
+        "shanghaiTime": 1755203160,
+        "ethash": {}
+      },
+      "nonce": "0x42",
+      "timestamp": "0x0",
+      "extraData": "0x",
+      "gasLimit": "0x1c9c380",
+      "difficulty": "0x1",
+      "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "coinbase": "0x0000000000000000000000000000000000000000",
+      "alloc": {
+        "d2cc08d9afabb57bdf2216ed15fceaa9993f3b7b": {
+          "balance": "0x1431e0fae6d7217caa0000000"
+        }
+      },
+      "number": "0x0",
+      "gasUsed": "0x0",
+      "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "baseFeePerGas": "0x1a3185c5000"
+    }
+    ```
+
+    Save the file and exit the editor (in `nano`, press `Ctrl+X`, then `Y`, then `Enter`).
+  </Step>
+  <Step title="Initialize the Chain Data">
+    ```bash
+    cd ~/incentiv/node
+    ./client/build/bin/geth init --datadir data/ genesis.json
+    ```
+  </Step>
+  <Step title="Configure a systemd Service">
+    To ensure the node runs continuously in the background and restarts automatically, we will create a `systemd` service.
+
+    ```shellscript
+    # Create a new service file
+    sudo nano /etc/systemd/system/incentum.service
+    ```
+
+    Paste, then replace the placeholders as noted:
+
+    ```ini
+    [Unit]
+    Description=Incentum Node Service
+    After=network.target
+    
+    [Service]
+    # --- Replace '<YOUR_USERNAME>' with your Linux username (e.g., ubuntu)
+    User=<YOUR_USERNAME>
+    Group=<YOUR_USERNAME>
+    WorkingDirectory=/home/<YOUR_USERNAME>/incentiv
+    
+    ExecStart=/home/<YOUR_USERNAME>/incentiv/node/client/build/bin/geth \
+      --datadir /home/<YOUR_USERNAME>/incentiv/node/data \
+      --incentiv-mainnet \
+      --http \
+      --http.addr "127.0.0.1" \
+      --http.port 8545 \
+      --http.api "eth,net,web3,txpool" \
+      --ws \
+      --ws.addr "127.0.0.1" \
+      --ws.port 8546 \
+      --ws.api "eth,net,web3" \
+      --unlock "<YOUR_ACCOUNT_ADDRESS_HERE>" \
+      --password /home/<YOUR_USERNAME>/incentiv/node/pwd.txt \
+      --miner.etherbase "<YOUR_ACCOUNT_ADDRESS_HERE>" \
+      --syncmode=snap \
+      --gcmode=archive \
+      --cache=4096 \
+      --maxpeers=50 \
+      --bootnodes=enode://b5f3d8d38136f9252a90c694d66769eef66b393611a4b023df78795beddaa788116f41029dcf2dc59168542968747b252be35293f7fdd7717394ece84e73baf7@195.189.60.152:30303,enode://370ac0ca0f1861fc06df79f298ec50129284cde15087e4a21440b657cfe3a735c939aecb8b625751dae221991c4151a2923c61d4f376d418369881fb2aebf85c@144.217.77.103:30303,enode://7040a8dc9e7040cf8c78b7fa4dfff0648744e6c969d77811aa6fcd01ef224a283f4d6cd3b7d2eb6922f1fcf0673e0ce1283e1d9b38e2e6266c99372ea9408651@51.79.21.182:30303,enode://597248d1216230f1fce650c84939e6ea5bfffe82ba8ad71a1d0adfd5bb073d37772e71d068bad7db5dc28688c537cb4d0d00b6eee80b1c0b3e6c79d30cff42e7@51.255.64.209:30303,enode://6e2c9c5d60f7e16bb1f80328dc23b0b7b28e500e17c936689d7684c30e4f7cc450ce88cb7536e120e02023a66ac8d68def346bcc2a416376f9dfbd13b7dc3b88@141.94.161.120:30303
+    
+    Restart=always
+    RestartSec=10
+    
+    [Install]
+    WantedBy=multi-user.target
+    ```
+
+    Before saving, make sure you replace:
+
+    - All instances of `<YOUR_USERNAME>` with your Linux username (e.g., `ubuntu`, `debian`, `admin`).
+    - Both instances of `<YOUR_ACCOUNT_ADDRESS_HERE>` with the public wallet address generated in **_Step 3_**.
+
+    Additional bootnodes:
+
+    - enode://370ac0ca0f1861fc06df79f298ec50129284cde15087e4a21440b657cfe3a735c939aecb8b625751dae221991c4151a2923c61d4f376d418369881fb2aebf85c@144.217.77.103:30303
+    - enode://7040a8dc9e7040cf8c78b7fa4dfff0648744e6c969d77811aa6fcd01ef224a283f4d6cd3b7d2eb6922f1fcf0673e0ce1283e1d9b38e2e6266c99372ea9408651@51.79.21.182:30303
+    - enode://597248d1216230f1fce650c84939e6ea5bfffe82ba8ad71a1d0adfd5bb073d37772e71d068bad7db5dc28688c537cb4d0d00b6eee80b1c0b3e6c79d30cff42e7@51.255.64.209:30303
+    - enode://6e2c9c5d60f7e16bb1f80328dc23b0b7b28e500e17c936689d7684c30e4f7cc450ce88cb7536e120e02023a66ac8d68def346bcc2a416376f9dfbd13b7dc3b88@141.94.161.120:30303
+
+    To allow for continuity in the event of failure, specify all bootnodes in a comma-separated list using the --bootnodes option for each node, including the bootnodes.
+
+    For example:
+
+    ```
+    --bootnodes=enode://b5f3d8d38136f9252a90c694d66769eef66b393611a4b023df78795beddaa788116f41029dcf2dc59168542968747b252be35293f7fdd7717394ece84e73baf7@195.189.60.152:30303,enode://370ac0ca0f1861fc06df79f298ec50129284cde15087e4a21440b657cfe3a735c939aecb8b625751dae221991c4151a2923c61d4f376d418369881fb2aebf85c@144.217.77.103:30303,enode://7040a8dc9e7040cf8c78b7fa4dfff0648744e6c969d77811aa6fcd01ef224a283f4d6cd3b7d2eb6922f1fcf0673e0ce1283e1d9b38e2e6266c99372ea9408651@51.79.21.182:30303,enode://597248d1216230f1fce650c84939e6ea5bfffe82ba8ad71a1d0adfd5bb073d37772e71d068bad7db5dc28688c537cb4d0d00b6eee80b1c0b3e6c79d30cff42e7@51.255.64.209:30303,enode://6e2c9c5d60f7e16bb1f80328dc23b0b7b28e500e17c936689d7684c30e4f7cc450ce88cb7536e120e02023a66ac8d68def346bcc2a416376f9dfbd13b7dc3b88@141.94.161.120:30303
+    ```
+
+    Having each bootnode include the other bootnodes increases the speed of discovery. Nodes ignore their own enode in the bootnodes list so you can use the same bootnode list for all bootnodes.
+  </Step>
+  <Step title="Start & Manage the Node">
+    After creating the service file, use the following commands to enable and start the node.
+
+    ```shellscript
+    # Reload the systemd manager configuration
+    sudo systemctl daemon-reload
+    
+    # Enable the service to start automatically on boot
+    sudo systemctl enable incentum.service
+    
+    # Start the node service now
+    sudo systemctl start incentum.service
+    ```
+
+    <Check>
+      _Your _**_Incentiv Mainnet node_**_ is now _**_running_**_._
+    </Check>
+  </Step>
+</Steps>
+
+### Useful commands
+
+```bash
+# Check the status of the node:
+sudo systemctl status incentum.service
+
+# View live logs
+sudo journalctl -u incentum.service -f --no-hostname -o cat
+
+# Stop the Node
+sudo systemctl stop incentum.service
+
+# Restart the Node
+sudo systemctl restart incentum.service
+```
+
+---
