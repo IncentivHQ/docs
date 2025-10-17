@@ -21,7 +21,7 @@
             "group": "Get Started",
             "pages": [
               "docs/GetStarted/UsingIncentiv",
-              "docs/GetStarted/Incentiv_Registration",
+              "docs/GetStarted/IncentivOnboarding",
               "docs/GetStarted/GetTestnetTokens",
               "docs/GetStarted/TestnetMigration"
             ]
