@@ -22,42 +22,30 @@ description: "This guide walks you through building, configuring, and running an
     - **Go** (version 1.19 or later)
     - **make**
 
-    Debian/Ubuntu example:
+    Debian/Ubuntu (Install Go 1.19+ from [golang.org](http://golang.org) or your package manager if it ships 1.19+)
 
     ```bash
     sudo apt update
     sudo apt install -y git build-essential
-    # Install Go 1.19+ from golang.org (or your package manager if it ships 1.19+)
     ```
   </Step>
   <Step title="Clone & Build the Client">
     ```bash
-    # Create a project directory and navigate into it
     mkdir -p ~/incentiv/node
     cd ~/incentiv/node
     
-    # Clone the client repository
     git clone https://github.com/IncentivNetwork/incentum-pow.git client
     cd client
     
-    # Build the client executable
     make geth
-    
-    # The binary will be at:
-    # ./build/bin/geth
     ```
   </Step>
   <Step title="Account & Environment Setup">
     Create a data directory and generate a new account (you’ll be prompted for a password):
 
     ```bash
-    # Navigate to the node directory
     cd ~/incentiv/node
-    
-    # Create a directory for blockchain data
     mkdir -p data
-    
-    # Generate a new account
     ./client/build/bin/geth account new --datadir data/
     ```
 
@@ -86,8 +74,9 @@ description: "This guide walks you through building, configuring, and running an
   <Step title="Create the genesis.json File">
     Create the `genesis.json` file, which defines the initial state of the Mainnet blockchain.
 
+    Create and open the genesis file for editing:
+
     ```bash
-    # Create and open the genesis file for editing
     nano ~/incentiv/node/genesis.json
     ```
 
@@ -140,11 +129,12 @@ description: "This guide walks you through building, configuring, and running an
     ./client/build/bin/geth init --datadir data/ genesis.json
     ```
   </Step>
-  <Step title="Configure a systemd Service">
+  <Step title="Configure a System Service">
     To ensure the node runs continuously in the background and restarts automatically, we will create a `systemd` service.
 
+    Create a new service file:
+
     ```shellscript
-    # Create a new service file
     sudo nano /etc/systemd/system/incentum.service
     ```
 
@@ -173,6 +163,7 @@ description: "This guide walks you through building, configuring, and running an
       --ws.port 8546 \
       --ws.api "eth,net,web3" \
       --unlock "<YOUR_ACCOUNT_ADDRESS_HERE>" \
+      --allow-insecure-unlock \
       --password /home/<YOUR_USERNAME>/incentiv/node/pwd.txt \
       --miner.etherbase "<YOUR_ACCOUNT_ADDRESS_HERE>" \
       --syncmode=snap \
@@ -213,19 +204,20 @@ description: "This guide walks you through building, configuring, and running an
   <Step title="Start & Manage the Node">
     After creating the service file, use the following commands to enable and start the node.
 
+    - Reload the systemd manager configuration
+    - Enable the service to start automatically on boot
+    - Start the node service now
+
     ```shellscript
-    # Reload the systemd manager configuration
     sudo systemctl daemon-reload
     
-    # Enable the service to start automatically on boot
     sudo systemctl enable incentum.service
     
-    # Start the node service now
     sudo systemctl start incentum.service
     ```
 
     <Check>
-      ****_____Your Incentiv Mainnet node is now running._____****
+      ********_Your Incentiv Mainnet node is now running._********
     </Check>
   </Step>
 </Steps>
