@@ -34,7 +34,8 @@
               "docs/General/SwapTokens",
               "docs/General/BundleActions",
               "docs/General/UnifiedToken",
-              "docs/General/RecoverySeeds"
+              "docs/General/RecoverySeeds",
+              "docs/General/WalletConnect"
             ]
           },
           
