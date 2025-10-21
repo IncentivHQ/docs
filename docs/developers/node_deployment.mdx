@@ -1,12 +1,12 @@
 ---
-title: "Incentiv Mainnet — Full Node Deployment Guide"
+title: "Incentiv Full Node Setup Guide"
 description: "This guide walks you through building, configuring, and running an Incentiv mainnet full node as a resilient `systemd` service. "
 ---
 
 ## Quick facts
 
 - **Client**: Incentum (Geth-based)
-- **Chain ID**: `24101`
+- **Chain ID**: `24101 (Mainnet)`
 - **Consensus**: Ethash (PoW)
 - **Target block time**: ~13s (difficulty-governed)
 - **RPC (local by default)**: HTTP `:8545`, WS `:8546`
@@ -30,15 +30,31 @@ description: "This guide walks you through building, configuring, and running an
     ```
   </Step>
   <Step title="Clone & Build the Client">
+    Create a project directory and navigate into it
+
     ```bash
     mkdir -p ~/incentiv/node
-    cd ~/incentiv/node
-    
+    cd ~/incentiv/node        
+    ```
+
+    Clone the client repository
+
+    ```bash
     git clone https://github.com/IncentivNetwork/incentum-pow.git client
     cd client
-    
+    ```
+
+    Build the client executable
+
+    ```bash
     make geth
     ```
+
+    <Info>
+      The binary will be at:
+
+      ./build/bin/geth
+    </Info>
   </Step>
   <Step title="Account & Environment Setup">
     Create a data directory and generate a new account (you’ll be prompted for a password):
@@ -49,7 +65,7 @@ description: "This guide walks you through building, configuring, and running an
     ./client/build/bin/geth account new --datadir data/
     ```
 
-    **Save your password** to a file that your `systemd` service can read:
+    **Save your password** to a file that your System Service can read:
 
     <Tabs>
       <Tab title="cat">

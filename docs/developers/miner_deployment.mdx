@@ -1,135 +1,349 @@
 ---
-title: "Testnet V2 Miner Deployment"
-description: "Description of your new file."
+title: "Incentiv Mainnet — Miner Setup Guide"
+description: "This guide walks you through  configuring and running a miner for the Incentiv Mainnet."
 ---
 
-Follow this guide to build and run an Incentiv Miner on Incentiv Testnet v2.
+## Quick facts
 
-### 1. Requirements
+- **Client**: Incentum (Geth-based)
+- **Chain ID**: `24101 (Mainnet)`
+- **Consensus**: Ethash (PoW)
+- **Target block time**: ~13s (difficulty-governed)
+- **RPC (local by default)**: HTTP `:8545`, WS `:8546`
+- **Datadir**: `~/incentiv/node/data` (in this guide)
 
-Make sure you have the following requirements in order to build and run the client:
+## **Minimal Requirements**
 
-- Git
-- Go v1.22
-- make
+1. **RAM** 8 GB
+2. **GPU:**
+   - **NVIDIA:** ≥ 4 GB VRAM, CUDA support (Compute Capability ≥ 5.0)
+   - **AMD:** ≥ 4 GB VRAM, OpenCL 1.2+ support
+3. 50 GB free space on disk
+4. **OS:** Ubuntu 22.04+ (to set up node)
+5. **Drivers:**
+   - NVIDIA: CUDA 11.x+
+   - AMD: OpenCL drivers
 
-### 2. Clone and Install
+---
 
-```bash
-# Create a directory for the node
-mkdir node
-cd node
+<Steps>
+  <Step title="Prerequisites">
+    Install the following:
 
-# Clone the client
-git clone https://github.com/IncentivNetwork/incentum-pow.git client
-cd client
+    - **glibc** 2.35+
+    - **Git**
+    - **Go** (version 1.19 or later)
+    - **make**
 
-# Build the client
-make geth
-```
+    Debian/Ubuntu (Install Go 1.19+ from [golang.org](http://golang.org) or your package manager if it ships 1.19+)
 
-### 3. Prepare Account and Environment
+    ```bash
+    sudo apt update
+    sudo apt install -y git build-essential
+    ```
+  </Step>
+  <Step title="Clone & Build the Client">
+    Create a project directory and navigate into it
 
-```bash
-# Go back to node directory
-cd node
+    ```bash
+    mkdir -p ~/incentiv/node
+    cd ~/incentiv/node        
+    ```
 
-# Create a data directory and generate a new account
-mkdir data
-./client/build/bin/geth account new --datadir data/
+    Clone the client repository
 
-# Store the generated password
-echo "YOUR_PASSWORD_HERE" > pwd.txt
-```
+    ```bash
+    git clone https://github.com/IncentivNetwork/incentum-pow.git client
+    cd client
+    ```
 
-**Note:** Replace `YOUR_PASSWORD_HERE` with the entered password in the line above
+    Build the client executable
 
-**Note:** Keep track of the generated address\!
+    ```bash
+    make geth
+    ```
 
-### 4. Prepare `genesis.json`
+    <Info>
+      The binary will be at:
 
-Use the following `genesis.json` to initialize the chain. `genesis.json` must be located in the `node/` direcotry.
+      ./build/bin/geth
+    </Info>
+  </Step>
+  <Step title="Account & Environment Setup">
+    Create a data directory and generate a new account (you’ll be prompted for a password):
 
-```json
-{
-  "config": {
-    "chainId": 28802,
-    "homesteadBlock": 0,
-    "eip150Block": 0,
-    "eip155Block": 0,
-    "eip158Block": 0,
-    "byzantiumBlock": 0,
-    "constantinopleBlock": 0,
-    "petersburgBlock": 0,
-    "istanbulBlock": 0,
-    "berlinBlock": 0,
-    "londonBlock": 0
-  },
-  "alloc": {
-    "0x3d8eBBDa14e61a0f6B278112EcB99cd895Bcbf3e": {
-      "balance": "500000000000000000000000000000"
-    },
-    "0x683d8cb71DC0caa58AD75986292F22d830B87B75": {
-      "balance": "500000000000000000000000000000"
+    ```bash
+    cd ~/incentiv/node
+    mkdir -p data
+    ./client/build/bin/geth account new --datadir data/
+    ```
+
+    **Save your password** to a file that your System Service can read:
+
+    <Tabs>
+      <Tab title="cat">
+        ```shellscript
+        cat > pwd.txt
+        # Type your password here
+        # Press Enter, then press Ctrl+D (to save and exit)
+        ```
+      </Tab>
+      <Tab title="nano">
+        ```shellscript
+        nano pwd.txt
+        # Type your password.
+        # Ctrl+O (Save), Enter, Ctrl+X (Exit).
+        ```
+      </Tab>
+    </Tabs>
+    <Note>
+      **Note your public address** (e.g. `0x...`) for the service config.
+    </Note>
+  </Step>
+  <Step title="Create the genesis.json File">
+    Create the `genesis.json` file, which defines the initial state of the Mainnet blockchain.
+
+    Create and open the genesis file for editing:
+
+    ```bash
+    nano ~/incentiv/node/genesis.json
+    ```
+
+    Paste the following **as-is** and save:
+
+    ```json
+    {
+      "config": {
+        "chainId": 24101,
+        "homesteadBlock": 0,
+        "eip150Block": 0,
+        "eip155Block": 0,
+        "eip158Block": 0,
+        "byzantiumBlock": 0,
+        "constantinopleBlock": 0,
+        "petersburgBlock": 0,
+        "istanbulBlock": 0,
+        "berlinBlock": 0,
+        "londonBlock": 0,
+        "feePoolBlock": 0,
+        "zeroRewardBlock": 0,
+        "fastBlock": 0,
+        "shanghaiTime": 1755203160,
+        "ethash": {}
+      },
+      "nonce": "0x42",
+      "timestamp": "0x0",
+      "extraData": "0x",
+      "gasLimit": "0x1c9c380",
+      "difficulty": "0x1",
+      "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "coinbase": "0x0000000000000000000000000000000000000000",
+      "alloc": {
+        "d2cc08d9afabb57bdf2216ed15fceaa9993f3b7b": {
+          "balance": "0x1431e0fae6d7217caa0000000"
+        }
+      },
+      "number": "0x0",
+      "gasUsed": "0x0",
+      "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+      "baseFeePerGas": "0x1a3185c5000"
     }
-  },
-  "coinbase": "0x0000000000000000000000000000000000000000",
-  "difficulty": "0x1",
-  "gasLimit": "0x1C9C380",
-  "nonce": "0x0000000000000000000000000000000000000042",
-  "mixhash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-  "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-  "timestamp": "0x00"
-}
-```
+    ```
 
-Initialize the chain with `genesis.json`
+    Save the file and exit the editor (in `nano`, press `Ctrl+X`, then `Y`, then `Enter`).
+  </Step>
+  <Step title="Initialize the Chain Data">
+    ```bash
+    cd ~/incentiv/node
+    ./client/build/bin/geth init --datadir data/ genesis.json
+    ```
+  </Step>
+  <Step title="Configure a System Service">
+    To ensure the node runs continuously in the background and restarts automatically, we will create a `systemd` service.
+
+    Create a new service file:
+
+    ```shellscript
+    sudo nano /etc/systemd/system/incentum.service
+    ```
+
+    Paste, then replace the placeholders as noted:
+
+    ```ini
+    [Unit]
+    Description=Incentum Node Service
+    After=network.target
+    
+    [Service]
+    # --- Replace '<YOUR_USERNAME>' with your Linux username (e.g., ubuntu)
+    User=<YOUR_USERNAME>
+    Group=<YOUR_USERNAME>
+    WorkingDirectory=/home/<YOUR_USERNAME>/incentiv
+    
+    ExecStart=/home/<YOUR_USERNAME>/incentiv/node/client/build/bin/geth \
+      --datadir /home/<YOUR_USERNAME>/incentiv/node/data \
+      --incentiv-mainnet \
+      --http \
+      --http.addr "127.0.0.1" \
+      --http.port 8545 \
+      --http.api "eth,net,web3,txpool" \
+      --ws \
+      --ws.addr "127.0.0.1" \
+      --ws.port 8546 \
+      --ws.api "eth,net,web3" \
+      --unlock "<YOUR_ACCOUNT_ADDRESS_HERE>" \
+      --allow-insecure-unlock \
+      --password /home/<YOUR_USERNAME>/incentiv/node/pwd.txt \
+      --miner.etherbase "<YOUR_ACCOUNT_ADDRESS_HERE>" \
+      --syncmode=snap \
+      --gcmode=archive \
+      --cache=4096 \
+      --maxpeers=50 \
+      --bootnodes=enode://b5f3d8d38136f9252a90c694d66769eef66b393611a4b023df78795beddaa788116f41029dcf2dc59168542968747b252be35293f7fdd7717394ece84e73baf7@195.189.60.152:30303,enode://370ac0ca0f1861fc06df79f298ec50129284cde15087e4a21440b657cfe3a735c939aecb8b625751dae221991c4151a2923c61d4f376d418369881fb2aebf85c@144.217.77.103:30303,enode://7040a8dc9e7040cf8c78b7fa4dfff0648744e6c969d77811aa6fcd01ef224a283f4d6cd3b7d2eb6922f1fcf0673e0ce1283e1d9b38e2e6266c99372ea9408651@51.79.21.182:30303,enode://597248d1216230f1fce650c84939e6ea5bfffe82ba8ad71a1d0adfd5bb073d37772e71d068bad7db5dc28688c537cb4d0d00b6eee80b1c0b3e6c79d30cff42e7@51.255.64.209:30303,enode://6e2c9c5d60f7e16bb1f80328dc23b0b7b28e500e17c936689d7684c30e4f7cc450ce88cb7536e120e02023a66ac8d68def346bcc2a416376f9dfbd13b7dc3b88@141.94.161.120:30303
+    
+    Restart=always
+    RestartSec=10
+    
+    [Install]
+    WantedBy=multi-user.target
+    ```
+
+    Before saving, make sure you replace:
+
+    - All instances of `<YOUR_USERNAME>` with your Linux username (e.g., `ubuntu`, `debian`, `admin`).
+    - Both instances of `<YOUR_ACCOUNT_ADDRESS_HERE>` with the public wallet address generated in **_Step 3_**.
+
+    Additional bootnodes:
+
+    - enode://370ac0ca0f1861fc06df79f298ec50129284cde15087e4a21440b657cfe3a735c939aecb8b625751dae221991c4151a2923c61d4f376d418369881fb2aebf85c@144.217.77.103:30303
+    - enode://7040a8dc9e7040cf8c78b7fa4dfff0648744e6c969d77811aa6fcd01ef224a283f4d6cd3b7d2eb6922f1fcf0673e0ce1283e1d9b38e2e6266c99372ea9408651@51.79.21.182:30303
+    - enode://597248d1216230f1fce650c84939e6ea5bfffe82ba8ad71a1d0adfd5bb073d37772e71d068bad7db5dc28688c537cb4d0d00b6eee80b1c0b3e6c79d30cff42e7@51.255.64.209:30303
+    - enode://6e2c9c5d60f7e16bb1f80328dc23b0b7b28e500e17c936689d7684c30e4f7cc450ce88cb7536e120e02023a66ac8d68def346bcc2a416376f9dfbd13b7dc3b88@141.94.161.120:30303
+
+    To allow for continuity in the event of failure, specify all bootnodes in a comma-separated list using the --bootnodes option for each node, including the bootnodes.
+
+    For example:
+
+    ```
+    --bootnodes=enode://b5f3d8d38136f9252a90c694d66769eef66b393611a4b023df78795beddaa788116f41029dcf2dc59168542968747b252be35293f7fdd7717394ece84e73baf7@195.189.60.152:30303,enode://370ac0ca0f1861fc06df79f298ec50129284cde15087e4a21440b657cfe3a735c939aecb8b625751dae221991c4151a2923c61d4f376d418369881fb2aebf85c@144.217.77.103:30303,enode://7040a8dc9e7040cf8c78b7fa4dfff0648744e6c969d77811aa6fcd01ef224a283f4d6cd3b7d2eb6922f1fcf0673e0ce1283e1d9b38e2e6266c99372ea9408651@51.79.21.182:30303,enode://597248d1216230f1fce650c84939e6ea5bfffe82ba8ad71a1d0adfd5bb073d37772e71d068bad7db5dc28688c537cb4d0d00b6eee80b1c0b3e6c79d30cff42e7@51.255.64.209:30303,enode://6e2c9c5d60f7e16bb1f80328dc23b0b7b28e500e17c936689d7684c30e4f7cc450ce88cb7536e120e02023a66ac8d68def346bcc2a416376f9dfbd13b7dc3b88@141.94.161.120:30303
+    ```
+
+    Having each bootnode include the other bootnodes increases the speed of discovery. Nodes ignore their own enode in the bootnodes list so you can use the same bootnode list for all bootnodes.
+  </Step>
+  <Step title="Start & Manage the Node">
+    After creating the service file, use the following commands to enable and start the node.
+
+    - Reload the systemd manager configuration
+    - Enable the service to start automatically on boot
+    - Start the node service now
+
+    ```shellscript
+    sudo systemctl daemon-reload
+    
+    sudo systemctl enable incentum.service
+    
+    sudo systemctl start incentum.service
+    ```
+
+    <Check>
+      ********_Your Incentiv Mainnet node is now running._********
+    </Check>
+  </Step>
+</Steps>
+
+## Setup Miner
+
+<Steps>
+  <Step title="Download ubqminer ">
+    - Create a folder for the miner
+    - Download the ubqminer that supports AMD and NVIDIA.
+    - Make it executable
+
+    ```shellscript
+    cd ~
+    mkdir -p miner
+    cd miner
+    
+    wget
+    https://github.com/ubiq/ubqminer/releases/download/v0.20.1/ubqminer-0.20.1-cuda12.6-linux-x86_64.tar.gz
+    tar -xzf ubqminer-0.20.1-cuda12.6-linux-x86_64.tar.gz
+    
+    chmod +x ubqminer
+    ```
+  </Step>
+  <Step title="Create a New File">
+    ```shellscript
+    sudo nano /etc/systemd/system/ubqminer.service
+    ```
+
+    Paste the following configuration:
+
+    ```ini
+    [Unit]
+    Description=Ubiq Miner Service
+    After=network-online.target
+    Wants=network-online.target
+    
+    [Service]
+    User=<YOUR_USERNAME>
+    Group=<YOUR_USERNAME>
+    WorkingDirectory=/home/<YOUR_USERNAME>/miner
+    ExecStart=/home/<YOUR_USERNAME>/miner/ubqminer -P http://<YOUR_ACCOUNT_ADDRESS_HERE>.worker@127.0.0.1:8545/
+    StandardOutput=append:/home/<YOUR_USERNAME>/miner/ubqminer.log
+    StandardError=append:/home/<YOUR_USERNAME>/miner/ubqminer.log
+    Restart=always
+    RestartSec=10
+    
+    [Install]
+    WantedBy=multi-user.target
+    ```
+
+    Save the file and exit the editor (in `nano`, press `Ctrl+X`, then `Y`, then `Enter`).
+  </Step>
+  <Step title="Reload & Enable">
+    Reload systemd to apply the new service, then enable it to start on boot:
+
+    ```shellscript
+    sudo systemctl daemon-reload
+    ```
+
+    Start the miner service
+
+    ```shellscript
+    sudo systemctl enable ubqminer.service
+    ```
+
+    Check the miner status
+
+    ```shellscript
+    sudo systemctl status ubqminer.service
+    ```
+
+    You should see output indicating the service is **active (running)**.
+
+    ```shellscript
+    Logs are also written to /home/ <YOUR_USERNAME> /miner/ubqminer.log
+    ```
+
+    Restart the service (after configuration changes, **if needed**)
+
+    ```shellscript
+    sudo systemctl restart ubqminer.service
+    ```
+  </Step>
+</Steps>
+
+### Useful commands
 
 ```bash
-./client/build/bin/geth init --datadir data/ genesis.json
+# Check the status of the Service:
+sudo systemctl status ubqminer.service
+
+# Stop the Service
+sudo systemctl stop ubqminer.service
+
+# Restart the Service
+sudo systemctl restart ubqminer.service
 ```
 
-### 5. Run the Client
-
-It's recommended to create a run script to run the client with the right params. Create the run script with:
-
-```bash
-touch run.sh
-chmod +x run.sh
-vi run.sh
-```
-
-Add the following contents:
-
-```bash
-#!/bin/bash
-./client/build/bin/geth \
-  --datadir data \
-  --networkid 28802 \
-  --http \
-  --http.addr "0.0.0.0" \
-  --http.vhosts "*" \
-  --http.port 8545 \
-  --http.api "eth,net,web3,debug,txpool,personal,miner" \
-  --mine \
-  --miner.threads 1 \
-  --unlock "YOUR_ACCOUNT_ADDRESS_HERE" \
-  --password pwd.txt \
-  --miner.etherbase "YOUR_ACCOUNT_ADDRESS_HERE" \
-  --http.corsdomain "*" \
-  --miner.gasprice "1" \
-  --txpool.pricelimit "1" \
-  --allow-insecure-unlock \
-  --rpc.allow-unprotected-txs \
-  --bootnodes=enode://3cfd9dcbe3333eac423803d967bd9a5f3e44451a5c2e5373c1d26c25c98d7d3194d6623c6fb4f465cc72c38f14807cb993f7a11b71160266c02fbdfcc9661797@57.129.137.109:30303
-```
-
-**_Note:_** Replace `YOUR_ACCOUNT_ADDRESS_HERE` with the address generated in step 3
-
-**_Node:_** Adjust `--miner.threads 1` based on your machines capabilities\!
-
-Run the client using:
-
-```bash
-./run.sh
-```
+---
