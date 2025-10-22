@@ -2,27 +2,42 @@
 title: "Incentiv Contracts"
 description: "Deployed Incentiv Contracts"
 icon: "file-contract"
+mode: "wide"
 ---
 
-## Mainnet Contracts
+## Incentiv Core Contracts
 
-| **Contract**                | **Address**                                |
-| --------------------------- | ------------------------------------------ |
-| **ContractRegistry**        | 0x8E009Df4519c14D7D758F955993413F2e68CAB3E |
-| **FeeDistributor Impl**     | 0x27Ae6879b2A10c7b1E97Ee210c2aC5896c5Aee4d |
-| **FeeDistributor Proxy**    | 0x9a86f26E7eC81A9e4d97bE2200fa7b66A82046B2 |
-| **EntryPoint**              | 0x3eC61c5633BBD7Afa9144C6610930489736a72d4 |
-| **weth9 WCENT**             | 0xB0f0A14A50F14dc9e6476d61C00cF0375Dd4EB04 |
-| **factory**                 | 0x766A315502B1f9869C0E2A19aEA6D6f55b0ad108 |
-| **router**                  | 0x4a66A8bA9704DD06fE52A027f2B16a3F5D11B048 |
-| **nftDescriptorLibrary**    | 0x59514CA1c213B63F8DF388E4435aD12E92c2C34f |
-| **positionDescriptor**      | 0x56619D7d271AaeCb2cBA5bB40CC6B2149544127f |
-| **positionManager**         | 0x800f7a6028EED5EA0e89a7C3799e13B5DE4f1D28 |
-| **quoterV3**                | 0x1d317fFfBc3Bda5aA06F9f8f506e8C6082dC415A |
-| **IncentivAccountFactory**  | 0xbB02A7d66387A56C3319Adcbb24c518eA95bB83d |
-| **TransferGate**            | 0x66F51d740d0Ab781bc525B52d0d35D0585086Aa1 |
-| **UnifiedTokenPaymasterV3** | 0x1Cad95A282b256669390D0180ba518f6DBbef040 |
-| **IncentivContractFactory** | 0x6487de167e5330c15D28a98338bde91083D2897e |
-| **BulkBalanceReader**       | 0x1e7c87e0719400EF9e7433d09f6f98fB3994993f |
-| **FeeDistributor Impl**     | 0x27Ae6879b2A10c7b1E97Ee210c2aC5896c5Aee4d |
-| **FeeDistributor Proxy**    | 0x9a86f26E7eC81A9e4d97bE2200fa7b66A82046B2 |
+| **Name**                        | **Mainnet Address**                        | Testnet Address                            |
+| ------------------------------- | ------------------------------------------ | ------------------------------------------ |
+| **_Contract Registry_**         | 0x8E009Df4519c14D7D758F955993413F2e68CAB3E | 0x1aE5072aF3E940A258F0b7682dB50a3752e738b6 |
+| **_Incentiv Contract Factory_** | 0x6487de167e5330c15D28a98338bde91083D2897e | 0xC9E3A4CE234612595c23E20fe3A8B4ee9F12B3Fd |
+| **_Incentiv Account Factory_**  | 0xbB02A7d66387A56C3319Adcbb24c518eA95bB83d | 0x8663e7ee08CdB094a40A94122D26BE949daAF1aD |
+| **_Entry Point_**               | 0x3eC61c5633BBD7Afa9144C6610930489736a72d4 | 0x9b5d240EF1bc8B4930346599cDDFfBD7d7D56db9 |
+| **_Reward Distribution_**       |                                            | 0x3D636475bdC91C09e153562E0E0Dd9f45549Dc15 |
+| **_Transfer Gate_**             | 0x66F51d740d0Ab781bc525B52d0d35D0585086Aa1 | 0x0C4E2EC0b86860C732009538B75e1Fa09A34e844 |
+| **_Unified Token Paymaster_**   | 0x1Cad95A282b256669390D0180ba518f6DBbef040 | 0x229d451336AE02643425d0B51D44025EbAF7aFd7 |
+| **_Bulk Balance Reader_**       | 0x1e7c87e0719400EF9e7433d09f6f98fB3994993f | 0xB3bdC85b17Fb579Be9e63ca40F6daC9fA19ECD1f |
+| **_FeeDistributor Impl_**       | 0x27Ae6879b2A10c7b1E97Ee210c2aC5896c5Aee4d |                                            |
+| **_FeeDistributor Proxy_**      | 0x9a86f26E7eC81A9e4d97bE2200fa7b66A82046B2 |                                            |
+| **_Faucet_**                    |                                            | 0xE44207d19ABA491Bd7524806dAC38CD746651399 |
+
+## DEX Contracts
+
+| Token                      | Address                                    |
+| -------------------------- | ------------------------------------------ |
+| **_weth9 WCENT_**          | 0xB0f0A14A50F14dc9e6476d61C00cF0375Dd4EB04 |
+| **_Factory_**              | 0x766A315502B1f9869C0E2A19aEA6D6f55b0ad108 |
+| **_Router_**               | 0x4a66A8bA9704DD06fE52A027f2B16a3F5D11B048 |
+| **_nftDescriptorLibrary_** | 0x59514CA1c213B63F8DF388E4435aD12E92c2C34f |
+| **_positionDescriptor_**   | 0x56619D7d271AaeCb2cBA5bB40CC6B2149544127f |
+| **_positionManager_**      | 0x800f7a6028EED5EA0e89a7C3799e13B5DE4f1D28 |
+| **_quoterV3_**             | 0x1d317fFfBc3Bda5aA06F9f8f506e8C6082dC415A |
+
+## Bridge Tokens Contracts (Via Hyperlane)
+
+| Currency Symbol | **Address**                                | YAML                                                                                                                    |
+| --------------- | :----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| **CENT**        | 0x23958cBa555AC52C9495Df9b121ff73003e39dBb | [YAML](https://github.com/hyperlane-xyz/hyperlane-registry/blob/main/deployments/warp_routes/CENT/incentiv-config.yaml) |
+| **WETH**        | 0x3e425317dB7BaC8077093117081b40d9b46F29cb | [YAML](https://github.com/hyperlane-xyz/hyperlane-registry/blob/main/deployments/warp_routes/WETH/incentiv-config.yaml) |
+| **WBTC**        | 0x0292593D416Cb765E0e8FF77b32fA7e465958FEE | [YAML](https://github.com/hyperlane-xyz/hyperlane-registry/blob/main/deployments/warp_routes/WBTC/incentiv-config.yaml) |
+| **USDC**        | 0x16e43840d8D79896A389a3De85aB0B0210C05685 | [YAML](https://github.com/hyperlane-xyz/hyperlane-registry/blob/main/deployments/warp_routes/USDC/incentiv-config.yaml) |
