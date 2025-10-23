@@ -99,7 +99,7 @@
             "pages": [
               "api-reference/introduction",
               {
-                "group": "IncentiView",
+                "group": "Search",
                 "icon": "magnifying-glass-chart",
                 "pages": [
                   "api-reference/IncentiView/search"
