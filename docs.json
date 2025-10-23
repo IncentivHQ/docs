@@ -76,6 +76,7 @@
             "group": "Tools",
             "pages": [
               "docs/developers/dataindexer",
+              "docs/developers/block_explorers",
               "docs/developers/bridges",
               "docs/developers/oracles",
               {
