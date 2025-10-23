@@ -76,6 +76,8 @@
             "group": "Tools",
             "pages": [
               "docs/developers/dataindexer",
+              "docs/developers/bridges",
+              "docs/developers/oracles",
               "tools/dapps/sdk",
               "tools/dapps/example",
               "tools/ui_sdk/ui-sdk"
