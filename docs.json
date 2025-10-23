@@ -94,65 +94,73 @@
           {
             "group": "API Documentation",
             "pages": [
-              "api-reference/introduction"
-            ]
-          },
-          {
-            "group": "IncentiView",
-            "pages": [
-              "api-reference/IncentiView/search"
-            ]
-          },
-          
-          {
-            "group": "Blocks",
-            "pages": [
-              "api-reference/IncentiView/Blocks/blocks",
-              "api-reference/IncentiView/Blocks/block",
-              "api-reference/IncentiView/Blocks/block-transactions",
-              "api-reference/IncentiView/Blocks/block-userops"
-            ]
-          },
-          {
-            "group": "Transactions",
-            "pages": [
-              "api-reference/IncentiView/Transactions/transactions",
-              "api-reference/IncentiView/Transactions/transaction",
-              "api-reference/IncentiView/Transactions/transaction-userops",
-              "api-reference/IncentiView/Transactions/transaction-transfer"
-            ]
-          },
-          {
-            "group": "User Operations",
-            "pages": [
-              "api-reference/IncentiView/UserOperations/userOperations",
-              "api-reference/IncentiView/UserOperations/userOperation",
-              "api-reference/IncentiView/UserOperations/userOps-transfers"
-            ]
-          },
-          {
-            "group": "Account",
-            "pages": [
-              "api-reference/IncentiView/Account/account-assets",
-              "api-reference/IncentiView/Account/account-transfers",
-              "api-reference/IncentiView/Account/account-userops",
-              "api-reference/IncentiView/Account/account-userops-activity"
-            ]
-          },
-          {
-            "group": "Assets",
-            "pages": [
-              "api-reference/IncentiView/Assets/assets",
-              "api-reference/IncentiView/Assets/asset"
-            ]
-          },
-          {
-            "group": "NFTs",
-            "pages": [
-              "api-reference/IncentiView/NFT/nfts",
-              "api-reference/IncentiView/NFT/nft"
+              "api-reference/introduction",
+              {
+                "group": "IncentiView",
+                "icon": "magnifying-glass-chart",
+                "pages": [
+                  "api-reference/IncentiView/search"
+                ]
+              },
+              {
+                "group": "Blocks",
+                "icon": "cubes",
+                "pages": [
+                  "api-reference/IncentiView/Blocks/blocks",
+                  "api-reference/IncentiView/Blocks/block",
+                  "api-reference/IncentiView/Blocks/block-transactions",
+                  "api-reference/IncentiView/Blocks/block-userops"
+                ]
+              },
+              {
+                "group": "Transactions",
+                "icon": "send-to-back",
+                "pages": [
+                  "api-reference/IncentiView/Transactions/transactions",
+                  "api-reference/IncentiView/Transactions/transaction",
+                  "api-reference/IncentiView/Transactions/transaction-userops",
+                  "api-reference/IncentiView/Transactions/transaction-transfer"
+                ]
+              },
+              {
+                "group": "User Operations",
+                "icon":"rectangles-mixed",
+                "pages": [
+                  "api-reference/IncentiView/UserOperations/userOperations",
+                  "api-reference/IncentiView/UserOperations/userOperation",
+                  "api-reference/IncentiView/UserOperations/userOps-transfers"
+                ]
+              },
+              {
+                "group": "Account",
+                "icon": "wallet",
+                "pages": [
+                  "api-reference/IncentiView/Account/account-assets",
+                  "api-reference/IncentiView/Account/account-transfers",
+                  "api-reference/IncentiView/Account/account-userops",
+                  "api-reference/IncentiView/Account/account-userops-activity"
+                ]
+              },
+              {
+                "group": "Assets",
+                "icon": "coins",
+                "pages": [
+                  "api-reference/IncentiView/Assets/assets",
+                  "api-reference/IncentiView/Assets/asset"
+                ]
+              },
+              {
+                "group": "NFTs",
+                "icon": "hexagon-vertical-nft",
+                "pages": [
+                  "api-reference/IncentiView/NFT/nfts",
+                  "api-reference/IncentiView/NFT/nft"
+                ]
+              }
+              
             ]
           }
+          
         ]
       }
     ],
