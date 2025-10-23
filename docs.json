@@ -114,7 +114,7 @@
               },
               {
                 "group": "Transactions",
-                "icon": "send-to-back",
+                "icon": "money-bill-transfer",
                 "pages": [
                   "api-reference/IncentiView/Transactions/transactions",
                   "api-reference/IncentiView/Transactions/transaction",
