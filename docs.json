@@ -75,10 +75,13 @@
           {
             "group": "Tools",
             "pages": [
-              "docs/developers/dataindexer",
-              "docs/developers/block_explorers",
-              "docs/developers/bridges",
-              "docs/developers/oracles",
+              "docs/Ecosystem/dataindexer",
+              "docs/Ecosystem/block_explorers",
+              "docs/Ecosystem/bridges",
+              "docs/Ecosystem/oracles",
+              "docs/Ecosystem/automation",
+              "docs/Ecosystem/multi-sig",
+              
               {
                 "group": "SDKs",
                 "icon": "gear-code",
