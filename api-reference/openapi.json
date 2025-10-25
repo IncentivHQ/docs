@@ -1,13 +1,13 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "IncentiView Indexer API",
+    "title": "Mainnet Indexer API",
     "description": "API endpoint for listing blocks from the Incentiv Blockchain via the IncentiView indexer.",
     "version": "2.1.0"
   },
   "servers": [
     {
-      "url": "https://indexer.testnet.incentiv.io/api"
+      "url": "https://indexer.incentiv.io/api"
     }
   ],
   "paths": {
