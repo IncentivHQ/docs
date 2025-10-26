@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://indexer.incentiv.io"
+      "url": "https://indexer.mainnet.incentiv.io/api"
     }
   ],
   "paths": {
