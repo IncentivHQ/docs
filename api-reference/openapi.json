@@ -332,6 +332,218 @@
         }
       }
     },
+    "/account/{address}/userop-activity-unified": {
+      "get": {
+        "summary": "Unified user activity (UserOperations + transactions)",
+        "description": "Returns a unified activity feed for the given account address. The feed merges ERC-4337 UserOperations and regular EVM transactions (native transfers, decoded TOKEN_TRANSFER and BRIDGE_TRANSACTION) into a single, chronologically sorted list.\n",
+        "tags": [
+          "Account"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "address",
+            "required": true,
+            "description": "Ethereum account address (EOA or smart account)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "description": "Optional activity type filter (forwarded to listUserActivityUnified)",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "direction",
+            "required": false,
+            "description": "Direction of activity relative to the account (incoming, outgoing, all)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "incoming",
+                "outgoing",
+                "all"
+              ]
+            }
+          },
+          {
+            "in": "query",
+            "name": "fromTimestamp",
+            "required": false,
+            "description": "Minimum UNIX timestamp (seconds) of activities to include",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "toTimestamp",
+            "required": false,
+            "description": "Upper bound UNIX timestamp (seconds), activities with timestamp < toTimestamp",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "fromBlockNumber",
+            "required": false,
+            "description": "Minimum block number to include",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "toBlockNumber",
+            "required": false,
+            "description": "Upper-bound block number (blockNumber < toBlockNumber)",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "bundleTxHash",
+            "required": false,
+            "description": "Optional filter for bundle transaction hash",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "description": "Zero-based offset for pagination",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "description": "Page size for pagination",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "description": "Sort order (same as UserOperationQuerySort)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "TIMESTAMP_ASC",
+                "TIMESTAMP_DESC"
+              ]
+            }
+          }
+        ],
+     "responses": {
+          "200": {
+            "description": "Unified activity list",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "result": {
+                      "type": "object",
+                      "properties": {
+                        "total": {
+                          "type": "integer",
+                          "description": "Total user operation count (from user-op side)",
+                          "example": 123
+                        },
+                        "pageable": {
+                          "type": "integer",
+                          "description": "Total number of items that can be paginated through",
+                          "example": 50
+                        },
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "description": "Unified activity item",
+                            "properties": {
+                              "hash": {
+                                "type": "string"
+                              },
+                              "success": {
+                                "type": "boolean"
+                              },
+                              "bundleTxHash": {
+                                "type": "string"
+                              },
+                              "blockNumber": {
+                                "type": "integer"
+                              },
+                              "timestamp": {
+                                "type": "integer",
+                                "description": "UNIX timestamp (seconds)"
+                              },
+                              "sender": {
+                                "type": "string"
+                              },
+                              "actualGasCost": {
+                                "type": "string",
+                                "description": "Estimated or real gas cost in wei"
+                              },
+                              "paymasterAndData": {
+                                "type": "string"
+                              },
+                              "type": {
+                                "type": "string",
+                                "description": "Activity type (e.g. USER_OPERATION, TRANSFER, TOKEN_TRANSFER, BRIDGE_TRANSACTION)"
+                              },
+                              "value": {
+                                "type": "string",
+                                "description": "Value in token units or native wei"
+                              },
+                              "to": {
+                                "type": "string"
+                              },
+                              "asset": {
+                                "type": "string",
+                                "nullable": true
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid parameters (e.g. invalid address or direction)"
+          },
+          "404": {
+            "description": "No user operation activity found for this account"
+          },
+          "500": {
+            "description": "Failed to fetch unified user operation activity"
+          }
+        }
+      }
+    }
+  },
     "/account/{address}/userop-activity": {
       "get": {
         "summary": "Get Account User Operation Activity",
