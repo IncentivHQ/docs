@@ -131,7 +131,7 @@
                 "pages": [
                   "api-reference/IncentiView/UserOperations/userOperations",
                   "api-reference/IncentiView/UserOperations/userOperation",
-                  "api-reference/IncentiView/UserOperations/userOps-transfers"
+                  "api-reference/IncentiView/UserOperations/userOps-transactions"
                 ]
               },
               {
