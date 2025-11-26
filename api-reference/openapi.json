@@ -539,7 +539,6 @@
           },
           "500": {
             "description": "Failed to fetch unified user operation activity"
-          }
         }
       }
     }
