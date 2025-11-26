@@ -130,8 +130,7 @@
                 "icon":"rectangles-mixed",
                 "pages": [
                   "api-reference/IncentiView/UserOperations/userOperations",
-                  "api-reference/IncentiView/UserOperations/userOperation",
-                  "api-reference/IncentiView/UserOperations/userOps-transactions"
+                  "api-reference/IncentiView/UserOperations/userOperation"
                 ]
               },
               {
@@ -141,7 +140,7 @@
                   "api-reference/IncentiView/Account/account-assets",
                   "api-reference/IncentiView/Account/account-transfers",
                   "api-reference/IncentiView/Account/account-userops",
-                  "api-reference/IncentiView/Account/account-userops-activity"
+                  "api-reference/IncentiView/Account/userOps-transactions"
                 ]
               },
               {
