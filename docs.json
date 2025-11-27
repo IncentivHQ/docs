@@ -67,6 +67,7 @@
             "pages": [
               "docs/developers/network_config",
               "docs/developers/contracts",
+              "docs/developers/contracts_Tv2",
               "docs/developers/node_deployment",
               "docs/developers/miner_deployment"
               
