@@ -13,9 +13,9 @@
        },
   "navigation": {
     
-    "products": [
+    "tabs": [
       {
-        "product": "Main",
+        "tab": "Main",
         "icon": "book-open",
         "groups": [
           {
@@ -58,7 +58,7 @@
       },
       
       {
-      "product": "Development",
+      "tab": "Development",
       "icon": "square-terminal",
         "groups": [
           
