@@ -13,9 +13,9 @@
        },
   "navigation": {
     
-    "dropdowns": [
+    "products": [
       {
-        "dropdown": "Guides",
+        "product": "Main",
         "icon": "book-open",
         "groups": [
           {
@@ -58,7 +58,7 @@
       },
       
       {
-      "dropdown": "Development",
+      "product": "Development",
       "icon": "square-terminal",
         "groups": [
           
