@@ -1,0 +1,58 @@
+---
+title: Concepts
+---
+
+Incentiv is built around a human-centric, contribution-driven design. Rather than optimizing for capital efficiency or raw throughput, the protocol focuses on intention-based interactions, native account abstraction, and an economic system that aligns all network participants.
+
+These pillars ensure that Incentiv remains flexible, programmable, and accessible—without compromising determinism or security.
+
+## Intent-First Interactions
+
+Incentiv shifts users from low-level calldata construction to high-level intent expression. Instead of manually crafting transactions, users specify the outcome they want, and the wallet handles the translation.
+
+**Users express outcomes, not calldata.**  
+Wallets compile these outcomes into deterministic UserOperations.
+
+### How It Works
+
+- **High-level intents** (e.g., “swap”, “send”, “auto-invest”)
+- **Wallet compiles UserOperations** using embedded validation logic
+- **Execution remains fully deterministic** under EVM semantics
+
+This approach improves UX while preserving reliable, predictable state transitions.
+
+## Native Account Abstraction
+
+Incentiv introduces Account Abstraction directly at L1, making smart wallets the default account type for every user. This eliminates EOA limitations and enables programmable authentication, fee management, and secure automation.
+
+### Smart Wallets as First-Class Accounts
+
+Native AAA supports:
+
+- **Social recovery**
+- **Multi-token gas**
+- **Session keys**
+- **Spending policies**
+- **Custom verification logic**
+
+Because AAA is native—not an overlay—wallet interactions are faster, simpler, and more secure than ERC-4337-style implementations.
+
+## Contribution-Scored Participation
+
+Incentiv continuously measures activity across the entire network. Every meaningful action by miners, users, developers, liquidity providers, and bundlers is tracked and converted into contribution scores.
+
+These scores feed directly into the Incentiv+ rewards engine.
+
+### Every Action Is Measured
+
+- **Miners:** hashpower efficiency, uptime  
+- **Users:** real on-chain activity  
+- **Developers:** contract deployments and usage  
+- **LPs:** liquidity depth and stability  
+- **Bundlers:** throughput and accuracy  
+
+### Direct Integration with Incentiv+
+
+Real-time contribution scores determine weekly reward allocations during each epoch, creating a closed-loop incentive system that reinforces aligned behavior.
+
+This foundation enables Incentiv to deliver a blockchain experience that is intuitive, efficient, and economically aligned with human behavior.
