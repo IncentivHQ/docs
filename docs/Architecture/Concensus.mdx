@@ -1,0 +1,68 @@
+---
+title: "Consensus"
+---
+
+Incentiv’s consensus layer extends the protocol’s core philosophy: align rewards with meaningful contributions while keeping the network open, predictable, and accessible. Instead of relying on fixed block rewards or pure hardware races, Incentiv ties network security directly to real economic activity.\
+\
+This creates a consensus model that scales with demand and rewards miners for securing actual value flowing through the system.
+
+## **Memory-Hard, Human-Accessible Mining**
+
+Incentiv uses an enhanced Ethash Proof-of-Work design optimized for broad participation.
+
+**Ethash Memory-Hard Mining**
+
+- GPU-friendly
+- ASIC-resistant
+- Secure and permissionless
+- Keeps mining competitive instead of centralized
+
+The memory-hard function ensures mining stays accessible to everyday participants, preserving decentralization as the network grows.
+
+## **Demand-Coupled Mining Rewards**
+
+Rather than issuing fixed block rewards regardless of usage, Incentiv introduces **Demand-Coupled Mining**, a reward model that responds to real network activity.
+
+**Block rewards scale with:**
+
+- Transaction volume
+- Value-fee contributions into the reward pool
+- Overall network utilization
+
+Miners earn more when the network is genuinely being used, aligning energy expenditure with economic value.
+
+## **Deterministic Fork Choice and Validation**
+
+Consensus remains familiar, predictable, and fully EVM-aligned.
+
+**Fork Choice + Validation**
+
+- Longest-chain rule based on cumulative work
+- Standard Ethereum-style state validation
+- Execution mirrors EVM semantics for full compatibility
+
+This ensures every block is deterministic, verifiable, and processed under well-understood rules.
+
+## **How It Works**
+
+Here’s how Incentiv’s consensus system operates end-to-end:
+
+1. **Miners compute Ethash proofs**\
+    GPUs perform memory-hard hashing to propose the next block.
+2. **Transactions enter block candidates**\
+    UserOperations and regular transactions are processed through the EVM, following Ethereum semantics.
+3. **Value fees flow into the shared reward pool**\
+    Each block collects transaction fees and value-based fees, contributing to the Incentiv+ reward system.
+4. **Demand adjusts the block reward dynamically**\
+    The protocol increases or decreases miner rewards based on real network activity and throughput.
+5. **Nodes validate and execute the block**\
+    Every node re-executes the EVM computation to confirm the correctness of the state transition.
+6. **Fork choice selects the chain with the most cumulative work**\
+    The longest-work chain is accepted, ensuring objectivity and resistance to manipulation.
+7. **Miners claim rewards proportional to both security contribution and network demand**\
+    Higher activity → larger reward pool → stronger economic alignment.
+
+## **A Consensus Layer Aligned With Contribution**
+
+By linking security, usage, and contribution, Incentiv transforms Proof-of-Work into a demand-driven, economically grounded engine. Miners aren’t just competing on hardware they’re securing real value and are rewarded in proportion to the ecosystem they help protect.\
+ This ensures sustainability, fairness, and long-term decentralization across the entire network.

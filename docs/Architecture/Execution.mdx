@@ -1,0 +1,86 @@
+## **Execution**
+
+Incentiv’s execution layer mirrors the protocol’s philosophy: make user interactions simple, intuitive, and intent-driven while preserving strict determinism underneath.\
+ Users engage at a high level through intents and smart-wallet logic, but every state change follows the same predictable rules as Ethereum. This separation lets Incentiv deliver a modern UX without sacrificing the guarantees developers and validators rely on.
+
+## **Ethereum-Compatible, Fully Deterministic Runtime**
+
+At its core, Incentiv maintains complete compatibility with the Ethereum Virtual Machine (EVM). Contracts behave identically, tooling works out of the box, and deterministic execution ensures the network remains verifiable and trustless.
+
+**Ethereum-Compatible Runtime**
+
+- Identical opcodes
+- Same state model and execution semantics
+- Deterministic per-transaction state transitions
+- Full compatibility with existing Solidity tooling
+
+This allows developers to deploy existing EVM contracts or build new ones without learning a new execution environment.
+
+## **Robust State and Gas Management**
+
+Incentiv maintains the same state structure and gas metering approach used in Ethereum, ensuring predictability, security, and resource-efficient computation.
+
+**State and Gas Management**
+
+- Account balances
+- Contract storage
+- Gas metering and refund rules
+- VM-level execution and error handling
+
+Because AAA sits above the execution layer, the underlying EVM remains clean, stable, and deterministic.
+
+## **Native DEX Integration**
+
+Incentiv includes a lightweight native DEX module inside the execution environment. While not exposed as a user-facing AMM, it powers essential automated functions inside the protocol.
+
+**Native DEX Integration is used for**
+
+- Fee conversion into the reward pool
+- Value-fee routing
+- Paymaster settlement and token swaps
+- Automated internal liquidity pathways
+
+This allows Incentiv to support multi-token gas, smooth tokenized fee flows, and automated settlement without relying on external protocols.
+
+## **Pipelined AAA Execution Flow**
+
+Although user-facing interactions begin with intents, execution continues through a structured and deterministic pipeline powered by Advanced Account Abstraction.
+
+**Execution Pipeline**
+
+1. Intent
+2. UserOperation
+3. Bundler
+4. EntryPoint
+5. Wallet validation
+6. Execution
+7. Fee routing
+
+Each step is structured, predictable, and cryptographically enforced.
+
+## **How It Works**
+
+Here is how Incentiv’s execution layer processes a transaction from intent to state transition:
+
+1. **User expresses an intent**\
+    The wallet interprets a high-level request rather than requiring calldata.
+2. **Wallet compiles a UserOperation**\
+    All logic, authentication, and fee-handling details are encoded.
+3. **Bundler submits the operation**\
+    Bundlers compete to include UserOperations efficiently into a block.
+4. **EntryPoint performs global validation**\
+    Ensures the operation is well-formed and fees can be settled.
+5. **Smart wallet performs local validation**\
+    Custom rules such as session keys, spending limits, or multi-signature checks apply.
+6. **EVM executes the encoded calls**\
+    Deterministic state transition using Ethereum-compatible runtime rules.
+7. **Native DEX handles required conversions**\
+    Paymasters, gas abstraction, and value-fee routing use internal settlement.
+8. **Final state update occurs**\
+    Storage, balances, and event logs update exactly as in Ethereum.
+
+## **A Deterministic Engine Wrapped in Human-Centered Interaction**
+
+Incentiv’s execution layer blends high-level intent UX with low-level determinism.\
+Users interact in natural terms, wallets enforce programmable policies, and the EVM guarantees correctness.\
+This architecture preserves Ethereum’s reliability while unlocking the flexibility and usability required for a next-generation blockchain experience.
