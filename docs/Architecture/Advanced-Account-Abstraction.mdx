@@ -2,97 +2,22 @@
 title: "Advanced Account Abstraction (AAA)"
 ---
 
-Advanced Account Abstraction in Incentiv brings the protocol’s human-centric philosophy directly into the account model. Every user begins with a programmable smart wallet that can enforce personal rules for security, automation, and fees. Instead of managing raw keys and calldata, users interact through safer, more flexible account logic that adapts to their needs.\
- This transforms everyday blockchain use into an accessible and intuitive experience while maintaining deterministic execution underneath.
+<Card title="Smart Wallets by Default" icon="wallet" href="docs/architecture/Advanced-Account-Abstraction/smart-wallets">
+  Programmable accounts with built-in security and policies.
+</Card>
 
-## **Smart Wallets as the Default Account Type**
+<Card title="EntryPoint Gateway" icon="server" href="docs/architecture/Advanced-Account-Abstraction/entrypoint">
+  Unified validation and execution for all UserOperations.
+</Card>
 
-Incentiv replaces traditional externally owned accounts with smart wallets that include built-in support for advanced security and policy controls.
+<Card title="Bundlers & Alt Mempool" icon="inbox" href="docs/architecture/Advanced-Account-Abstraction/bundlers">
+  Dedicated mempool and bundling for efficient processing.
+</Card>
 
-**Smart Wallet Capabilities**
+<Card title="Paymasters" icon="badge-dollar" href="docs/architecture/Advanced-Account-Abstraction/paymasters">
+  Flexible, token-based, or sponsored gas payments.
+</Card>
 
-- Social recovery
-- Multi-signature approval logic
-- Device-based authentication
-- Spending policies and limits
-- Rate limiting
-- Address whitelists
+<Card title="Session Keys" icon="key-r
 
-These capabilities give users the flexibility to define how their wallet behaves, how funds can move, and who or what can authorize actions.
 
-## **EntryPoint as a Unified Execution Gateway**
-
-All UserOperations flow through a single, protocol-level EntryPoint contract that standardizes validation and execution.
-
-**EntryPoint Contract Handles**
-
-- UserOperation validation
-- Fee settlement and paymaster logic
-- Aggregated signature checks
-- Atomic execution of bundled operations
-
-This ensures predictable and secure processing, regardless of how complex the wallet logic is.
-
-## **Bundlers and the Alternative Mempool**
-
-Incentiv maintains a dedicated UserOperation mempool separate from the normal transaction pool. Bundlers monitor this pool and prepare UserOperations for efficient on-chain execution.
-
-**Bundler Responsibilities**
-
-- Maintain the UserOperation mempool
-- Batch and optimize operations
-- Submit bundled operations to the EntryPoint
-
-This competitive layer improves throughput and lowers cost for users.
-
-## **Paymasters for Flexible Fee Management**
-
-Paymasters allow transactions to be processed without the user holding the native token. They bring flexible fee models that enhance accessibility and onboarding.
-
-**Paymaster Capabilities**
-
-- Token-based gas payment
-- Sponsored transactions
-- Gasless onboarding
-- Conditional fee coverage for apps or partners
-
-This makes using Incentiv easier for new users and enables richer application workflows.
-
-## **Session Keys for Safe Automation**
-
-Session keys give users a limited, temporary way to authorize repeated actions without exposing their main wallet keys.
-
-**Uses for Session Keys**
-
-- Games
-- DeFi automations
-- Trusted applications
-- Scheduled or repeated operations
-
-These restricted keys provide convenience while preserving security.
-
-## **How It Works**
-
-Here is how AAA processes an interaction from intent to execution:
-
-1. User expresses an action through an interface\
-    The wallet interprets a high-level intent such as send, swap, or automate.
-2. Wallet generates a UserOperation\
-    Authentication rules, policy checks, and fee details are encoded in the operation.
-3. UserOperation enters the alternative mempool\
-    Bundlers monitor and collect operations awaiting inclusion.
-4. Bundler validates and bundles operations\
-    Operations are packaged together for efficiency and submitted to the EntryPoint.
-5. EntryPoint performs global validation\
-    Signature aggregation, paymaster checks, and replay protection are enforced.
-6. Wallet performs local validation\
-    Any custom logic such as device checks, rate limits, or multi-signature approval is applied.
-7. Operation is executed atomically\
-    The smart wallet and target contracts run within the EVM, ensuring deterministic state changes.
-8. Fees are settled\
-    Paymasters, token conversions, and value-fee routing complete the process.
-
-## **A Programmable Account Layer Designed for People**
-
-AAA makes secure, flexible, and intuitive accounts the default for every user.\
- By combining smart wallets, paymasters, session keys, and the EntryPoint model, Incentiv delivers a powerful account system that matches modern application needs without compromising determinism, security, or decentralization.
