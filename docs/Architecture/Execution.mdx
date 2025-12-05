@@ -2,23 +2,30 @@
 title: "Execution"
 ---
 
-<Card title="EVM-Compatible Runtime" icon="cpu" href="docs/architecture/execution/evm-runtime">
-  Fully deterministic, Ethereum-aligned execution.
+<Card title="Intent-Driven UX, Deterministic Core" icon="sparkles" href="docs/architecture/execution/overview">
+  High-level intents power the UX, while the EVM ensures strict, Ethereum-compatible determinism underneath.
 </Card>
 
-<Card title="State & Gas Management" icon="database" href="docs/architecture/execution/state-gas">
-  Predictable state transitions and gas metering.
+<Card title="Ethereum-Compatible Runtime" icon="cpu" href="docs/architecture/execution/runtime">
+  Identical opcodes, state model, and semantics—full Solidity and tooling compatibility.
 </Card>
 
-<Card title="Native DEX Module" icon="swap-horizontal" href="docs/architecture/execution/native-dex">
-  Internal swaps powering fees, routing, and settlement.
+<Card title="State & Gas Management" icon="gauge" href="docs/architecture/execution/state-gas">
+  Ethereum-style balances, storage, gas rules, and execution flow for predictable computation.
 </Card>
 
-<Card title="AAA Execution Pipeline" icon="layers" href="docs/architecture/execution/aaa-pipeline">
-  Structured flow from intent to final state update.
+<Card title="Native DEX Integration" icon="arrows-right-left" href="docs/architecture/execution/native-dex">
+  Internal swaps for fee conversion, paymaster settlement, and automated value routing.
 </Card>
 
-<Card title="Deterministic UX Engine" icon="sparkles" href="docs/architecture/execution/deterministic-ux">
-  Human-centered interactions
+<Card title="AAA Execution Pipeline" icon="flow" href="docs/architecture/execution/pipeline">
+  A structured path from intent → UserOperation → validation → execution → fee routing.
+</Card>
 
+<Card title="How Execution Works" icon="list-ordered" href="docs/architecture/execution/how-it-works">
+  Wallet compiles an operation, bundlers submit it, EntryPoint validates, the EVM executes, and internal pathways finalize state.
+</Card>
 
+<Card title="Philosophy" icon="lightbulb" href="docs/architecture/execution/philosophy">
+  A human-centered interaction model wrapped around a deterministic, Ethereum-proven execution engine.
+</Card>
