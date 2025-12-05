@@ -2,20 +2,34 @@
 title: "Advanced Account Abstraction (AAA)"
 ---
 
-<Card title="Smart Wallets by Default" icon="wallet" href="docs/architecture/Advanced-Account-Abstraction/smart-wallets">
-  Programmable accounts with built-in security and policies.
+<Card title="Smart Wallets by Default" icon="wallet" href="docs/architecture/Advanced-Account-Abstraction">
+  Every user gets a programmable smart wallet with built-in security, recovery, and spending controls.
 </Card>
 
-<Card title="EntryPoint Gateway" icon="server" href="docs/architecture/Advanced-Account-Abstraction/entrypoint">
-  Unified validation and execution for all UserOperations.
+<Card title="Wallet Capabilities" icon="shield-check" href="docs/architecture/Advanced-Account-Abstraction">
+  Social recovery, multisig, device auth, spending limits, whitelists, and rate-limiting—all configurable per user.
 </Card>
 
-<Card title="Bundlers & Alt Mempool" icon="inbox" href="docs/architecture/Advanced-Account-Abstraction/bundlers">
-  Dedicated mempool and bundling for efficient processing.
+<Card title="EntryPoint Gateway" icon="server" href="docs/architecture/Advanced-Account-Abstraction">
+  A unified contract that validates, aggregates signatures, manages fees, and executes all UserOperations.
 </Card>
 
-<Card title="Paymasters" icon="badge-dollar" href="docs/architecture/Advanced-Account-Abstraction/paymasters">
-  Flexible, token-based, or sponsored gas payments.
+<Card title="Bundlers & Alt Mempool" icon="inbox" href="docs/architecture/Advanced-Account-Abstraction">
+  Bundlers monitor a dedicated UserOperation mempool and batch operations for efficient on-chain execution.
 </Card>
 
+<Card title="Paymasters" icon="badge-dollar" href="docs/architecture/Advanced-Account-Abstraction">
+  Token-based gas, sponsored transactions, gasless onboarding, and conditional fee coverage for apps.
+</Card>
 
+<Card title="Session Keys" icon="key" href="docs/architecture/Advanced-Account-Abstraction">
+  Temporary, restricted keys for games, automations, trusted apps, and repeated actions—without exposing main keys.
+</Card>
+
+<Card title="How AAA Works" icon="flow" href="docs/architecture/Advanced-Account-Abstraction">
+  From intent → UserOperation → validation → bundling → atomic execution → fee settlement, all through a deterministic pipeline.
+</Card>
+
+<Card title="AAA Philosophy" icon="sparkles" href="docs/architecture/Advanced-Account-Abstraction">
+  A human-centric account model that keeps blockchain secure, intuitive, and programmable for real-world use.
+</Card>
