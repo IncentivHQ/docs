@@ -3,32 +3,32 @@ title: "Advanced Account Abstraction (AAA)"
 ---
 
 <Columns cols={2}>
+  <Card title="AAA Philosophy" icon="sparkles" color="#ffa900" href="/docs/Architecture/AAA/AAA-Philosophy">
+    A human-centric account model that keeps blockchain secure, intuitive, and programmable for real-world use.
+  </Card>
   <Card title="How AAA Works" icon="question" color="#ffa900" href="docs/architecture/Advanced-Account-Abstraction">
     From intent → UserOperation → validation → bundling → atomic execution → fee settlement, all through a deterministic pipeline.
   </Card>
-  <Card title="AAA Philosophy" icon="sparkles" color="#ffa900" href="docs/architecture/Advanced-Account-Abstraction">
-    A human-centric account model that keeps blockchain secure, intuitive, and programmable for real-world use.
-  </Card>
 </Columns>
 
 <Columns cols={3}>
-  <Card title="Smart Wallets " icon="wallet" color="#ffa900" href="docs/architecture/Advanced-Account-Abstraction">
+  <Card title="Smart Wallets " icon="wallet" color="#ffa900" href="/docs/Architecture/AAA/Smart-Wallet">
     Every user gets a programmable smart wallet with built-in security, recovery, and spending controls.
   </Card>
-  <Card title="Wallet Capabilities" icon="shield-check" color="#ffa900" href="docs/architecture/Advanced-Account-Abstraction">
+  <Card title="Wallet Capabilities" icon="shield-check" color="#ffa900" href="/docs/Architecture/AAA/Wallet-Capabilities">
     Social recovery, multisig, device auth, spending limits, whitelists, and rate-limiting—all configurable per user.
   </Card>
-  <Card title="EntryPoint Gateway" icon="server" color="#ffa900" href="docs/architecture/Advanced-Account-Abstraction">
-    A unified contract that validates, aggregates signatures, manages fees, and executes all UserOperations.
+  <Card title="Bundlers & Alt Mempool" icon="inbox" color="#ffa900" href="/docs/Architecture/AAA/Bundlers">
+    Bundlers monitor a dedicated UserOperation mempool and batch operations to improve efficiency
   </Card>
 </Columns>
 
 <Columns cols={3}>
-  <Card title="Bundlers & Alt Mempool" icon="inbox" color="#ffa900" href="docs/architecture/Advanced-Account-Abstraction">
-    Bundlers monitor a dedicated UserOperation mempool and batch operations for efficient on-chain execution.
-  </Card>
   <Card title="Paymasters" icon="badge-dollar" color="#ffa900" href="docs/architecture/Advanced-Account-Abstraction">
     Token-based gas, sponsored transactions, gasless onboarding, and conditional fee coverage for apps.
+  </Card>
+  <Card title="EntryPoint Gateway" icon="server" color="#ffa900" href="/docs/Architecture/AAA/EntryPoint">
+    A unified contract that validates, aggregates signatures, manages fees, and executes all UserOperations.
   </Card>
   <Card title="Session Keys" icon="key" color="#ffa900" href="docs/architecture/Advanced-Account-Abstraction">
     Temporary, restricted keys for games, automations, trusted apps, and repeated actions—without exposing main keys.

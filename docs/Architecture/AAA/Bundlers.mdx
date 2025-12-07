@@ -1,0 +1,34 @@
+---
+title: "Bundlers & Alt Mempool"
+description: "Description of your new file."
+---
+
+Bundlers and the alternative mempool form the execution layer that brings Account Abstraction to life in Incentiv. While smart wallets decide _what_ a user intends to do, bundlers determine _how_ those intentions reach the blockchain efficiently and reliably.
+
+Unlike legacy blockchains where every transaction enters a single global mempool, Incentiv maintains a dedicated pipeline designed specifically for UserOperations. This alternative mempool keeps intent-based interactions separate from raw transactions, allowing them to be batched, optimized, and validated according to rules that match the AAA model.
+
+## The Role of Bundlers
+
+A bundler collects UserOperations from the alternative mempool, checks that they can be executed safely, and submits them to the EntryPoint in batches. This off-chain preparation allows the network to process many user actions more efficiently than if each request were submitted individually.
+
+Bundlers simulate each operation before submission, ensuring that the wallet approves it and that fees can be paid. If everything checks out, the bundler forms a bundle and includes it on-chain. This reduces user costs and avoids failed operations reaching the blockchain.
+
+## Why the Alternative Mempool Matters
+
+Separating UserOperations from traditional transactions gives Incentiv greater control over how intent-based interactions behave. The alternative mempool allows bundlers to prioritize operations based on efficiency, sponsorship, or user-permissioned policies without competing with standard transactions. It also enables better batching, improved fee strategies, and a more predictable flow for AAA interactions.
+
+By isolating this pipeline, Incentiv avoids the congestion, ordering issues, and inconsistent validation that would arise if UserOperations were mixed directly into the classic mempool.
+
+## How Bundlers Improve User Experience
+
+For users, bundlers are invisible — but their impact is significant. They allow actions to feel smoother, cheaper, and more reliable. A transfer, swap, or app interaction becomes a high-level request that the bundler assembles into a ready-to-execute package. This orchestration removes the burden of gas management, reduces the chance of failed transactions, and enables applications to sponsor fees when appropriate.
+
+Developers benefit as well. They can rely on a predictable execution path, a consistent simulation environment, and the ability to tailor how their apps interact with the AAA pipeline.
+
+## A Coordinated Flow
+
+Together, bundlers and the alternative mempool ensure that intent-based interactions move through the network in an optimized, structured, and trustless way. Bundlers prepare and submit the work; the EntryPoint validates and executes it; the network finalizes it.
+
+This system allows Incentiv to offer an execution model that is more flexible than traditional blockchains while maintaining the safety and predictability users expect.
+
+![Bundler Simulation Pipeline](/docs/images/BundlerSimulationPipeline.png)

@@ -1,0 +1,39 @@
+---
+title: "Smart Wallet Capabilities"
+description: "Description of your new file."
+---
+
+Smart wallets in Incentiv are designed to behave the way people already expect digital accounts to behave. Instead of depending on a single private key or rigid transaction rules, they use programmable logic to decide how actions are authorized, how access is managed, and how everyday interactions should feel. Powered by Advanced Account Abstraction, these capabilities form the practical foundation of Incentiv’s user experience.
+
+## A Wallet That Enforces Your Rules
+
+A smart wallet can define its own approval process. Some users may prefer simple, seamless approvals for low-value actions, while requiring additional confirmation or multi-factor approval for more sensitive operations. The wallet can distinguish between these contexts automatically. For example, sending a small amount to a friend can happen instantly, while moving a large balance may require a secondary device or a trusted recovery contact.
+
+## A Wallet That Supports Modern Authentication
+
+Because the wallet is not tied to a single private key, it can support different authentication methods at the same time. A user might sign in using their phone’s secure enclave (like FaceID), approve another device to act on their behalf, or use a passkey stored in a browser. These methods work together without the user needing to understand cryptography — the wallet simply verifies that the request matches one of the valid authentication options.
+
+## A Wallet That Manages Its Own Permissions
+
+Smart wallets can grant temporary or limited permissions to apps or devices. This is useful for everyday patterns such as allowing a game to make repeated micro-transactions without asking every time, or letting a DeFi dashboard read balances for 24 hours without gaining control of funds. The wallet can also revoke these permissions automatically when they expire or when the user logs out.
+
+## A Wallet That Handles Fees Intelligently
+
+Since AAA separates payment logic from execution, the wallet can choose how transaction fees are paid. A user might use a stablecoin to cover gas, or an application may sponsor fees entirely during onboarding. This allows real-world scenarios like signing up for a service without holding any native tokens or participating in an app where each interaction feels instant and costless from the user’s perspective.
+
+## A Wallet That Supports Safe Recovery
+
+Recovery no longer relies on memorizing a seed phrase. Instead, the wallet can define its own recovery process. A user may choose trusted contacts, a hardware device, or a secure offline method. If their phone is lost, the wallet can restore access without exposing funds or requiring centralized custody.
+
+## A Wallet That Enables Automation
+
+Routine actions can be automated safely. For example, a user can schedule periodic transfers to savings, rebalance a portfolio once a week, or authorize a subscription-like payment that the wallet evaluates each cycle before approving. These automations remain under the user’s control — they can be paused, adjusted, or revoked at any time.
+
+## A Wallet Designed for Real Life
+
+Taken together, these capabilities make the smart wallet feel less like a cryptographic object and more like a modern digital account that adapts to the user. It enforces personal rules, supports familiar authentication patterns, manages permissions, handles fees in a practical way, and keeps the user safe even when devices are lost or stolen.
+
+Each capability builds on a single idea:\
+**the account should act on the user’s behalf, not rely on the user to manage complexity.**
+
+More advanced behaviors — such as how fees are sponsored, how session keys operate, and how validation interacts with the EntryPoint — are explored in the deeper sections that follow.

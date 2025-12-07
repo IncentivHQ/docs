@@ -1,0 +1,97 @@
+---
+title: "How AAA Works"
+description: "Description of your new file."
+---
+
+Account Abstraction (AAA) in Incentiv transforms the blockchain from a system that executes low-level operations into one that understands and processes user intent. To make this possible, the protocol introduces a new transaction model, a new execution flow, and a new foundation for how accounts behave — all without changing the user’s expectations of simplicity and safety.
+
+## Rethinking What a “Transaction” is
+
+In traditional blockchains, a transaction is a rigid call: a function, signature, gas limit, and a set of parameters.\
+Incentiv replaces this with **UserOperations** — structured intent messages that express _what the user wants to do_, not how they must do it.
+
+A UserOperation may describe one action or many bundled together.\
+The key idea is simple: the network receives a clear request, and the surrounding infrastructure determines how to execute it efficiently and safely.
+
+## Smart Wallets as the Execution Authority
+
+Once a UserOperation is created, it is not executed directly on the chain. Instead, it is handed off to the user’s **smart wallet**, which acts as the verification authority.
+
+The wallet decides:
+
+- whether the action follows the user’s rules
+- whether signatures, limits, or policies are satisfied
+- whether the operation should proceed, reject, or request a different fee path
+
+The network defers to the wallet’s logic — not the other way around.\
+This shifts control toward the user while enabling features like automation, recovery rules, spending policies, and more.
+
+## The EntryPoint: A Unified Gateway
+
+All UserOperations eventually flow into a single protocol-level entry: the **EntryPoint contract**.\
+This contract orchestrates the processing of operations, ensuring they are validated, executed, and charged for gas in a unified manner.
+
+EntryPoint does not make decisions on behalf of the user.\
+It simply ensures that:
+
+- wallet rules are respected
+- fees are paid correctly
+- execution is atomic
+- invalid operations cannot affect others
+
+It is the “traffic controller” that standardizes how AAA actions reach the blockchain safely.
+
+## A Dedicated Pipeline for AAA
+
+To support this new model, Incentiv operates a parallel processing path for UserOperations.\
+This includes dedicated infrastructure for collection, batching, and execution — ensuring that intent-based actions do not compete with raw transactions.
+
+![AAA Jpe](/docs/images/AAA.jpeg)
+
+A UserOperation, from the outside, looks like a single high-level request.\
+Internally, it moves through a pipeline optimized for:
+
+- reliability
+- cost efficiency
+- validation
+- user safety
+
+This separation allows Incentiv to optimize user experiences without altering how traditional transactions operate.
+
+## A Flexible Approach to Fees
+
+AAA enables new ways of handling fees, without imposing requirements on the user.
+
+Although fee abstraction is explored deeper in the paymasters section, the essence is straightforward:
+
+- the user does not need the native token
+- the wallet can choose how to pay fees
+- applications can sponsor actions
+- the protocol ensures fees are always covered securely
+
+This makes AAA interactions smooth, intuitive, and accessible from day one.
+
+## Safe, Composable Execution
+
+Once the EntryPoint validates an operation, the underlying EVM executes it as part of a normal block.\
+The difference is that AAA ensures the execution environment:
+
+- reflects the user’s intent
+- enforces wallet-level verification
+- handles fee routing and accounting automatically
+
+From the miner’s perspective, it is simply another transaction.\
+From the user’s perspective, it feels like a clean, guided flow.
+
+## How It All Fits Together
+
+At its core, AAA works because Incentiv reshapes the interaction model, not the user’s mental model:
+
+1. The user expresses intent.
+2. The wallet validates and authorizes that intent.
+3. The EntryPoint coordinates the operation.
+4. The operation is executed safely in a block.
+
+This sequence allows the blockchain to feel familiar to everyday users while remaining entirely trustless and decentralized.
+
+The supporting components — smart wallets, bundlers, paymasters, session keys — each contribute specialized functionality. Their deeper mechanics are explained in the pages that follow.

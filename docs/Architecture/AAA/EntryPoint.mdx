@@ -1,0 +1,38 @@
+---
+title: "EntryPoint Role"
+description: "Description of your new file."
+---
+
+The EntryPoint contract is the coordination layer that makes Advanced Account Abstraction work in Incentiv. While smart wallets define _how_ users authorize actions, the EntryPoint defines _how those authorized actions are safely executed across the network_. It provides a standardized, deterministic pipeline for processing UserOperations, ensuring that every operation is validated, paid for, and executed according to protocol rules.
+
+Unlike traditional transaction handling, where each account interacts with the chain independently, EntryPoint centralizes the AAA execution flow into a single, predictable gateway. This creates a uniform model for smart wallet behavior, simplifies execution for bundlers, and guarantees that fees, validation, and security checks happen in the correct order.
+
+## The Role of EntryPoint
+
+UserOperations do not go directly to the blockchain. They are collected, prepared, and eventually passed into the EntryPoint contract. When the EntryPoint receives an operation, it performs three essential responsibilities.
+
+First, it ensures the smart wallet has **validated the operation**. The wallet must explicitly authorize the UserOperation using its own logic. EntryPoint does not second-guess the wallet’s rules; it only checks that the wallet followed the AAA protocol for verification.
+
+Second, EntryPoint ensures the **operation can pay for itself**. Whether fees come from the wallet, a paymaster, or another mechanism, EntryPoint confirms that the responsible party has sufficient stake or balance to cover the execution cost. If payment cannot be guaranteed, the operation is rejected before any state changes occur.
+
+Finally, EntryPoint performs the **actual execution**. Once validation and fee checks pass, it executes the call defined in the UserOperation within a protected environment. Execution is atomic: either the entire operation succeeds or nothing is applied.
+
+## A Deterministic Execution Path
+
+One of the challenges of AAA is ensuring that wallets, bundlers, and paymasters behave consistently across the network. EntryPoint solves this by defining a strict execution path. Every operation follows the same lifecycle: validation, fee verification, and execution. This prevents inconsistencies between clients, nodes, or wallet implementations.
+
+Because execution flows through one contract, developers can rely on a shared interface for AAA behavior. This reduces complexity and eliminates the ambiguities that often accompany multi-contract, multi-standard systems.
+
+![](/docs/images/BundlerSimulationPipeline.png)
+
+## Why EntryPoint Improves Network Safety
+
+EntryPoint improves safety by enforcing validation before execution, ensuring that invalid or malicious operations never touch chain state. It guarantees that fees are settled correctly, protecting bundlers from unpaid work, and isolates execution so that failures cannot cascade into other operations. This controlled flow keeps the AAA pipeline reliable even as wallets introduce custom logic.
+
+## Interaction With Other Components
+
+EntryPoint coordinates the broader AAA ecosystem. Smart wallets authorize actions, bundlers submit batches efficiently, and paymasters handle alternative fee strategies. EntryPoint connects these roles through a single, predictable interface, allowing new wallet designs or fee mechanisms to plug in without disrupting the network.
+
+## Why EntryPoint Matters
+
+EntryPoint is what allows AAA to function consistently. It standardizes how UserOperations are validated and executed, giving developers a trusted foundation and users a smoother, safer experience. By centralizing this logic, EntryPoint ensures that smart wallets behave predictably and that intent-based interactions work seamlessly across Incentiv.
