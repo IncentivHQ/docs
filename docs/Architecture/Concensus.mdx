@@ -1,14 +1,66 @@
 ---
-title: "Consensus"
+title: "Incentiv Consensus"
 ---
 
-Incentiv’s consensus layer extends the protocol’s core philosophy: align rewards with meaningful contributions while keeping the network open, predictable, and accessible. Instead of relying on fixed block rewards or pure hardware races, Incentiv ties network security directly to real economic activity.\
-\
-This creates a consensus model that scales with demand and rewards miners for securing actual value flowing through the system.
+Consensus is the foundation of every blockchain. It determines who gets to write history, how secure the network is, and how incentives shape long-term participation.\
+Incentiv takes a familiar model — Proof-of-Work — and evolves it into something fundamentally more aligned with real-world usage and economic value.
 
-## **Memory-Hard, Human-Accessible Mining**
+Old PoW systems rewarded miners with static, inflationary payouts. Incentiv replaces this with a **dynamic, demand-coupled security model** that grows stronger as the network becomes more useful.\
+It’s not simply PoW. It’s PoW redesigned for an adaptive, sustainable, human-centric ecosystem.
 
-Incentiv uses an enhanced Ethash Proof-of-Work design optimized for broad participation.
+## Why We Chose Proof-of-Work
+
+Proof-of-Work remains the only consensus mechanism that is truly open to anyone. No staking requirements. No minimum token balance. No validator cartels.\
+Just a GPU, electricity, and the willingness to contribute.
+
+PoW offers something uniquely powerful:
+
+**Neutrality** — Security rooted in physics, not wealth.\
+**Accessibility** — Anyone can mine; no capital gatekeeping.\
+**Predictability** — Deterministic validation and simple rules.\
+**Global decentralization** — Broad participation without permission.
+
+Incentiv chooses PoW not because it is old, but because it is _the fairest and most inclusive way_ to secure an open network.\
+But we also recognize its flaws — so we fixed them.
+
+## **The Problem with Traditional PoW**
+
+Classic PoW was not designed for modern economies.\
+Its security budget is fixed, regardless of whether the network is empty or booming. During quiet periods it wastes energy; during peak usage it doesn’t increase security where it is most needed.
+
+Inflationary block rewards distort the token economy.\
+Miners earn the same amount whether the chain is providing value or not. Token holders are diluted continuously. The system has no responsiveness, no self-correction, and no relation to actual demand.
+
+In short: **traditional PoW is static** in a world that demands adaptability.
+
+## **Our Solution: Demand-Coupled Proof-of-Work**
+
+Incentiv introduces a simple but transformative idea:\
+**the security budget should scale automatically with economic activity.**
+
+When more users interact with the chain, when value flows increase, when applications thrive — Incentiv responds immediately. Mining rewards adjust based on:
+
+- real transaction volume
+- value-fee inflows
+- total network usage
+
+Security is no longer a fixed subsidy. It becomes a function of the network’s vitality.
+
+This creates a living system where:
+
+High usage → larger reward pool → stronger mining → higher security\
+Low usage → smaller reward pool → reduced expenditure without compromising fairness
+
+The network breathes with demand.
+
+## **Mining Designed for Humans**
+
+Incentiv uses an enhanced Ethash design — memory-hard, accessible, and GPU-friendly.\
+This ensures mining remains decentralized and widely available. No closed validator sets, no hardware oligopolies.
+
+Anyone who contributes compute strengthens the shared infrastructure.
+
+This is how Incentiv maintains decentralization without sacrificing performance or inclusivity.
 
 **Ethash Memory-Hard Mining**
 
@@ -18,30 +70,6 @@ Incentiv uses an enhanced Ethash Proof-of-Work design optimized for broad partic
 - Keeps mining competitive instead of centralized
 
 The memory-hard function ensures mining stays accessible to everyday participants, preserving decentralization as the network grows.
-
-## **Demand-Coupled Mining Rewards**
-
-Rather than issuing fixed block rewards regardless of usage, Incentiv introduces **Demand-Coupled Mining**, a reward model that responds to real network activity.
-
-**Block rewards scale with:**
-
-- Transaction volume
-- Value-fee contributions into the reward pool
-- Overall network utilization
-
-Miners earn more when the network is genuinely being used, aligning energy expenditure with economic value.
-
-## **Deterministic Fork Choice and Validation**
-
-Consensus remains familiar, predictable, and fully EVM-aligned.
-
-**Fork Choice + Validation**
-
-- Longest-chain rule based on cumulative work
-- Standard Ethereum-style state validation
-- Execution mirrors EVM semantics for full compatibility
-
-This ensures every block is deterministic, verifiable, and processed under well-understood rules.
 
 ## **How It Works**
 
@@ -62,7 +90,7 @@ Here’s how Incentiv’s consensus system operates end-to-end:
 7. **Miners claim rewards proportional to both security contribution and network demand**\
    Higher activity → larger reward pool → stronger economic alignment.
 
-## **A Consensus Layer Aligned With Contribution**
+## **A Consensus Layer aligned with Contribution**
 
 By linking security, usage, and contribution, Incentiv transforms Proof-of-Work into a demand-driven, economically grounded engine. Miners aren’t just competing on hardware they’re securing real value and are rewarded in proportion to the ecosystem they help protect.\
 This ensures sustainability, fairness, and long-term decentralization across the entire network.
