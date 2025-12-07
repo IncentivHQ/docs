@@ -1,0 +1,51 @@
+---
+title: "Multi-signature"
+description: "Description of your new file."
+---
+
+Multi-signature in Incentiv is not a separate account type or a specialized wallet. Instead, it is a native capability of every smart wallet, made possible through Advanced Account Abstraction (AAA). Because wallets are programmable, they can define exactly how many approvals an action requires, who can give those approvals, and under what conditions the approval logic should change.
+
+This approach makes multi-sig a flexible security model rather than a special-purpose tool. Users, teams, and applications can shape it to match real-world trust relationships without relying on external multisig contracts or rigid predefined schemes.
+
+## How Multi-Signature Works in Incentiv
+
+A smart wallet can define that certain actions require multiple independent confirmations. These signatures may come from different devices, different people, or different authentication methods. The wallet evaluates the operation and only approves it when the required signatures are present.
+
+Because the approval logic is baked into the wallet itself, multi-sig enforcement happens before the operation ever reaches the blockchain. A UserOperation cannot be submitted, simulated, or executed unless the wallet confirms that all required parties have approved.
+
+This preserves decentralization while giving users far stronger control over high-value or high-risk actions.
+
+![Multisig Jp](/docs/images/Multisig.jpg)
+
+---
+
+## Flexible Security for Real Use Cases
+
+Multi-sig in Incentiv adapts to a wide range of situations:
+
+A team may require two or three members to approve a treasury transaction.\
+An individual may want large transfers to require confirmation from both their phone and a hardware device.\
+A business might assign roles, where daily operations require one signer but system-level changes require several.
+
+Because the wallet is programmable, these patterns are easy to express, adjust, or revoke without migrating to new accounts or rewriting contract code.
+
+## Why This Model Is Better Than Traditional Multi-Sig
+
+Legacy blockchains treat multi-sig as a separate contract type with fixed behavior. This creates friction: users must deploy specialized contracts, manage multiple addresses, and coordinate upgrades manually.
+
+Incentiv eliminates that complexity. Every wallet can act as a multi-sig wallet, with logic defined by the user. Approvals can be changed over time, tied to contextual policies, or combined with session keys and modern authentication methods.
+
+Multi-sig becomes fluid, not rigid — woven directly into the user’s security model instead of bolted on externally.
+
+## Multi-Sig as Part of the AAA Security Framework
+
+Because multi-sig integrates naturally with AAA:
+
+- validation happens inside the wallet
+- EntryPoint enforces it without needing custom code
+- bundlers can simulate operations reliably
+- the network stays agnostic to the signature scheme
+
+This creates a multi-signature experience that is simple for users, predictable for developers, and fully compatible with the broader Incentiv ecosystem.
+
+Multi-sig is not a feature you activate — it is a capability your smart wallet can express whenever stronger security or shared ownership is needed.

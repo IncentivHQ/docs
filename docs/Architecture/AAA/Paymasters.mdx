@@ -1,0 +1,38 @@
+---
+title: "Paymaster Role"
+description: "Description of your new file."
+---
+
+Paymasters are the component of Account Abstraction that make fees flexible in Incentiv. Instead of requiring users to hold the native token or manage complex gas mechanics, a paymaster can cover execution costs on their behalf and settle those fees using a method the user or application prefers. This allows interactions to feel more natural and eliminates one of the biggest points of friction in traditional blockchain onboarding.
+
+## What a Paymaster Actually Does
+
+A paymaster steps in during a UserOperation to guarantee that the network will be paid for executing it. The user can submit an action using any supported token, or even without holding tokens at all. The paymaster evaluates the request, checks its own policies, and decides whether to sponsor the fees. If it approves, the operation moves forward exactly as if the user had provided gas themselves.
+
+This creates a flexible model where apps can handle fees for their users, where wallets can route payments intelligently, and where users are no longer blocked by not holding the “right” token.
+
+## Why Paymasters Matter
+
+The presence of a paymaster makes the network dramatically easier to use. New users can sign up and interact with an application without first acquiring the native token. Existing users can choose whichever asset they prefer for fees. Applications can design experiences where costs are absorbed for onboarding, growth, or specific actions.
+
+This flexibility improves both usability and developer control. Instead of working around gas requirements, builders can design experiences where fees are predictable, invisible, or optimized for the user’s state and device.
+
+## How Paymasters Ensure Safety
+
+![DEX Paymaster1 Pn](/docs/images/DEXPaymaster1.png)
+
+Although paymasters offer convenience, their behavior is tightly governed by the AAA pipeline. Before a paymaster sponsors a UserOperation, it must stake or escrow enough funds to guarantee that fees will be paid. The EntryPoint enforces this rule automatically. If a paymaster fails to meet its obligations, it risks losing its stake and being removed from service.
+
+This structure allows Incentiv to enable flexible fee models without compromising trustlessness or network security.
+
+## Real-World Examples
+
+A DeFi app might cover the first few transactions for a new user to reduce onboarding friction.\
+A game could allow micro-transactions without requiring the user to manage gas at all.\
+A wallet may route payments through a preferred stablecoin instead of relying on the native token.
+
+In each case, the paymaster is the mechanism that turns these designs into seamless, reliable user experiences.
+
+## The Backbone of Fee Abstraction
+
+Paymasters are the engine behind Incentiv’s flexible fee model. They allow UserOperations to flow smoothly, regardless of which token the user holds, and they give developers the ability to craft intuitive, user-friendly experiences without sacrificing decentralization.
