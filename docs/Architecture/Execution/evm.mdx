@@ -1,0 +1,16 @@
+---
+title: "Full EVM Compatibility"
+description: "Description of your new file."
+---
+
+What “Identical Semantics” Means in Practice
+
+Every node on Incentiv processes transactions using the same execution rules as an Ethereum client. The EVM stack, memory model, storage layout, gas metering, revert behavior, and opcode semantics all behave exactly the same. Solidity compilers, libraries, and audit tooling therefore work without modification.
+
+At the same time, Incentiv _extends_ this familiar environment with **protocol-level Account Abstraction (AAA)**. Unlike Ethereum—where AA features are optional or implemented at the contract layer—Incentiv integrates AA natively into the protocol. This means smart wallets, UserOperations, paymasters, and bundlers operate on top of a fully standard EVM, but with additional capabilities that the base Ethereum protocol does not expose.
+
+In other words:\
+**the execution engine is pure EVM, but the transaction model is upgraded.**\
+Contracts behave exactly as they do on Ethereum, while the surrounding protocol adds a more flexible, intent-based interaction layer.
+
+The result is a development experience with zero friction: existing Solidity code runs as-is, and developers gain access to a more powerful transaction system without needing new languages, compilers, or execution semantics.

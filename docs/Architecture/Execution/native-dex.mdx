@@ -1,0 +1,43 @@
+---
+title: "Incentiv’s Native DEX"
+description: "Description of your new file."
+---
+
+# Incentiv’s Native DEX
+
+Incentiv includes a **built-in decentralized exchange**.\
+This isn’t a separate dApp. It’s part of how the protocol itself works whenever it needs to convert one token into another.
+
+The goal is simple: make core protocol features - like paying fees in any token and running automated smart-wallet actions - work reliably under all conditions, using a **battle-tested DEX design**.
+
+## Why a Native DEX ?
+
+Incentiv supports:
+
+- Paying fees in multiple tokens (Unified Token model)
+- Smart-wallet automation (AAA)
+- Routing value fees into the reward pool
+
+To do this safely, the chain needs a **guaranteed, on-chain way to swap tokens** that is:
+
+- always available
+- predictable and deterministic
+- economically efficient
+
+Incentiv uses the **Uniswap v3 architecture** (concentrated liquidity pools and price ticks) and treats it as a native component of the execution environment. Every node executes the same logic as part of transaction processing, so swaps behave the same everywhere.
+
+## How It Works
+
+Under the hood, the native DEX is:
+
+- A set of **liquidity pools** between token pairs
+- Each pool following the Uniswap v3 concentrated-liquidity model
+- Liquidity providers (LPs) depositing tokens into these pools in chosen price ranges
+
+When the protocol needs a swap - for example, converting USDC fees into \$CENT for the reward pool, or rebalancing assets inside a smart wallet—it simply calls the internal DEX. The Incentiv DEX engine:
+
+1. Finds the relevant pool
+2. Uses the current price and liquidity ranges
+3. Executes the swap deterministically across all nodes
+
+From a developer’s and protocol perspective, it’s a **built-in service**.
