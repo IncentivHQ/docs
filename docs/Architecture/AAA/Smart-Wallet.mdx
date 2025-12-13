@@ -1,6 +1,5 @@
 ---
 title: "Smart Wallets"
-
 ---
 
 A smart wallet in Incentiv is more than a place to store cryptographic keys — it is a programmable account that acts as the user’s trusted interface to the blockchain. Powered by Advanced Account Abstraction (AAA), smart wallets form the core of how users authenticate actions, enforce personal security rules, and interact with applications across the network.
@@ -20,6 +19,8 @@ Legacy blockchains expect every action to originate from an EOA signature. This 
 In Incentiv, each interaction begins as a UserOperation — a structured request expressing what the user wants to do. The smart wallet evaluates the request according to its own rules. If the operation is valid, the wallet authorizes it and the network executes it. If not, it never reaches the chain.
 
 This architecture makes the wallet the decision-maker and the protocol the executor. The user defines the rules; the network ensures they are enforced.
+
+![Incentivarchitecture Account Abstraction Pn](/docs/images/Incentivarchitecture-AccountAbstraction.png)
 
 ## Interacting Through Intent
 

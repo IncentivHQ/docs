@@ -1,0 +1,36 @@
+---
+title: "State & Gas Management"
+description: "Description of your new file."
+---
+
+Incentiv keeps Ethereum’s execution and state model unchanged, while upgrading how gas and fees are paid and settled. Contracts execute in a standard EVM environment, but the surrounding protocol adds flexibility through Account Abstraction, Paymasters, a Unified Token model, and a native DEX.
+
+#### **State Model**
+
+The core state model is identical to Ethereum. Accounts, storage, balances, and state transitions behave exactly as they do in a standard EVM chain. Solidity contracts interact with state in the same way, and all execution semantics remain deterministic and unchanged.
+
+In addition to regular token balances, the protocol maintains an internal accounting unit (e.g. `$CENT`) used to measure gas costs, value-based fees, and reward distribution. This accounting layer does not replace ERC-20 balances or contract state—it exists purely for protocol-level settlement.
+
+#### **Gas Measurement**
+
+Gas is measured exactly like Ethereum. Opcode costs, gas limits, reverts, and execution rules are identical. Transactions and UserOperations consume gas deterministically during EVM execution, and failures behave the same way developers expect from Ethereum.
+
+The **difference** lies not in how gas is measured, but in **how it is paid**.
+
+#### **Unified Token Gas Payments**
+
+Incentiv decouples gas measurement from gas payment. While gas usage is calculated in the usual way, fees are always settled internally in a unified accounting unit.
+
+Users or applications may pay gas in different supported tokens, or have gas sponsored entirely. Regardless of the input token, the protocol ensures the final fee is settled consistently at the protocol level.
+
+#### **Paymasters and Fee Settlement**
+
+[Paymasters](/docs/Architecture/AAA/Paymasters) are protocol-aware contracts that can pay gas on behalf of users. They hold deposits in state and are validated before execution to ensure they can cover worst-case gas usage. After execution, only the actual gas used is charged.
+
+[Paymasters](/docs/Architecture/AAA/Paymasters) are standard smart contracts, with additional protocol checks applied during execution.
+
+#### **Native DEX Integration**
+
+When fees are paid in a token other than the internal accounting unit, the protocol performs a deterministic swap using the native [Incentiv DEX](/docs/Architecture/Execution/native-dex). This guarantees reliable fee conversion without relying on external liquidity or off-chain pricing.
+
+DEX pools and liquidity live in normal EVM state, and every node executes the same conversion logic.

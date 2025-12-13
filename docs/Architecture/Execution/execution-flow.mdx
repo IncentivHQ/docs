@@ -1,0 +1,46 @@
+---
+title: "How Execution Works ?"
+description: "Description of your new file."
+---
+
+Execution on Incentiv follows a clear, deterministic flow. While users interact through modern smart wallets and intent-based actions, all execution ultimately resolves into standard EVM computation. This ensures both a smooth user experience and Ethereum-level predictability.
+
+## From User Intent to Execution
+
+Execution begins at the wallet level. Instead of crafting a raw transaction, the wallet compiles a **UserOperation** that describes the user’s intent. This operation may include multiple actions, custom validation rules, gas abstraction logic, or sponsorship conditions.
+
+The wallet does not send this operation directly to the chain. Instead, it broadcasts it to a specialized mempool designed for UserOperations.
+
+![Incentivarchitecture Account Abstraction Pn](/docs/images/Incentivarchitecture-AccountAbstraction.png)
+
+## Bundlers and Submission
+
+**Bundlers** monitor the UserOperation mempool. They simulate operations off-chain to ensure they are valid, executable, and economically covered. Once validated, a bundler packages one or more UserOperations into a transaction and submits it to the network.
+
+At this point, the flow converges with standard blockchain execution: the bundled transaction is included in a block and processed by all nodes.
+
+## EntryPoint Validation
+
+Inside the EVM, execution begins at the **EntryPoint** contract. The EntryPoint is responsible for validating each UserOperation before execution. This includes checking wallet logic, signatures, nonces, and Paymaster conditions if gas is being sponsored.
+
+Only operations that pass validation proceed to execution. Invalid operations are rejected without affecting global state.
+
+## EVM Execution
+
+Once validated, the operation is executed inside the EVM using **identical opcodes, gas rules, and semantics** as Ethereum. Contract calls, state changes, storage writes, and reverts all behave exactly as they would in a standard EVM transaction.
+
+Gas usage is measured deterministically during execution, ensuring predictable outcomes across all nodes.
+
+## Finalizing State and Fees
+
+After execution completes, internal protocol pathways finalize the result. Gas costs are settled using the unified fee model, potentially involving Paymasters and deterministic swaps via the [native DEX](/docs/Architecture/Execution/native-dex). Balances, protocol accounting, and reward flows are updated accordingly.
+
+The final state transition is then committed to the blockchain, identical on every node.
+
+## In Summary
+
+1. Wallets express intent.
+2. Bundlers package and submit it.
+3. The EntryPoint validates it.
+4. The EVM executes it.
+5. The protocol finalizes state and fees.
