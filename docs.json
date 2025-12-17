@@ -62,7 +62,13 @@
       "tab": "Development",
       "icon": "square-terminal",
         "groups": [
-          
+          {
+            "group": "Main",
+            "pages": [
+              "docs/developers/index"
+              
+            ]
+          },
           {
             "group": "Building on Incentiv",
             "pages": [
