@@ -6,18 +6,20 @@ title: "Execution"
   <Card title="Philosophy" icon="lightbulb" color="#ff8b00" href="/docs/Architecture/Execution/philosophy">
     A human-centered interaction model wrapped around a deterministic, Ethereum-proven execution engine.
   </Card>
-  <Card title="Intent-Driven UX, Deterministic Core" icon="sparkles" color="#ff8b00" href="/docs/Architecture/AAA/AAA-Philosophy">
-    High-level intents power the UX, while the EVM ensures strict, Ethereum-compatible  underneath.
-  </Card>
-  <Card title="Ethereum-Compatible Runtime" icon="cube" color="#ff8b00" href="/docs/Architecture/Execution/evm">
-    Identical opcodes, state model, and semantics—full Solidity and tooling compatibility.
-  </Card>
-</Columns>
-
-<Columns cols={3}>
   <Card title="How Execution Works" icon="list" color="#ff8b00" href="/docs/Architecture/Execution/execution-flow">
     Wallet compiles an operation, bundlers submit it, EntryPoint validates, the EVM executes, and internal pathways finalize state.
   </Card>
+  <Card title="Intent-Driven UX, Deterministic Core" icon="sparkles" color="#ff8b00" href="/docs/Architecture/AAA/AAA-Philosophy">
+    High-level intents power the UX, while the EVM ensures strict, Ethereum-compatible  underneath.
+  </Card>
+  
+</Columns>
+
+<Columns cols={3}>
+  <Card title="Ethereum-Compatible Runtime" icon="cube" color="#ff8b00" href="/docs/Architecture/Execution/evm">
+    Identical opcodes, state model, and semantics—full Solidity and tooling compatibility.
+  </Card>
+  
   <Card title="Native DEX Integration" icon="right-left" color="#ff8b00" href="/docs/Architecture/Execution/native-dex">
     Internal swaps for fee conversion, paymaster settlement, and automated value routing.
   </Card>
