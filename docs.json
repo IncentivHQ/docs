@@ -66,6 +66,7 @@
           {
             "group": "Building on Incentiv",
             "pages": [
+              "docs/developers/index",
               "docs/developers/network_config",
               "docs/developers/contracts",
               "docs/developers/contracts_Tv2",
