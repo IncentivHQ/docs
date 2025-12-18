@@ -87,6 +87,34 @@
                 "pages": [
                   "docs/Architecture/Concensus"
                 ]
+              },
+              {
+                "group": "Execution",
+                "icon": "monitor-waveform",
+                "pages": [
+                  "docs/Architecture/Execution",
+                  "docs/Architecture/AAA/AAA-Philosophy",
+                  "docs/Architecture/Execution/execution-flow",
+                  "docs/Architecture/Execution/Intent-First-Interactions",
+                  "docs/Architecture/Execution/evm",
+                  "docs/Architecture/Execution/native-dex",
+                  "docs/Architecture/Execution/gas"
+                ]
+              },
+              {
+                "group": "Account Abstraction",
+                "icon": "key",
+                "pages": [
+                  "docs/Architecture/AAA/Advanced-Account-Abstraction",
+                  "docs/Architecture/AAA/AAA-Philosophy",
+                  "docs/Architecture/AAA/how-it-works",
+                  "docs/Architecture/AAA/Smart-Wallet",
+                  "docs/Architecture/AAA/Wallet-Capabilities",
+                  "docs/Architecture/AAA/Bundlers",
+                  "docs/Architecture/AAA/Paymasters",
+                  "docs/Architecture/AAA/EntryPoint",
+                  "docs/Architecture/AAA/Multi-sig"
+                ]
               }
             ]
           },
