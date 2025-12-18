@@ -70,6 +70,27 @@
             ]
           },
           {
+            "group": "Architecture",
+            "pages": [
+              "docs/Architecture/Architecture",
+              {
+                "group": "Concept",
+                "icon": "magnifying-glass-chart",
+                "pages": [
+                  "docs/Architecture/Concepts",
+                  "docs/Architecture/AAA/Advanced-Account-Abstraction"
+                ]
+              },
+              {
+                "group": "Consensus",
+                "icon": "cubes",
+                "pages": [
+                  "docs/Architecture/Concensus"
+                ]
+              }
+            ]
+          },
+          {
             "group": "Building on Incentiv",
             "pages": [
               
