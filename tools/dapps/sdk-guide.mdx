@@ -89,13 +89,9 @@ const Config = {
     address: "0xC3A195E....." // Your contract address
   },
   Environments: {
-    Testnet: {
-      Portal: "https://testnet.incentiv.io",
-      RPC: "https://rpc2.testnet.incentiv.io"
-    },
     Mainnet: {
-      Portal: "https://incentiv.io", // Update for mainnet
-      RPC: "https://rpc.incentiv.io" // Update for mainnet
+      Portal: "https://portal.incentiv.io", 
+      RPC: "https://rpc.incentiv.io" 
     }
   },
   API: {
@@ -112,7 +108,7 @@ Create a `.env` file (or use environment variables):
 
 ```env
 VITE_API_URL=https://your-api.com/api
-VITE_ENVIRONMENT=testnet
+VITE_ENVIRONMENT=mainnet
 VITE_CONTRACT_ADDRESS=0xC3A195E.....
 ```
 
@@ -142,7 +138,7 @@ const handleConnect = async () => {
 
     // Get the user's wallet address
     const address = await IncentivResolver.getAccountAddress(
-      Config.Environments.Testnet.Portal
+      Config.Environments.Mainnet.Portal
     );
 
     // Validate the address
@@ -190,7 +186,7 @@ function WalletConnection() {
 
       // Connect to wallet
       const userAddress = await IncentivResolver.getAccountAddress(
-        Config.Environments.Testnet.Portal
+        Config.Environments.Mainnet.Portal
       );
 
       // Validate address
@@ -239,7 +235,7 @@ After connecting to the wallet, you need to initialize the `IncentivSigner` to i
 import { ethers } from "ethers";
 
 const provider = new ethers.providers.JsonRpcProvider(
-  Config.Environments.Testnet.RPC
+  Config.Environments.Mainnet.RPC
 );
 ```
 
@@ -251,8 +247,8 @@ import { IncentivSigner } from "@incentiv/dapp-sdk";
 const signer = new IncentivSigner({
   address: userAddress, // From wallet connection
   provider: provider,
-  environment: Config.Environments.Testnet.Portal,
-  entryPoint: "0x9b5d240EF1bc8B4930346599cDDFfBD7d7D56db9", // EntryPoint contract address
+  environment: Config.Environments.Mainnet.Portal,
+  entryPoint: "[EntryPoint contract address]", // EntryPoint contract address
 });
 ```
 
@@ -284,15 +280,15 @@ function App() {
     try {
       // Create provider
       const provider = new ethers.providers.JsonRpcProvider(
-        Config.Environments.Testnet.RPC
+        Config.Environments.Mainnet.RPC
       );
 
       // Initialize IncentivSigner
       const signer = new IncentivSigner({
         address: userAddress,
         provider: provider,
-        environment: Config.Environments.Testnet.Portal,
-        entryPoint: "0x9b5d240EF1bc8B4930346599cDDFfBD7d7D56db9",
+        environment: Config.Environments.Mainnet.Portal,
+        entryPoint: "[EntryPoint contract address]",
       });
 
       // Store signer reference
@@ -318,7 +314,7 @@ function App() {
   const handleConnect = async () => {
     try {
       const userAddress = await IncentivResolver.getAccountAddress(
-        Config.Environments.Testnet.Portal
+        Config.Environments.Mainnet.Portal
       );
       setAddress(userAddress);
       await fetchContractData(userAddress);
@@ -346,17 +342,17 @@ function App() {
 
 ### Depositing Funds (Native Token)
 
-To deposit native tokens (TCENT) to a smart contract:
+To deposit native tokens (CENT) to a smart contract:
 
 ```javascript
-async function depositFunds(amountInTCENT) {
+async function depositFunds(amountInCENT) {
   if (!contract) {
     throw new Error("Contract not initialized");
   }
 
   try {
-    // Convert TCENT to wei (1 TCENT = 10^18 wei)
-    const value = ethers.utils.parseEther(amountInTCENT.toString());
+    // Convert CENT to wei (1 CENT = 10^18 wei)
+    const value = ethers.utils.parseEther(amountInCENT.toString());
 
     // Call the deposit function with native value
     const tx = await contract.deposit({ value });
@@ -378,14 +374,14 @@ async function depositFunds(amountInTCENT) {
 To withdraw funds from a smart contract:
 
 ```javascript
-async function withdrawFunds(amountInTCENT) {
+async function withdrawFunds(amountInCENT) {
   if (!contract) {
     throw new Error("Contract not initialized");
   }
 
   try {
-    // Convert TCENT to wei
-    const withdrawalAmountWei = ethers.utils.parseEther(amountInTCENT.toString());
+    // Convert CENT to wei
+    const withdrawalAmountWei = ethers.utils.parseEther(amountInCENT.toString());
 
     // Call the withdraw function
     const tx = await contract.withdraw(withdrawalAmountWei);
@@ -470,14 +466,14 @@ function PaymentExample() {
   // Initialize contract (same as previous example)
   async function initializeContract(userAddress) {
     const provider = new ethers.providers.JsonRpcProvider(
-      Config.Environments.Testnet.RPC
+      Config.Environments.Mainnet.RPC
     );
 
     const signer = new IncentivSigner({
       address: userAddress,
       provider: provider,
-      environment: Config.Environments.Testnet.Portal,
-      entryPoint: "0x9b5d240EF1bc8B4930346599cDDFfBD7d7D56db9",
+      environment: Config.Environments.Mainnet.Portal,
+      entryPoint: "[EntryPoint contract address]",
     });
 
     const contractInstance = new ethers.Contract(
@@ -531,8 +527,8 @@ function PaymentExample() {
 
     try {
       const balanceWei = await contract.deposits(address);
-      const balanceTCENT = ethers.utils.formatEther(balanceWei);
-      setBalance(parseFloat(balanceTCENT));
+      const balanceCENT = ethers.utils.formatEther(balanceWei);
+      setBalance(parseFloat(balanceCENT));
     } catch (err) {
       console.error("Failed to read balance:", err);
     }
@@ -543,12 +539,12 @@ function PaymentExample() {
       <button onClick={() => handleConnect()}>Connect Wallet</button>
       {contract && (
         <div>
-          <p>Balance: {balance} TCENT</p>
+          <p>Balance: {balance} CENT</p>
           <button onClick={() => handleDeposit(10)} disabled={isProcessing}>
-            Deposit 10 TCENT
+            Deposit 10 CENT
           </button>
           <button onClick={() => handleWithdraw(5)} disabled={isProcessing}>
-            Withdraw 5 TCENT
+            Withdraw 5 CENT
           </button>
         </div>
       )}
@@ -584,14 +580,14 @@ function FullIntegrationExample() {
   async function fetchContractData(userAddress) {
     try {
       const provider = new ethers.providers.JsonRpcProvider(
-        Config.Environments.Testnet.RPC
+        Config.Environments.Mainnet.RPC
       );
 
       const signer = new IncentivSigner({
         address: userAddress,
         provider: provider,
-        environment: Config.Environments.Testnet.Portal,
-        entryPoint: "0x9b5d240EF1bc8B4930346599cDDFfBD7d7D56db9",
+        environment: Config.Environments.Mainnet.Portal,
+        entryPoint: "[EntryPoint contract address]",
       });
 
       signerRef.current = signer;
@@ -620,7 +616,7 @@ function FullIntegrationExample() {
       }
 
       const userAddress = await IncentivResolver.getAccountAddress(
-        Config.Environments.Testnet.Portal
+        Config.Environments.Mainnet.Portal
       );
 
       if (!userAddress || userAddress === "null" || userAddress === null) {
@@ -643,8 +639,8 @@ function FullIntegrationExample() {
 
     try {
       const balanceWei = await contractInstance.deposits(userAddr);
-      const balanceTCENT = ethers.utils.formatEther(balanceWei);
-      setBalance(parseFloat(balanceTCENT));
+      const balanceCENT = ethers.utils.formatEther(balanceWei);
+      setBalance(parseFloat(balanceCENT));
     } catch (err) {
       console.error("Failed to read balance:", err);
     }
@@ -701,7 +697,7 @@ function FullIntegrationExample() {
       ) : (
         <div>
           <p><strong>Connected:</strong> {address}</p>
-          <p><strong>Balance:</strong> {balance.toFixed(4)} TCENT</p>
+          <p><strong>Balance:</strong> {balance.toFixed(4)} CENT</p>
           <p><strong>Contract Status:</strong> {contract ? "Ready" : "Not initialized"}</p>
 
           <div style={{ marginTop: "20px" }}>
@@ -710,13 +706,13 @@ function FullIntegrationExample() {
               disabled={isProcessing}
               style={{ marginRight: "10px" }}
             >
-              Deposit 10 TCENT
+              Deposit 10 CENT
             </button>
             <button
               onClick={() => handleWithdraw(5)}
               disabled={isProcessing}
             >
-              Withdraw 5 TCENT
+              Withdraw 5 CENT
             </button>
           </div>
         </div>
@@ -735,16 +731,6 @@ export default FullIntegrationExample;
 ### Network Configuration
 
 Update your configuration based on the network:
-
-**Testnet:**
-
-```javascript
-const TestnetConfig = {
-  Portal: "https://testnet.incentiv.io",
-  RPC: "https://rpc2.testnet.incentiv.io",
-  EntryPoint: "0x9b5d240EF1bc8B4930346599cDDFfBD7d7D56db9"
-};
-```
 
 **Mainnet:**
 
@@ -911,7 +897,7 @@ Gets the user's wallet address from the Incentiv wallet extension.
 
 **Parameters:**
 
-- `portal`: The Portal URL (e.g., "https://testnet.incentiv.io")
+- `portal`: The Portal URL (e.g., "[https://portal.incentiv.io](https://testnet.incentiv.io)")
 
 **Returns:**
 
@@ -921,7 +907,7 @@ Gets the user's wallet address from the Incentiv wallet extension.
 
 ```javascript
 const address = await IncentivResolver.getAccountAddress(
-  "https://testnet.incentiv.io"
+  "https://portal.incentiv.io"
 );
 ```
 
@@ -951,8 +937,8 @@ new IncentivSigner({
 const signer = new IncentivSigner({
   address: "0x...",
   provider: provider,
-  environment: "https://testnet.incentiv.io",
-  entryPoint: "0x9b5d240EF1bc8B4930346599cDDFfBD7d7D56db9"
+  environment: "https://portal.incentiv.io",
+  entryPoint: "[EntryPoint contract address]"
 });
 ```
 
@@ -961,7 +947,7 @@ const signer = new IncentivSigner({
 ## Additional Resources
 
 - **Incentiv Network**: https://incentiv.io
-- **Testnet Portal**: https://testnet.incentiv.io
+- **Mainnet Portal**: https://portal.incentiv.io
 - **Documentation**: Check official Incentiv documentation
 - **Support**: Contact Incentiv support for SDK-specific issues
 
