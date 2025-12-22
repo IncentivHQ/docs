@@ -144,7 +144,7 @@
                 "group": "SDKs",
                 "icon": "gear-code",
                 "pages": [
-                  "tools/dapps/sdk",
+                  "tools/dapps/sdk-guide",
                   "tools/dapps/example",
                   "tools/ui_sdk/ui-sdk"
                 ]

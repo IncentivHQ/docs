@@ -18,14 +18,14 @@ icon: "code"
 
 ## Tech stack
 
-| Tool              | Purpose                               |
-| ----------------- | ------------------------------------- |
-| Vite              | Development server and bundler        |
-| React 18          | UI framework                          |
-| TypeScript        | Type safety                           |
-| Tailwind CSS      | Utility‑first styling                 |
-| ethers v5         | Ethereum RPC \+ contract ABI bindings |
-| Incentiv dApp SDK | Proprietary signing & submission      |
+| Tool              | Purpose                              |
+| ----------------- | ------------------------------------ |
+| Vite              | Development server and bundler       |
+| React 18          | UI framework                         |
+| TypeScript        | Type safety                          |
+| Tailwind CSS      | Utility‑first styling                |
+| ethers v5         | Ethereum RPC + contract ABI bindings |
+| Incentiv dApp SDK | Proprietary signing & submission     |
 
 ---
 
@@ -50,8 +50,7 @@ npm install
 npm run dev
 ```
 
-> **Note on dependencies**
-> You do **not** need to install `@incentiv/dapp-sdk` separately when using this example. The `package.json` already references the SDK via `"file:.."`, which points one directory up to the local source. If you publish or move the example outside the monorepo, change that line to `"@incentiv/dapp-sdk": "^x.y.z"` and re‑install.
+> **Note on dependencies** You do **not** need to install `@incentiv/dapp-sdk` separately when using this example. The `package.json` already references the SDK via `"file:.."`, which points one directory up to the local source. If you publish or move the example outside the monorepo, change that line to `"@incentiv/dapp-sdk": "^x.y.z"` and re‑install.
 
 ---
 

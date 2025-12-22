@@ -1,0 +1,975 @@
+---
+title: "Sdk Guide"
+description: "A comprehensive guide for integrating the Incentiv DApp SDK into your application. This guide covers installation, wallet connection, transaction signing, payments, and best practices."
+---
+
+## Overview
+
+The Incentiv SDK (`@incentiv/dapp-sdk`) provides a seamless way to connect your decentralized application (dApp) to the Incentiv blockchain network. It includes:
+
+- **IncentivResolver**: For wallet connection and account management
+- **IncentivSigner**: For signing transactions and interacting with smart contracts
+
+The SDK supports Account Abstraction (AA) wallets, enabling gasless transactions and improved user experience.
+
+## Prerequisites
+
+Before you begin, ensure you have:
+
+- **Node.js** (v16 or higher)
+- **npm** or **yarn** package manager
+- **Incentiv Wallet Extension** installed in your browser
+- Basic knowledge of:
+  - React/JavaScript
+  - Ethereum/Web3 concepts
+  - Smart contracts
+
+## Installation
+
+### Step 1: Install the SDK
+
+Install the Incentiv DApp SDK using npm:
+
+```bash
+npm install @incentiv/dapp-sdk ethers
+```
+
+Or using yarn:
+
+```bash
+yarn add @incentiv/dapp-sdk ethers
+```
+
+### Step 2: Install Additional Dependencies
+
+The SDK requires `buffer` for Node.js compatibility in browser environments:
+
+```bash
+npm install buffer
+```
+
+## Project Setup
+
+### Vite Configuration
+
+If you're using Vite, configure it to support the SDK:
+
+**`vite.config.js:`**
+
+```javascript
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  define: {
+    global: 'globalThis',
+  },
+  resolve: {
+    alias: {
+      buffer: 'buffer',
+    },
+  },
+  optimizeDeps: {
+    include: ['buffer'],
+  },
+});
+```
+
+### Environment Variables
+
+Create a configuration file for your environment settings:
+
+**`src/config.js:`**
+
+```javascript
+const Config = {
+  SC: {
+    address: "0xC3A195E....." // Your contract address
+  },
+  Environments: {
+    Testnet: {
+      Portal: "https://testnet.incentiv.io",
+      RPC: "https://rpc2.testnet.incentiv.io"
+    },
+    Mainnet: {
+      Portal: "https://incentiv.io", // Update for mainnet
+      RPC: "https://rpc.incentiv.io" // Update for mainnet
+    }
+  },
+  API: {
+    baseURL: import.meta.env.VITE_API_URL || "https://your-api.com/api"
+  }
+};
+
+export default Config;
+```
+
+### Environment Variables Template
+
+Create a `.env` file (or use environment variables):
+
+```env
+VITE_API_URL=https://your-api.com/api
+VITE_ENVIRONMENT=testnet
+VITE_CONTRACT_ADDRESS=0xC3A195E.....
+```
+
+## Connecting to Wallet
+
+### Step 1: Import Required Modules
+
+```javascript
+import { IncentivResolver, IncentivSigner } from "@incentiv/dapp-sdk";
+import { ethers } from "ethers";
+import Config from "./config";
+```
+
+### Step 2: Connect to Wallet
+
+The `IncentivResolver` is used to connect to the user's wallet and get their account address:
+
+```javascript
+const handleConnect = async () => {
+  try {
+    // Check if IncentivResolver is available
+    if (typeof IncentivResolver === "undefined") {
+      throw new Error(
+        "Incentiv wallet extension not found. Please install the Incentiv wallet extension."
+      );
+    }
+
+    // Get the user's wallet address
+    const address = await IncentivResolver.getAccountAddress(
+      Config.Environments.Testnet.Portal
+    );
+
+    // Validate the address
+    if (!address || address === "null" || address === null) {
+      throw new Error(
+        "No wallet address received. Please make sure your wallet is connected."
+      );
+    }
+
+    console.log("Connected address:", address);
+    setAddress(address);
+
+    // Initialize contract connection (see next section)
+    await fetchContractData(address);
+  } catch (err) {
+    console.error("Connection error:", err);
+    // Handle error (show toast, etc.)
+  }
+};
+```
+
+### Complete Wallet Connection Example
+
+```javascript
+import { useState } from "react";
+import { IncentivResolver } from "@incentiv/dapp-sdk";
+import Config from "./config";
+
+function WalletConnection() {
+  const [address, setAddress] = useState("");
+  const [isConnecting, setIsConnecting] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleConnect = async () => {
+    setIsConnecting(true);
+    setError("");
+
+    try {
+      // Check if wallet extension is available
+      if (typeof IncentivResolver === "undefined") {
+        throw new Error(
+          "Incentiv wallet extension not found. Please install the Incentiv wallet extension."
+        );
+      }
+
+      // Connect to wallet
+      const userAddress = await IncentivResolver.getAccountAddress(
+        Config.Environments.Testnet.Portal
+      );
+
+      // Validate address
+      if (!userAddress || userAddress === "null" || userAddress === null) {
+        throw new Error(
+          "No wallet address received. Please make sure your wallet is connected and you've approved the connection."
+        );
+      }
+
+      setAddress(userAddress);
+      console.log("Wallet connected:", userAddress);
+    } catch (err) {
+      console.error("Connection error:", err);
+      setError(err.message || "Failed to connect wallet");
+    } finally {
+      setIsConnecting(false);
+    }
+  };
+
+  return (
+    <div>
+      {!address ? (
+        <button onClick={handleConnect} disabled={isConnecting}>
+          {isConnecting ? "Connecting..." : "Connect Wallet"}
+        </button>
+      ) : (
+        <div>
+          <p>Connected: {address}</p>
+        </div>
+      )}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+    </div>
+  );
+}
+```
+
+---
+
+## Initializing the Signer
+
+After connecting to the wallet, you need to initialize the `IncentivSigner` to interact with smart contracts. The signer uses Account Abstraction (AA) for gasless transactions.
+
+### Step 1: Create Provider
+
+```javascript
+import { ethers } from "ethers";
+
+const provider = new ethers.providers.JsonRpcProvider(
+  Config.Environments.Testnet.RPC
+);
+```
+
+### Step 2: Initialize IncentivSigner
+
+```javascript
+import { IncentivSigner } from "@incentiv/dapp-sdk";
+
+const signer = new IncentivSigner({
+  address: userAddress, // From wallet connection
+  provider: provider,
+  environment: Config.Environments.Testnet.Portal,
+  entryPoint: "0x9b5d240EF1bc8B4930346599cDDFfBD7d7D56db9", // EntryPoint contract address
+});
+```
+
+### Step 3: Create Contract Instance
+
+```javascript
+import ABI from "./YourContractABI.json";
+
+const contractAddress = Config.GamePot.address;
+const contract = new ethers.Contract(contractAddress, ABI, signer);
+```
+
+### Complete Signer Initialization Example
+
+```javascript
+import { useRef, useState } from "react";
+import { IncentivResolver, IncentivSigner } from "@incentiv/dapp-sdk";
+import { ethers } from "ethers";
+import ABI from "./YourContractABI.json";
+import Config from "./config";
+
+function App() {
+  const [address, setAddress] = useState("");
+  const [contract, setContract] = useState(null);
+  const signerRef = useRef(null);
+
+  // Fetch contract data and initialize signer
+  async function fetchContractData(userAddress) {
+    try {
+      // Create provider
+      const provider = new ethers.providers.JsonRpcProvider(
+        Config.Environments.Testnet.RPC
+      );
+
+      // Initialize IncentivSigner
+      const signer = new IncentivSigner({
+        address: userAddress,
+        provider: provider,
+        environment: Config.Environments.Testnet.Portal,
+        entryPoint: "0x9b5d240EF1bc8B4930346599cDDFfBD7d7D56db9",
+      });
+
+      // Store signer reference
+      signerRef.current = signer;
+
+      // Create contract instance
+      const contractInstance = new ethers.Contract(
+        Config.SC.address,
+        ABI,
+        signer
+      );
+
+      setContract(contractInstance);
+      console.log("Contract initialized:", contractInstance);
+    } catch (err) {
+      console.error("Failed to initialize contract:", err);
+      setContract(null);
+      signerRef.current = null;
+    }
+  }
+
+  // Connect wallet and initialize
+  const handleConnect = async () => {
+    try {
+      const userAddress = await IncentivResolver.getAccountAddress(
+        Config.Environments.Testnet.Portal
+      );
+      setAddress(userAddress);
+      await fetchContractData(userAddress);
+    } catch (err) {
+      console.error("Connection error:", err);
+    }
+  };
+
+  return (
+    <div>
+      {!address ? (
+        <button onClick={handleConnect}>Connect Wallet</button>
+      ) : (
+        <div>
+          <p>Address: {address}</p>
+          <p>Contract: {contract ? "Ready" : "Not initialized"}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+## Making Payments & Signing Transactions
+
+### Depositing Funds (Native Token)
+
+To deposit native tokens (TCENT) to a smart contract:
+
+```javascript
+async function depositFunds(amountInTCENT) {
+  if (!contract) {
+    throw new Error("Contract not initialized");
+  }
+
+  try {
+    // Convert TCENT to wei (1 TCENT = 10^18 wei)
+    const value = ethers.utils.parseEther(amountInTCENT.toString());
+
+    // Call the deposit function with native value
+    const tx = await contract.deposit({ value });
+
+    // Wait for transaction confirmation
+    await tx.wait();
+
+    console.log("Deposit successful:", tx.hash);
+    return tx;
+  } catch (err) {
+    console.error("Deposit failed:", err);
+    throw err;
+  }
+}
+```
+
+### Withdrawing Funds
+
+To withdraw funds from a smart contract:
+
+```javascript
+async function withdrawFunds(amountInTCENT) {
+  if (!contract) {
+    throw new Error("Contract not initialized");
+  }
+
+  try {
+    // Convert TCENT to wei
+    const withdrawalAmountWei = ethers.utils.parseEther(amountInTCENT.toString());
+
+    // Call the withdraw function
+    const tx = await contract.withdraw(withdrawalAmountWei);
+
+    // Show pending transaction notification
+    console.log("Transaction pending:", tx.hash);
+
+    // Wait for confirmation
+    await tx.wait();
+
+    console.log("Withdrawal successful:", tx.hash);
+    return tx;
+  } catch (err) {
+    console.error("Withdrawal failed:", err);
+    throw err;
+  }
+}
+```
+
+### Calling Contract Functions
+
+For any contract function that requires signing:
+
+```javascript
+async function callContractFunction(functionName, ...args) {
+  if (!contract) {
+    throw new Error("Contract not initialized");
+  }
+
+  try {
+    // Call the contract function
+    const tx = await contract[functionName](...args);
+
+    // Wait for transaction
+    await tx.wait();
+
+    console.log("Transaction successful:", tx.hash);
+    return tx;
+  } catch (err) {
+    console.error("Transaction failed:", err);
+    throw err;
+  }
+}
+```
+
+### Reading Contract State (View Functions)
+
+For read-only operations, you don't need to sign:
+
+```javascript
+async function readContractData(functionName, ...args) {
+  if (!contract) {
+    throw new Error("Contract not initialized");
+  }
+
+  try {
+    // Call view function (no transaction needed)
+    const result = await contract[functionName](...args);
+    return result;
+  } catch (err) {
+    console.error("Read failed:", err);
+    throw err;
+  }
+}
+```
+
+### Complete Payment Example
+
+```javascript
+import { useState } from "react";
+import { IncentivResolver, IncentivSigner } from "@incentiv/dapp-sdk";
+import { ethers } from "ethers";
+import ABI from "./YourContractABI.json";
+import Config from "./config";
+
+function PaymentExample() {
+  const [address, setAddress] = useState("");
+  const [contract, setContract] = useState(null);
+  const [balance, setBalance] = useState(0);
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  // Initialize contract (same as previous example)
+  async function initializeContract(userAddress) {
+    const provider = new ethers.providers.JsonRpcProvider(
+      Config.Environments.Testnet.RPC
+    );
+
+    const signer = new IncentivSigner({
+      address: userAddress,
+      provider: provider,
+      environment: Config.Environments.Testnet.Portal,
+      entryPoint: "0x9b5d240EF1bc8B4930346599cDDFfBD7d7D56db9",
+    });
+
+    const contractInstance = new ethers.Contract(
+      Config.GamePot.address,
+      ABI,
+      signer
+    );
+
+    setContract(contractInstance);
+  }
+
+  // Deposit funds
+  const handleDeposit = async (amount) => {
+    if (!contract) return;
+
+    setIsProcessing(true);
+    try {
+      const value = ethers.utils.parseEther(amount.toString());
+      const tx = await contract.deposit({ value });
+      await tx.wait();
+      console.log("Deposit successful!");
+      await updateBalance();
+    } catch (err) {
+      console.error("Deposit failed:", err);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  // Withdraw funds
+  const handleWithdraw = async (amount) => {
+    if (!contract) return;
+
+    setIsProcessing(true);
+    try {
+      const amountWei = ethers.utils.parseEther(amount.toString());
+      const tx = await contract.withdraw(amountWei);
+      await tx.wait();
+      console.log("Withdrawal successful!");
+      await updateBalance();
+    } catch (err) {
+      console.error("Withdrawal failed:", err);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  // Read balance
+  const updateBalance = async () => {
+    if (!contract || !address) return;
+
+    try {
+      const balanceWei = await contract.deposits(address);
+      const balanceTCENT = ethers.utils.formatEther(balanceWei);
+      setBalance(parseFloat(balanceTCENT));
+    } catch (err) {
+      console.error("Failed to read balance:", err);
+    }
+  };
+
+  return (
+    <div>
+      <button onClick={() => handleConnect()}>Connect Wallet</button>
+      {contract && (
+        <div>
+          <p>Balance: {balance} TCENT</p>
+          <button onClick={() => handleDeposit(10)} disabled={isProcessing}>
+            Deposit 10 TCENT
+          </button>
+          <button onClick={() => handleWithdraw(5)} disabled={isProcessing}>
+            Withdraw 5 TCENT
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+---
+
+## Complete Code Examples
+
+### Full Integration Example
+
+Here's a complete React component demonstrating the full integration:
+
+```javascript
+import { useEffect, useState, useRef } from "react";
+import { IncentivResolver, IncentivSigner } from "@incentiv/dapp-sdk";
+import { ethers } from "ethers";
+import ABI from "./YourContractABI.json";
+import Config from "./config";
+
+function FullIntegrationExample() {
+  const [address, setAddress] = useState("");
+  const [contract, setContract] = useState(null);
+  const [balance, setBalance] = useState(0);
+  const [isConnecting, setIsConnecting] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const signerRef = useRef(null);
+
+  // Initialize contract and signer
+  async function fetchContractData(userAddress) {
+    try {
+      const provider = new ethers.providers.JsonRpcProvider(
+        Config.Environments.Testnet.RPC
+      );
+
+      const signer = new IncentivSigner({
+        address: userAddress,
+        provider: provider,
+        environment: Config.Environments.Testnet.Portal,
+        entryPoint: "0x9b5d240EF1bc8B4930346599cDDFfBD7d7D56db9",
+      });
+
+      signerRef.current = signer;
+
+      const contractInstance = new ethers.Contract(
+        Config.GamePot.address,
+        ABI,
+        signer
+      );
+
+      setContract(contractInstance);
+      await updateBalance(userAddress, contractInstance);
+    } catch (err) {
+      console.error("Failed to initialize contract:", err);
+      setContract(null);
+      signerRef.current = null;
+    }
+  }
+
+  // Connect wallet
+  const handleConnect = async () => {
+    setIsConnecting(true);
+    try {
+      if (typeof IncentivResolver === "undefined") {
+        throw new Error("Incentiv wallet extension not found.");
+      }
+
+      const userAddress = await IncentivResolver.getAccountAddress(
+        Config.Environments.Testnet.Portal
+      );
+
+      if (!userAddress || userAddress === "null" || userAddress === null) {
+        throw new Error("No wallet address received.");
+      }
+
+      setAddress(userAddress);
+      await fetchContractData(userAddress);
+    } catch (err) {
+      console.error("Connection error:", err);
+      alert(`Failed to connect: ${err.message}`);
+    } finally {
+      setIsConnecting(false);
+    }
+  };
+
+  // Update balance
+  async function updateBalance(userAddr, contractInstance) {
+    if (!contractInstance || !userAddr) return;
+
+    try {
+      const balanceWei = await contractInstance.deposits(userAddr);
+      const balanceTCENT = ethers.utils.formatEther(balanceWei);
+      setBalance(parseFloat(balanceTCENT));
+    } catch (err) {
+      console.error("Failed to read balance:", err);
+    }
+  }
+
+  // Deposit
+  const handleDeposit = async (amount) => {
+    if (!contract) return;
+
+    setIsProcessing(true);
+    try {
+      const value = ethers.utils.parseEther(amount.toString());
+      const tx = await contract.deposit({ value });
+      console.log("Transaction sent:", tx.hash);
+      await tx.wait();
+      console.log("Transaction confirmed");
+      await updateBalance(address, contract);
+    } catch (err) {
+      console.error("Deposit failed:", err);
+      alert(`Deposit failed: ${err.message}`);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  // Withdraw
+  const handleWithdraw = async (amount) => {
+    if (!contract) return;
+
+    setIsProcessing(true);
+    try {
+      const amountWei = ethers.utils.parseEther(amount.toString());
+      const tx = await contract.withdraw(amountWei);
+      console.log("Transaction sent:", tx.hash);
+      await tx.wait();
+      console.log("Transaction confirmed");
+      await updateBalance(address, contract);
+    } catch (err) {
+      console.error("Withdrawal failed:", err);
+      alert(`Withdrawal failed: ${err.message}`);
+    } finally {
+      setIsProcessing(false);
+    }
+  };
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h1>Incentiv SDK Integration</h1>
+
+      {!address ? (
+        <button onClick={handleConnect} disabled={isConnecting}>
+          {isConnecting ? "Connecting..." : "Connect Wallet"}
+        </button>
+      ) : (
+        <div>
+          <p><strong>Connected:</strong> {address}</p>
+          <p><strong>Balance:</strong> {balance.toFixed(4)} TCENT</p>
+          <p><strong>Contract Status:</strong> {contract ? "Ready" : "Not initialized"}</p>
+
+          <div style={{ marginTop: "20px" }}>
+            <button
+              onClick={() => handleDeposit(10)}
+              disabled={isProcessing}
+              style={{ marginRight: "10px" }}
+            >
+              Deposit 10 TCENT
+            </button>
+            <button
+              onClick={() => handleWithdraw(5)}
+              disabled={isProcessing}
+            >
+              Withdraw 5 TCENT
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default FullIntegrationExample;
+```
+
+---
+
+## Configuration
+
+### Network Configuration
+
+Update your configuration based on the network:
+
+**Testnet:**
+
+```javascript
+const TestnetConfig = {
+  Portal: "https://testnet.incentiv.io",
+  RPC: "https://rpc2.testnet.incentiv.io",
+  EntryPoint: "0x9b5d240EF1bc8B4930346599cDDFfBD7d7D56db9"
+};
+```
+
+**Mainnet:**
+
+```javascript
+const MainnetConfig = {
+  Portal: "https://portal.incentiv.io/",
+  RPC: "https://rpc.incentiv.io",
+  EntryPoint: "0x..." // Update with mainnet EntryPoint
+};
+```
+
+### Contract Addresses
+
+Always use checksummed addresses:
+
+```javascript
+const CONTRACT_ADDRESS = "0xC3A195E.....";
+```
+
+## Best Practices
+
+### 1. Error Handling
+
+Always wrap SDK calls in try-catch blocks:
+
+```javascript
+try {
+  const address = await IncentivResolver.getAccountAddress(portal);
+} catch (err) {
+  // Handle specific error types
+  if (err.message.includes("extension not found")) {
+    // Show install wallet message
+  } else if (err.message.includes("user rejected")) {
+    // User cancelled the connection
+  } else {
+    // Generic error handling
+  }
+}
+```
+
+### 2. Loading States
+
+Provide user feedback during async operations:
+
+```javascript
+const [isConnecting, setIsConnecting] = useState(false);
+const [isProcessing, setIsProcessing] = useState(false);
+
+// Use these states to disable buttons and show loading indicators
+```
+
+### 3. Transaction Confirmation
+
+Always wait for transaction confirmation:
+
+```javascript
+const tx = await contract.deposit({ value });
+await tx.wait(); // Wait for confirmation
+```
+
+### 4. Balance Updates
+
+Update balances after transactions:
+
+```javascript
+await tx.wait();
+await updateBalance(); // Refresh balance
+```
+
+### 5. Address Validation
+
+Validate addresses before using them:
+
+```javascript
+if (!address || address === "null" || address === null) {
+  throw new Error("Invalid address");
+}
+```
+
+### 6. Contract Initialization Check
+
+Always check if contract is initialized before use:
+
+```javascript
+if (!contract) {
+  throw new Error("Contract not initialized");
+}
+```
+
+### 7. Use Refs for Signers
+
+Store signer in a ref to avoid re-initialization:
+
+```javascript
+const signerRef = useRef(null);
+
+// Initialize once
+signerRef.current = new IncentivSigner({...});
+
+// Use later
+const contract = new ethers.Contract(address, ABI, signerRef.current);
+```
+
+## Troubleshooting
+
+### Issue: "IncentivResolver is undefined"
+
+**Solution:**
+
+- Ensure the Incentiv wallet extension is installed
+- Check that the extension is enabled
+- Refresh the page after installing the extension
+
+### Issue: "No wallet address received"
+
+**Solution:**
+
+- Make sure the wallet is unlocked
+- Check that the user approved the connection request
+- Verify the Portal URL is correct
+
+### Issue: Transaction fails with "insufficient funds"
+
+**Solution:**
+
+- Check the user's wallet balance
+- Ensure enough funds for gas fees
+- Verify the amount being sent is correct
+
+### Issue: Contract calls fail
+
+**Solution:**
+
+- Verify the contract address is correct
+- Check the ABI matches the contract
+- Ensure the signer is properly initialized
+- Verify the function name and parameters are correct
+
+### Issue: "Provider not found"
+
+**Solution:**
+
+- Check the RPC URL is correct
+- Verify network connectivity
+- Test the RPC endpoint directly
+
+### Issue: Buffer is not defined
+
+**Solution:**
+
+- Ensure `buffer` is installed: `npm install buffer`
+- Configure Vite as shown in the Project Setup section
+- Add buffer to optimizeDeps
+
+---
+
+## API Reference
+
+### IncentivResolver
+
+#### `getAccountAddress(portal: string): Promise<string>`
+
+Gets the user's wallet address from the Incentiv wallet extension.
+
+**Parameters:**
+
+- `portal`: The Portal URL (e.g., "https://testnet.incentiv.io")
+
+**Returns:**
+
+- `Promise<string>`: The user's wallet address
+
+**Example:**
+
+```javascript
+const address = await IncentivResolver.getAccountAddress(
+  "https://testnet.incentiv.io"
+);
+```
+
+### IncentivSigner
+
+#### Constructor
+
+```javascript
+new IncentivSigner({
+  address: string,
+  provider: ethers.providers.Provider,
+  environment: string,
+  entryPoint: string
+})
+```
+
+**Parameters:**
+
+- `address`: User's wallet address
+- `provider`: Ethers.js provider instance
+- `environment`: Portal URL
+- `entryPoint`: EntryPoint contract address
+
+**Example:**
+
+```javascript
+const signer = new IncentivSigner({
+  address: "0x...",
+  provider: provider,
+  environment: "https://testnet.incentiv.io",
+  entryPoint: "0x9b5d240EF1bc8B4930346599cDDFfBD7d7D56db9"
+});
+```
+
+---
+
+## Additional Resources
+
+- **Incentiv Network**: https://incentiv.io
+- **Testnet Portal**: https://testnet.incentiv.io
+- **Documentation**: Check official Incentiv documentation
+- **Support**: Contact Incentiv support for SDK-specific issues
+
+## License
+
+This guide is provided as-is for educational purposes. Always refer to the official Incentiv SDK documentation for the most up-to-date information.
+
+## Example
+
+Follow this [example](/tools/dapps/example)
+
+---
