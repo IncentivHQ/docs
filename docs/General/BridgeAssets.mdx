@@ -1,83 +1,92 @@
 ---
-title: "Bridge Assets"
+title: "Bridge"
 icon: "arrow-right-arrow-left"
 ---
 
-<Warning>
-  In case you are using Nexus Hyperlane, Please make sure the destination address is the **Incentiv Portal Address **and not an EOA
-</Warning>
-
-With _Incentiv_, you can easily bridge tokens between wallets or across networks. Follow the steps below:
+With _Incentiv_, you can seamlessly move assets **into** or **out of** the Incentiv network across supported chains. Use the tabs below to follow the correct flow based on your direction.
 
 <Tabs>
-  <Tab title="Bridge Assets to Connected Wallet">
+  <Tab title="Bridge In to Incentiv">
     <Steps>
-      <Step title="Step 1: Connect Wallet">
-        - Open the _Incentiv Portal_.
-        - Connect your wallet using one of the following: Incentiv Wallet, MetaMask, or WalletConnect.
+      <Step title="Step 1: Open Bridge & Connect Wallet">
+        - Open the **Incentiv Portal**.
+        - Click **Bridge Assets** in the top navigation.
+        - Connect your external wallet (e.g. MetaMask).
 
-        ![Bridge Assets](/BridgeAssets1.png)
+        ![Bridge](/docs/images/BridgeIn1.jpg)
       </Step>
-      <Step title="Step 2: Select Tokens to Bridge">
-        - Choose the token you want to bridge.
-        - Select the source network and destination network.
-        - Choose whether to transfer funds within Incentiv (internal transfer) or outside to another wallet.
+      <Step title="Step 2: Select Token">
+        - Click the token selector.
+        - Choose the asset you want to bridge **into Incentiv**.
+        - Tokens are grouped by network for easier discovery.
 
-        <Note>
-          You can transfer funds **from outside Incentiv** (external wallets)or **internally within the Incentiv ecosystem**
-        </Note>
-        ![Bridge Assets](/BridgeAssets2.png)
+        ![Bridge](/docs/images/BridgeIn2.jpg)
       </Step>
-      <Step title="Step 3: Enter Amount">
-        - Input the amount you want to bridge.
-        - Review estimated charges, including _gas fees_ and any applicable _interchain fees_.
-        - Check the projected arrival amount.
-      </Step>
-      <Step title="Step 4: Click Bridge">
-        - Click _“Bridge”_ to confirm.
-        - Approve the transaction in your wallet.
-        - Bridging typically completes in _around one minute_, depending on network activity.
+      <Step title="Step 3: Configure Transfer">
+        - Select the **source network** (external chain).
+        - Select **Incentiv** as the destination network.
+        - Enter the amount to bridge.
+        - Optional: toggle **Receive to Another Address** if needed.
 
-        ![Bridge Assets](/BridgeAssets3.png)
+        ![Bridge](/docs/images/BridgeIn3.jpg)
+      </Step>
+      <Step title="Step 4: Confirm Transaction in Wallet">
+        - Click **Bridge**.
+        - Your wallet will prompt a transaction request.
+        - Review network, amount, and fees carefully.
+        - Confirm the transaction.
+
+        ![Bridge](/docs/images/BridgeIn4.jpg)
+      </Step>
+      <Step title="Step 5: Bridge Completion">
+        - The bridge transaction is submitted.
+        - You’ll see a success notification once confirmed.
+        - Explorer links are provided for tracking.
+
+        ![Bridge](/docs/images/BridgeIn5.jpg)
       </Step>
     </Steps>
     <Tip>
-      Remember to verify the destination wallet address and network before confirming the bridge.
+      Bridging typically completes within a few seconds to a few minutes, depending on network conditions.
     </Tip>
+    # Video Tutorial: Bridge In to Incentiv
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/OwPqDWKNhGM?si=AcvyEyBIWhePBh-R&start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen />
   </Tab>
-  <Tab title="Bridge Assets to Another Wallet">
+  <Tab title="Bridge Out of Incentiv">
     <Steps>
-      <Step title="Step 1: Connect Wallet">
-        - Open the _Incentiv Portal_ and connect your wallet using one of the following: Incentiv Wallet, MetaMask, or WalletConnect.
+      <Step title="Step 1: Open Bridge">
+        - Go to the **Incentiv Portal**.
+        - Click **Bridge Assets** in the upper right.
 
-        ![Bridge Assets](/BridgeAssets.png)
-
-        - \*\*Optional:\*\* Click “Receive to Another Address” if bridging to a different wallet.
-
-        ![Bridge Assets](/BridgeAssetsA.png)
+        ![Bridge](/docs/images/BridgeOut1.jpg)
       </Step>
-      <Step title="Step 2: Select Tokens to Bridge">
-        - Choose the token and select the source and destination networks.
-        - Choose whether to transfer funds within Incentiv (internal transfer) or outside to another wallet.
+      <Step title="Step 2: Select Token">
+        - Click on the token selector.
+        - Choose the asset you wish to bridge **out of Incentiv** to another network.
 
-        <Tip>
-          You can transfer funds **from outside Incentiv** (external wallets)\
-          or **internally within the Incentiv ecosystem**.
-        </Tip>
-        ![Bridge Assets](/BridgeAssetsB.png)
+        ![Bridge](/docs/images/BridgeOut2.jpg)
       </Step>
-      <Step title="Step 3: Enter Amount">
+      <Step title="Step 3: Configure Destination">
+        - Set **Incentiv** as the source.
+        - Choose the destination network (e.g. Ethereum).
         - Input the amount to bridge.
-        - Review _gas fees_ and _interchain fees_.
-        - View the estimated arrival amount.
-      </Step>
-      <Step title="Step 4: Click Bridge">
-        - Confirm by clicking _“Bridge”_.
-        - Approve via your wallet.
-        - Bridging usually completes in _about one minute_.
+        - (Optional) Toggle _Receive to Another Address_ for external wallets.
 
-        ![Bridge Assets](/BridgeAssetsC.png)
+        ![Bridge](/docs/images/BridgeOut3.jpg)
+      </Step>
+      <Step title="Step 4: Confirmation">
+        - Click **Bridge** to initiate transfer.
+        - Wait for the success message and confirm with provided explorer links.
+
+        ![Bridge](/docs/images/BridgeOut4.jpg)
       </Step>
     </Steps>
+    <Note>
+      Verify that the destination network supports the selected token before bridging out.
+    </Note>
+    # Video Tutorial: Bridge Out of Incentiv
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/C1Nj5Th0sBQ?si=5tT9bSwtWFhCAdKp&start=4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen />
   </Tab>
 </Tabs>
