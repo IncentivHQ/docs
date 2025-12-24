@@ -23,7 +23,8 @@
             "pages": [
               "docs/GetStarted/UsingIncentiv",
               "docs/GetStarted/IncentivOnboarding",
-              "docs/GetStarted/Rewards/rewards"
+              "docs/GetStarted/Rewards/rewards",
+              "docs/GetStarted/Mystery-Box"
             ]
           },
           {
@@ -38,6 +39,7 @@
               "docs/General/RecoverySeeds",
               "docs/General/WalletConnect",
               "docs/General/BridgeAssets"
+              
             ]
           },
           
