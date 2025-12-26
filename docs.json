@@ -12,7 +12,20 @@
         "eyebrows": "section"
        },
   "navigation": {
-    
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Community",
+          "icon": "discord",
+          "href": "https://discord.com/invite/incentiv"
+        },
+        {
+          "anchor": "Blog",
+          "icon": "newspaper",
+          "href": "https://medium.incentiv.net/"
+        }
+      ]
+    },
     "tabs": [
       {
         "tab": "Main",
@@ -38,10 +51,8 @@
               "docs/General/RecoverySeeds",
               "docs/General/WalletConnect",
               "docs/General/BridgeAssets"
-              
             ]
           },
-          
           {
             "group": "Educational",
             "pages": [
@@ -49,7 +60,6 @@
               "docs/Education/Passkeys"
             ]
           },
-          
           {
             "group": "Others",
             "pages": [
@@ -58,16 +68,14 @@
           }
         ]
       },
-      
       {
-      "tab": "Development",
-      "icon": "square-terminal",
+        "tab": "Development",
+        "icon": "square-terminal",
         "groups": [
           {
             "group": "Main",
             "pages": [
               "docs/developers/index"
-              
             ]
           },
           {
@@ -122,13 +130,11 @@
           {
             "group": "Building on Incentiv",
             "pages": [
-              
               "docs/developers/network_config",
               "docs/developers/contracts",
               "docs/developers/contracts_Tv2",
               "docs/developers/node_deployment",
               "docs/developers/miner_deployment"
-              
             ]
           },
           {
@@ -140,7 +146,6 @@
               "docs/Ecosystem/oracles",
               "docs/Ecosystem/automation",
               "docs/Ecosystem/multi-sig",
-              
               {
                 "group": "SDKs",
                 "icon": "gear-code",
@@ -150,7 +155,6 @@
                   "tools/ui_sdk/ui-sdk"
                 ]
               }
-              
             ]
           },
           {
@@ -186,7 +190,7 @@
               },
               {
                 "group": "User Operations",
-                "icon":"rectangles-mixed",
+                "icon": "rectangles-mixed",
                 "pages": [
                   "api-reference/IncentiView/UserOperations/userOperations",
                   "api-reference/IncentiView/UserOperations/userOperation"
@@ -218,33 +222,11 @@
                   "api-reference/IncentiView/NFT/nft"
                 ]
               }
-              
             ]
           }
-          
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        
-        {
-          "anchor": "Migrate to Testnet 2.0",
-          "href": "https://testnet.incentiv.io/",
-          "icon": "key"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://discord.com/invite/incentiv",
-          "icon": "discord"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://medium.incentiv.net/",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
     "light": "/logo/Incentiv Black.svg",
