@@ -1,0 +1,135 @@
+---
+title: Advanced Account Abstraction (AAA)
+description: Learn how Incentiv’s protocol-native Advanced Account Abstraction enables smart accounts, intent-based transactions, and seamless user experiences.
+---
+
+Advanced Account Abstraction (AAA) is a protocol-native account model in Incentiv that makes smart contract wallets first-class citizens.  
+It replaces the limitations of traditional externally owned accounts with programmable, secure, and user-centric smart accounts, while maintaining compatibility with legacy wallets.
+
+AAA is designed to make usability, security, and flexibility core protocol features rather than optional add-ons.
+
+## What Makes AAA “Advanced”
+
+Unlike application-layer account abstraction systems, Incentiv integrates AAA directly into the protocol architecture.  
+This enables richer capabilities without relying on external workarounds or intermediary trust assumptions.
+
+Key characteristics include:
+
+- Smart contract wallets by default  
+  Accounts are programmable and can enforce custom validation, authorization, and recovery logic.
+
+- Intent-based transactions  
+  Users express goals rather than low-level transaction mechanics.
+
+- Native support for bundlers and paymasters  
+  Transaction execution and fee handling are abstracted without sacrificing decentralization.
+
+## Core Architecture
+
+AAA in Incentiv is composed of several tightly integrated components.
+
+### Smart Contract Wallets
+
+Smart wallets act as programmable user accounts and define their own security and execution rules, including:
+
+- Multi-signature authorization  
+- Spending limits and policy enforcement  
+- Session keys for temporary access  
+- Built-in recovery mechanisms  
+
+Each wallet validates transactions onchain according to its own logic.
+
+### EntryPoint Contract
+
+The EntryPoint is the universal execution gateway for abstracted transactions.
+
+It is responsible for:
+
+- Validating user operations  
+- Enforcing wallet-defined authorization rules  
+- Executing bundled actions atomically  
+- Handling fee settlement and paymaster logic  
+
+All abstracted transactions flow through this contract to ensure consistent validation and execution.
+
+### UserOperations
+
+User interactions are packaged as UserOperations, which represent intent rather than raw transactions.
+
+A UserOperation includes:
+
+- Target actions and parameters  
+- Wallet validation data  
+- Fee and gas payment instructions  
+- Optional paymaster configuration  
+
+This structure enables flexible execution while preserving deterministic onchain validation.
+
+### Bundlers
+
+Bundlers are network participants that collect UserOperations and package them into executable transactions.
+
+Their responsibilities include:
+
+- Validating UserOperations offchain  
+- Optimizing execution order and batching  
+- Submitting bundled operations to the EntryPoint  
+
+Bundlers operate in a competitive, permissionless environment that improves efficiency and reliability.
+
+### Paymasters
+
+Paymasters abstract gas and fee payment from the user.
+
+They enable features such as:
+
+- Sponsored transactions  
+- Fee payments in non-native tokens  
+- Application-specific fee policies  
+
+Paymasters are secured through staking and validation rules to prevent abuse.
+
+## Intent-Based Transaction Flow
+
+AAA replaces manual transaction construction with an intent-first workflow:
+
+1. User expresses a desired outcome through a wallet or dApp  
+2. The wallet translates the intent into a UserOperation  
+3. A bundler validates and packages the operation  
+4. The EntryPoint enforces wallet rules and executes the action  
+5. Fees are settled via the wallet or an attached paymaster  
+
+This flow removes the need for users to manage gas, nonces, or raw calldata directly.
+
+## Security Model
+
+AAA improves security by design rather than relying on a single private key.
+
+Security features include:
+
+- Programmable authorization logic  
+- Multi-device and multi-party approval  
+- Policy-based transaction controls  
+- Built-in recovery and key rotation  
+
+Each wallet defines its own threat model and enforcement rules, all validated onchain.
+
+## Usability Benefits
+
+By abstracting protocol complexity, AAA enables:
+
+- One-click onboarding  
+- Gasless or sponsored interactions  
+- Automated and scheduled actions  
+- Seamless dApp experiences comparable to Web2  
+
+Users interact with outcomes, not infrastructure.
+
+## Developer Advantages
+
+AAA expands the design space for developers by allowing them to:
+
+- Build wallet-native logic and automation  
+- Integrate custom paymaster and bundler strategies  
+- Rely on standardized execution and validation flows  
+- Deliver consumer-grade experiences without compromising decentralization  
