@@ -3,7 +3,7 @@ title: Account Security
 description: Learn how Incentiv protects user accounts through smart account security and account abstraction.
 ---
 
-Incentiv accounts are **non-custodial smart contract accounts** that replace traditional private-key wallets with programmable security and recovery logic enabled by **account abstraction**.
+Incentiv accounts are **non-custodial smart contract accounts** that replace traditional private-key wallets with programmable security and recovery logic enabled by **[Advanced Account Abstraction](https://docs.incentiv.io/docs/Education/AdvancedAccountAbstraction)**.
 
 This model enhances security while simplifying user interaction by removing the need to directly manage raw private keys.
 
@@ -11,28 +11,28 @@ This model enhances security while simplifying user interaction by removing the 
 
 Incentiv’s security model is built on the following components:
 
-- **Smart contract–based account validation**  
+* **Smart contract-based account validation**
   Security rules are enforced onchain through account logic rather than a single private key.
 
-- **Account abstraction infrastructure**  
+* **Account abstraction infrastructure**
   An ERC-4337–style architecture enables flexible authentication, transaction validation, and execution.
 
-- **Bundlers and paymasters**  
+* **Bundlers and paymasters**
   These components enforce transaction rules and enable advanced features such as gas sponsorship and bundled actions.
 
 Together, this architecture allows users to interact securely without directly handling private keys.
 
-## Authentication & Authorization
+## Authentication and Authorization
 
 User access and transaction execution are protected through multiple layers:
 
-- **Passkeys or equivalent cryptographic authentication methods**  
+* **Passkeys or equivalent cryptographic authentication methods**
   Secure, user-friendly authentication replaces traditional seed phrases.
 
-- **Onchain validation logic**  
+* **Onchain validation logic**
   Each smart account defines the rules required to authorize transactions.
 
-- **Explicit user approval**  
+* **Explicit user approval**
   Every transaction or bundled action must be explicitly approved by the user.
 
 No transaction can be executed unless all validation rules defined by the account are satisfied.
@@ -41,17 +41,17 @@ No transaction can be executed unless all validation rules defined by the accoun
 
 Account recovery is natively integrated into the smart account design and may include:
 
-- **Device-based recovery**
-- **Delegated or social recovery mechanisms**
-- **Protocol-defined recovery flows**
+* **Device-based recovery**
+* **Delegated or social recovery mechanisms**
+* **Protocol-defined recovery flows**
 
-Available recovery options depend on the configuration selected during onboarding.
+Available recovery options depend on the configuration selected during onboarding. Refer to **[Backup and Recovery](https://docs.incentiv.io/docs/General/RecoverySeeds)** for supported recovery methods.
 
 ## User Responsibilities
 
 While Incentiv provides strong security guarantees, users are responsible for:
 
-- Securing access to authorized devices and credentials  
-- Carefully reviewing transaction details before approval  
-- Avoiding untrusted applications and phishing attempts  
+* Securing access to authorized devices and credentials
+* Carefully reviewing transaction details before approval
+* Avoiding untrusted applications and phishing attempts
 
