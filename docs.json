@@ -151,6 +151,7 @@
                 "icon": "gear-code",
                 "pages": [
                   "tools/dapps/sdk-guide",
+                  "tools/dapps/sdk-guide-copied-1",
                   "tools/dapps/example",
                   "tools/ui_sdk/ui-sdk"
                 ]
