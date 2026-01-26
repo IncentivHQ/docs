@@ -17,12 +17,12 @@ If a user completes more than 20 transactions in a single day on [mainnet](porta
 
 1. Identify eligible transactions
 
-- If **X ≤ 20**, **Incentiv+ = 0**
-- If **X \> 20**, eligible transactions are **Tx #21 to Tx #X** based on the day’s execution order
+- If transactions are **less than or equal to 20**, **Incentiv+ = 0**
+- If **transactions are greater than 20**, eligible transactions are **after the 20th transaction (Tx #21 and up)** based on the day’s execution order
 
 2. Sum the gas paid on eligible transactions in **CENT**
 
-- **Eligible Gas Paid (CENT) = Σ gas paid for Tx #21 through Tx #X**
+- **Eligible Gas Paid (CENT) = add each gas paid for all transactions after the 20th transaction**
 
 3. Apply the Incentiv+ rate
 
