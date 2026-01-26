@@ -1,64 +1,60 @@
 ---
-title: "Incentivplus"
+title: "Incentiv Plus"
 ---
 
-**Incentiv+** is a feature inside the **Incentiv+ Economic Engine** that returns value to users based on daily onchain activity. 
+Incentiv+ is the economic layer that transforms network activity into contributor rewards by returning value to users based on measurable onchain contribution, so increased usage benefits the people driving the network forward.
 
-Once a user exceeds a daily transaction threshold, they receive **Incentiv+** based on the gas they paid on the excess transactions.
+You can already experience part of this economic engine on [mainnet](portal.incentiv.io) today.
 
-    ![Incentiv+](/images/Incentivplus.png)
+![Incentiv+](/images/Incentivplus.png)
 
-## Incentiv+ Rule
+## Incentiv+ on Mainnet
 
-### Eligibility trigger
-A user must complete **more than 20 transactions in a single day** to qualify for Incentiv+.
-
-### What Incentiv+ is based on
-Incentiv+ is calculated only from the **gas paid by the user** on the transactions **after the first 20**.
-
-- Let **X** be the total number of user transactions that day
-- Eligible transaction count is **max(0, X − 20)**
-- Incentiv+ rate is **50%**
-- Incentiv+ is computed from the **gas paid by the user** on eligible transactions
+If a user completes more than 20 transactions in a single day on mainnet, the transactions after the first 20 qualify for Incentiv+, and the user receives value-return in CENT equal to 50% of the gas they paid on those transactions.
 
 ### Computation
-1) Identify eligible transactions  
-- If **X ≤ 20**, **Incentiv+ = 0**  
-- If **X > 20**, eligible transactions are **Tx #21 to Tx #X** based on the day’s execution order  
 
-2) Sum the gas paid on eligible transactions in **CENT**  
+1. Identify eligible transactions
+
+- If **X ≤ 20**, **Incentiv+ = 0**
+- If **X \> 20**, eligible transactions are **Tx #21 to Tx #X** based on the day’s execution order
+
+2. Sum the gas paid on eligible transactions in **CENT**
+
 - **Eligible Gas Paid (CENT) = Σ gas paid for Tx #21 through Tx #X**
 
-3) Apply the Incentiv+ rate  
+3. Apply the Incentiv+ rate
+
 - **Incentiv+ (CENT) = 50% × Eligible Gas Paid (CENT)**
 
 <Note>
-      Computations and Rewards Distribution are done on a daily basis
-    </Note>
+  Computations and Rewards Distribution are done on a daily basis
+</Note>
 
-## Sample computations
+## Sample Computations
+
+| Scenario             | Total tx (X) | Eligible tx (X − 20) | Example fees counted (Tx #21 → #X) | Eligible Gas Paid (CENT) | Incentiv+ rate | Incentiv+ (CENT) |
+| -------------------- | -----------: | -------------------: | ---------------------------------- | -----------------------: | -------------: | ---------------: |
+| Less than 18 tx      | 18           | 0                    | None (threshold not reached)       | 0                        | 50%            | 0                |
+| 24 tx (per-tx fees)  | 24           | 4                    | 17, 16, 15, 16                     | 64                       | 50%            | 32               |
+| 35 tx (avg fee = 16) | 35           | 15                   | 16 × 15 tx                         | 240                      | 50%            | 120              |
 
 Assume the usual gas fee per transaction is commonly around **17 CENT**, **16 CENT**, or **15 CENT**.
 
 ### Example 1 (less than 18 transactions)
+
 If a user completes **18 transactions** in a day, they do not pass the 20-transaction threshold. That means there are **0 eligible transactions** beyond the first 20, and the user receives **0 CENT** as Incentiv+ for that day.
 
 ### Example 2 (24 total transactions, per-transaction fees)
+
 If a user completes **24 transactions** in a day, then **4 transactions** are eligible (Tx #21 to Tx #24). If those eligible transactions have gas fees of **17 CENT**, **16 CENT**, **15 CENT**, and **16 CENT**, the eligible gas paid is **64 CENT**, and the user receives **32 CENT** as Incentiv+ (50% of 64 CENT).
 
 ### Example 3 (35 total transactions, typical fee average)
+
 If a user completes **35 transactions** in a day, then **15 transactions** are eligible (Tx #21 to Tx #35). If the user’s typical gas fee averages **16 CENT** per transaction, the eligible gas paid is **240 CENT**, and the user receives **120 CENT** as Incentiv+ (50% of 240 CENT).
 
-## Summary table
-
-| Scenario | Total tx (X) | Eligible tx (X − 20) | Example fees counted (Tx #21 → #X) | Eligible Gas Paid (CENT) | Incentiv+ rate | Incentiv+ (CENT) |
-|---|---:|---:|---|---:|---:|---:|
-| Less than 18 tx | 18 | 0 | None (threshold not reached) | 0 | 50% | 0 |
-| 24 tx (per-tx fees) | 24 | 4 | 17, 16, 15, 16 | 64 | 50% | 32 |
-| 35 tx (avg fee = 16) | 35 | 15 | 16 × 15 tx | 240 | 50% | 120 |
-
-
 ## Learn More About the Incentiv+ Economic Engine
+
 <Card title="Economic Engine: Incentiv+" icon="coins" color="#f7a400" href="/docs/Architecture/Economic-Engine">
   Unified rewards for all roles based on actual contribution.
 </Card>
