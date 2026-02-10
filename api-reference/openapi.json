@@ -1,8 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Mainnet Indexer API",
-    "description": "API endpoint for listing blocks from the Incentiv Blockchain via the IncentiView indexer.",
+    "title": "Incentiv Indexer API",
+    "description": "API endpoint for listing blocks from the Incentiv Blockchain via the Blockscout & Incentiv indexers.",
     "version": "2.1.0"
   },
   "servers": [
@@ -332,217 +332,56 @@
         }
       }
     },
-    "/account/{address}/userop-activity-unified": {
-      "get": {
-        "summary": "Unified user activity (UserOperations + transactions)",
-        "description": "Returns a unified activity feed for the given account address. The feed merges ERC-4337 UserOperations and regular EVM transactions (native transfers, decoded TOKEN_TRANSFER and BRIDGE_TRANSACTION) into a single, chronologically sorted list.\n",
-        "tags": [
-          "Account"
-        ],
-        "parameters": [
-          {
-            "in": "path",
-            "name": "address",
-            "required": true,
-            "description": "Ethereum account address (EOA or smart account)",
+    "/transactions": {
+  "get": {
+    "servers": [
+      {
+        "url": "https://blockscout-indexer-api.incentiv.io/api"
+      }
+    ],
+    "summary": "List Transactions by Address (Blockscout Indexer)",
+    "description": "Retrieve transactions for a given address using the Blockscout indexer.",
+    "parameters": [
+      {
+        "name": "address",
+        "in": "query",
+        "required": true,
+        "schema": { "type": "string" },
+        "example": "0x4b2541f9af0cf2380a6000c9e1c6641cc876b83a"
+      },
+      {
+        "name": "direction",
+        "in": "query",
+        "required": false,
+        "schema": {
+          "type": "string",
+          "enum": ["incoming", "outgoing", "all"],
+          "default": "all"
+        },
+        "example": "all"
+      },
+      {
+        "name": "limit",
+        "in": "query",
+        "required": false,
+        "schema": { "type": "integer" },
+        "example": 10
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Blockscout transaction list",
+        "content": {
+          "application/json": {
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "type",
-            "required": false,
-            "description": "Optional activity type filter (forwarded to listUserActivityUnified)",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "direction",
-            "required": false,
-            "description": "Direction of activity relative to the account (incoming, outgoing, all)",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "incoming",
-                "outgoing",
-                "all"
-              ]
-            }
-          },
-          {
-            "in": "query",
-            "name": "fromTimestamp",
-            "required": false,
-            "description": "Minimum UNIX timestamp (seconds) of activities to include",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "toTimestamp",
-            "required": false,
-            "description": "Upper bound UNIX timestamp (seconds), activities with timestamp < toTimestamp",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "fromBlockNumber",
-            "required": false,
-            "description": "Minimum block number to include",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "toBlockNumber",
-            "required": false,
-            "description": "Upper-bound block number (blockNumber < toBlockNumber)",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "bundleTxHash",
-            "required": false,
-            "description": "Optional filter for bundle transaction hash",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "in": "query",
-            "name": "offset",
-            "required": false,
-            "description": "Zero-based offset for pagination",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "limit",
-            "required": false,
-            "description": "Page size for pagination",
-            "schema": {
-              "type": "integer"
-            }
-          },
-          {
-            "in": "query",
-            "name": "sort",
-            "required": false,
-            "description": "Sort order (same as UserOperationQuerySort)",
-            "schema": {
-              "type": "string",
-              "enum": [
-                "TIMESTAMP_ASC",
-                "TIMESTAMP_DESC"
-              ]
+              "type": "object"
             }
           }
-        ],
-     "responses": {
-          "200": {
-            "description": "Unified activity list",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "code": {
-                      "type": "integer",
-                      "example": 200
-                    },
-                    "result": {
-                      "type": "object",
-                      "properties": {
-                        "total": {
-                          "type": "integer",
-                          "description": "Total user operation count (from user-op side)",
-                          "example": 123
-                        },
-                        "pageable": {
-                          "type": "integer",
-                          "description": "Total number of items that can be paginated through",
-                          "example": 50
-                        },
-                        "items": {
-                          "type": "array",
-                          "items": {
-                            "type": "object",
-                            "description": "Unified activity item",
-                            "properties": {
-                              "hash": {
-                                "type": "string"
-                              },
-                              "success": {
-                                "type": "boolean"
-                              },
-                              "bundleTxHash": {
-                                "type": "string"
-                              },
-                              "blockNumber": {
-                                "type": "integer"
-                              },
-                              "timestamp": {
-                                "type": "integer",
-                                "description": "UNIX timestamp (seconds)"
-                              },
-                              "sender": {
-                                "type": "string"
-                              },
-                              "actualGasCost": {
-                                "type": "string",
-                                "description": "Estimated or real gas cost in wei"
-                              },
-                              "paymasterAndData": {
-                                "type": "string"
-                              },
-                              "type": {
-                                "type": "string",
-                                "description": "Activity type (e.g. USER_OPERATION, TRANSFER, TOKEN_TRANSFER, BRIDGE_TRANSACTION)"
-                              },
-                              "value": {
-                                "type": "string",
-                                "description": "Value in token units or native wei"
-                              },
-                              "to": {
-                                "type": "string"
-                              },
-                              "asset": {
-                                "type": "string",
-                                "nullable": true
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid parameters (e.g. invalid address or direction)"
-          },
-          "404": {
-            "description": "No user operation activity found for this account"
-          },
-          "500": {
-            "description": "Failed to fetch unified user operation activity"
         }
       }
     }
-  },
+  }
+},
     "/account/{address}/userop-activity": {
       "get": {
         "summary": "Get Account User Operation Activity",
@@ -1083,119 +922,7 @@
         }
       }
     },
-    "/transactions": {
-      "get": {
-        "summary": "List Transactions",
-        "description": "Retrieve a list of transactions with optional filters and pagination.",
-        "parameters": [
-          {
-            "name": "fromTimestamp",
-            "in": "query",
-            "required": false,
-            "description": "UNIX timestamp (seconds) marking the start of the time range to filter transactions.",
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            },
-            "example": 1710000000
-          },
-          {
-            "name": "toTimestamp",
-            "in": "query",
-            "required": false,
-            "description": "UNIX timestamp (seconds) marking the end of the time range to filter transactions.",
-            "schema": {
-              "type": "integer",
-              "format": "int64"
-            },
-            "example": 1710090000
-          },
-          {
-            "name": "fromBlockNumber",
-            "in": "query",
-            "required": false,
-            "description": "Start of the block number range to filter transactions.",
-            "schema": {
-              "type": "integer"
-            },
-            "example": 1000
-          },
-          {
-            "name": "toBlockNumber",
-            "in": "query",
-            "required": false,
-            "description": "End of the block number range to filter transactions.",
-            "schema": {
-              "type": "integer"
-            },
-            "example": 1100
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "required": false,
-            "description": "Offset for pagination.",
-            "schema": {
-              "type": "integer"
-            },
-            "example": 0
-          },
-          {
-            "name": "limit",
-            "in": "query",
-            "required": false,
-            "description": "Maximum number of transactions to return.",
-            "schema": {
-              "type": "integer"
-            },
-            "example": 25
-          },
-          {
-            "name": "sort",
-            "in": "query",
-            "required": false,
-            "description": "Sorting order for returned transactions. Options: `TIMESTAMP_ASC`, `TIMESTAMP_DESC`, `NUMBER_ASC`, `NUMBER_DESC`.",
-            "schema": {
-              "type": "string"
-            },
-            "example": "TIMESTAMP_DESC"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "A list of transaction metadata entries.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "total": {
-                      "type": "integer"
-                    },
-                    "items": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Transaction"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid query parameters",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Error"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
+   
     "/transactions/{hash}": {
       "get": {
         "summary": "Get Transaction by Hash",
