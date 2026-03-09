@@ -36,8 +36,7 @@
             "pages": [
               "docs/GetStarted/UsingIncentiv",
               "docs/GetStarted/IncentivOnboarding",
-              "docs/GetStarted/Rewards/rewards",
-              "docs/GetStarted/Manage-Tokens"
+              "docs/GetStarted/Rewards/rewards"
             ]
           },
           {
@@ -52,7 +51,8 @@
               "docs/General/RecoverySeeds",
               "docs/General/WalletConnect",
               "docs/General/BridgeAssets",
-              "General/incentivplus"
+              "General/incentivplus",
+              "docs/GetStarted/Manage-Tokens"
             ]
           },
           {
