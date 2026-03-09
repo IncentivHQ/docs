@@ -43,6 +43,7 @@
             "group": "General",
             "pages": [
               "docs/General/Contacts",
+              "docs/GetStarted/Manage-Tokens",
               "docs/General/SendTokens",
               "docs/General/ReceiveTokens",
               "docs/General/SwapTokens",
@@ -51,8 +52,7 @@
               "docs/General/RecoverySeeds",
               "docs/General/WalletConnect",
               "docs/General/BridgeAssets",
-              "General/incentivplus",
-              "docs/GetStarted/Manage-Tokens"
+              "General/incentivplus"
             ]
           },
           {
