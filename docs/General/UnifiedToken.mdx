@@ -1,59 +1,48 @@
 ---
-title: Unified Token
+title: "Unified Token"
 icon: "coins"
 ---
 
-The **Unified Token System** streamlines blockchain interactions by allowing users to perform transactions and pay gas fees using any supported token. By combining Account Abstraction (AA) and an integrated decentralized exchange (DEX), it removes the need to hold a native gas token like $CENT, while maintaining security, efficiency, and decentralization.
+The **Unified Token System** streamlines blockchain interactions by allowing users to perform transactions and pay gas fees using any supported token. By combining Account Abstraction (AA) and an integrated decentralized exchange (DEX), it removes the need to hold a native gas token like \$CENT, while maintaining security, efficiency, and decentralization.
 
 # How It Works
 
 <Steps>
-  
-<Step title="Step 1: Initiate a Transaction">
+  <Step title="Step 1: Initiate a Transaction">
+    Access the Incentiv Portal and choose either the **“Swap”** or **“Send”** function. This will display your available balances and open the interface for transaction setup.
 
-Access the Incentiv Portal and choose either the **“Swap”** or **“Send”** function. This will display your available balances and open the interface for transaction setup.
+    ![Unified Token One](/docs/images/UnifiedToken1.jpg)
+  </Step>
+  <Step title="Step 2: Define Transaction Parameters">
+    - **For swaps:** Select the token you want to exchange and the token you wish to receive.
+    - **For sends:** Enter the recipient’s wallet address and select the token to transfer.
+      ![Unified Token Two](/docs/images/UnifiedToken2.jpg)
+  </Step>
+  <Step title="Step 3: Specify the Token Amount">
+    Enter the amount of tokens to swap or send. The system will display the estimated output for swaps. For both actions, the estimated gas fee will be shown based on current network conditions.
 
-![Unified Token One](/docs/images/UnifiedToken1.jpg)
+    ![Unified Token Three](/docs/images/UnifiedToken3.jpg)
+  </Step>
+  <Step title="Step 4: Select a Gas Token">
+    Use the **dropdown menu** to choose which token to use for paying gas fees.
 
+    ![Unified Token Four](/docs/images/UnifiedToken4.jpg)
 
-</Step>
-<Step title="Step 2: Define Transaction Parameters">
+    - Only tokens with a sufficient balance to cover the projected fee will be available.
+    - **\$CENT** is selected by default if present in the wallet.
+    - Other supported mainnet tokens include **WETH, USDC,** and **USDT**.
+  </Step>
+  <Step title="Step 5: Review and Confirm">
+    Carefully verify all transaction details:
 
-- **For swaps:** Select the token you want to exchange and the token you wish to receive.
-- **For sends:** Enter the recipient’s wallet address and select the token to transfer.
-  
-  ![Unified Token Two](/docs/images/UnifiedToken2.jpg)
+    - Token amounts
+    - Selected gas token
+    - Recipient address (for sends)
 
-</Step> 
-<Step title="Step 3: Specify the Token Amount"> 
+    Once confirmed, authorize the transaction using your Passkey, MetaMask, or WalletConnect.
+  </Step>
+</Steps>
 
-Enter the amount of tokens to swap or send. The system will display the estimated output for swaps. 
-For both actions, the estimated gas fee will be shown based on current network conditions.
-
-![Unified Token Three](/docs/images/UnifiedToken3.jpg)
-
-</Step>
-<Step title="Step 4: Select a Gas Token">
-
-Use the **dropdown menu** to choose which token to use for paying gas fees.
-
-![Unified Token Four](/docs/images/UnifiedToken4.jpg)
-
-- Only tokens with a sufficient balance to cover the projected fee will be available.
-- **$CENT** is selected by default if present in the wallet.
-- Other supported testnet tokens include **SMPL, BULL,** and **FLIP**.
-</Step>
-<Step title="Step 5: Review and Confirm">
-
-Carefully verify all transaction details:
-
-- Token amounts
-- Selected gas token
-- Recipient address (for sends)
-
-Once confirmed, authorize the transaction using your Passkey, MetaMask, or WalletConnect.
-</Step>
-</Steps> 
 # Strategic Impact on the Network
 
 #### Removes the Need for Native Token Holdings
@@ -62,7 +51,7 @@ Users no longer need to acquire or maintain \$CENT just to transact. This simpli
 
 #### Enables Gas Payment Using Any Supported Token
 
-Transactions can be processed using alternative tokens (e.g., SMPL, BULL, FLIP on testnet), with behind-the-scenes conversion to \$CENT. This flexibility improves usability and supports a more seamless experience across token ecosystems.
+Transactions can be processed using alternative tokens (e.g., WBTC, USDC, WETH on mainnet), with behind-the-scenes conversion to \$CENT. This flexibility improves usability and supports a more seamless experience across token ecosystems.
 
 #### Reduces User Friction and Transaction Failure
 
@@ -84,4 +73,4 @@ Users will have the ability to designate a default token for receiving all inbou
 
 # Video Tutorial: Unified Token
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/wx2CTUplcZk?si=larsvp3LKnxPtqA9&amp;start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wx2CTUplcZk?si=larsvp3LKnxPtqA9&start=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen />
