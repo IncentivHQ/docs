@@ -225,7 +225,8 @@
                   "api-reference/IncentiView/NFT/nft"
                 ]
               }
-            ]
+            ],
+            "hidden": true
           }
         ]
       }
