@@ -32,7 +32,7 @@ Before you begin, ensure you have:
 Install the Incentiv DApp SDK using npm:
 
 ```bash
-npm install @incentiv/dapp-sdk ethers
+npm install @incentiv/dapp-sdk ethers@^6.13.0
 ```
 
 Or using yarn:
@@ -232,9 +232,9 @@ After connecting to the wallet, you need to initialize the `IncentivSigner` to i
 ### Step 1: Create Provider
 
 ```javascript
-import { ethers } from "ethers";
+import { parseEther, formatEther } from "ethers";
 
-const provider = new ethers.providers.JsonRpcProvider(
+const provider = new ethers.JsonRpcProvider(
   Config.Environments.Mainnet.RPC
 );
 ```
@@ -266,7 +266,7 @@ const contract = new ethers.Contract(contractAddress, ABI, signer);
 ```javascript
 import { useRef, useState } from "react";
 import { IncentivResolver, IncentivSigner } from "@incentiv/dapp-sdk";
-import { ethers } from "ethers";
+import { parseEther, formatEther } from "ethers";
 import ABI from "./YourContractABI.json";
 import Config from "./config";
 
@@ -279,7 +279,7 @@ function App() {
   async function fetchContractData(userAddress) {
     try {
       // Create provider
-      const provider = new ethers.providers.JsonRpcProvider(
+      const provider = new ethers.JsonRpcProvider(
         Config.Environments.Mainnet.RPC
       );
 
@@ -453,7 +453,7 @@ async function readContractData(functionName, ...args) {
 ```javascript
 import { useState } from "react";
 import { IncentivResolver, IncentivSigner } from "@incentiv/dapp-sdk";
-import { ethers } from "ethers";
+import { parseEther, formatEther } from "ethers";
 import ABI from "./YourContractABI.json";
 import Config from "./config";
 
@@ -465,7 +465,7 @@ function PaymentExample() {
 
   // Initialize contract (same as previous example)
   async function initializeContract(userAddress) {
-    const provider = new ethers.providers.JsonRpcProvider(
+    const provider = new ethers.JsonRpcProvider(
       Config.Environments.Mainnet.RPC
     );
 
@@ -564,7 +564,7 @@ Here's a complete React component demonstrating the full integration:
 ```javascript
 import { useEffect, useState, useRef } from "react";
 import { IncentivResolver, IncentivSigner } from "@incentiv/dapp-sdk";
-import { ethers } from "ethers";
+import { parseEther, formatEther } from "ethers";
 import ABI from "./YourContractABI.json";
 import Config from "./config";
 
@@ -579,7 +579,7 @@ function FullIntegrationExample() {
   // Initialize contract and signer
   async function fetchContractData(userAddress) {
     try {
-      const provider = new ethers.providers.JsonRpcProvider(
+      const provider = new ethers.JsonRpcProvider(
         Config.Environments.Mainnet.RPC
       );
 
@@ -946,8 +946,8 @@ const signer = new IncentivSigner({
 
 ## Additional Resources
 
-- **Incentiv Network**: https://incentiv.io
-- **Mainnet Portal**: https://portal.incentiv.io
+- **Incentiv Network**: [https://incentiv.io](https://incentiv.io)
+- **Mainnet Portal**: [https://portal.incentiv.io](https://portal.incentiv.io)
 - **Documentation**: Check official Incentiv documentation
 - **Support**: Contact Incentiv support for SDK-specific issues
 
