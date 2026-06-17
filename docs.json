@@ -174,12 +174,7 @@
         "label": "Support",
         "href": "mailto:support@incentiv.net"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Developer Tools",
-      "href": "https://docs.incentiv.net/api-reference/introduction"
-    }
+    ]
   },
   "footer": {
     "socials": {
