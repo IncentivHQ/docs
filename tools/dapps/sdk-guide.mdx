@@ -244,12 +244,13 @@ const signer = new IncentivSigner({
 });
 ```
 
-### Step 3: Create Contract Instance
+### Step 3: Prepare Contract Interface
 
 ```javascript
 import { Interface } from "ethers";
+import ABI from "./YourContractABI.json";
 
-const contractAddress = Config.GamePot.address;
+const contractAddress = Config.SC.address;
 const contractInterface = new Interface(ABI);
 ```
 
@@ -258,53 +259,48 @@ const contractInterface = new Interface(ABI);
 ```javascript
 import { useRef, useState } from "react";
 import { IncentivResolver, IncentivSigner } from "@incentiv/dapp-sdk";
-import { parseEther, formatEther } from "ethers";
+import { ethers, Interface } from "ethers";
 import ABI from "./YourContractABI.json";
 import Config from "./config";
 
 function App() {
   const [address, setAddress] = useState("");
-  const [contract, setContract] = useState(null);
+  const [isReady, setIsReady] = useState(false);
   const signerRef = useRef(null);
+  const contractInterfaceRef = useRef(null);
 
-  // Fetch contract data and initialize signer
   async function fetchContractData(userAddress) {
     try {
-      // Create provider
       const provider = new ethers.JsonRpcProvider(
         Config.Environments.Mainnet.RPC
       );
 
-      // Initialize IncentivSigner
       const signer = new IncentivSigner({
         address: userAddress,
-        provider: provider,
+        provider,
         environment: Config.Environments.Mainnet.Portal,
         entryPoint: "0x3eC61c5633BBD7Afa9144C6610930489736a72d4",
       });
 
-      // Store signer reference
       signerRef.current = signer;
+      contractInterfaceRef.current = new Interface(ABI);
 
-      // Create contract instance
-     const contractInterface = new Interface(ABI);
-
-      signerRef.current = signer;
-      setContractInterface(contractInterface);
-      console.log("Contract initialized:", contractInstance);
+      setIsReady(true);
+      console.log("Signer and contract interface initialized");
     } catch (err) {
-      console.error("Failed to initialize contract:", err);
-      setContract(null);
+      console.error("Failed to initialize signer:", err);
       signerRef.current = null;
+      contractInterfaceRef.current = null;
+      setIsReady(false);
     }
   }
 
-  // Connect wallet and initialize
   const handleConnect = async () => {
     try {
       const userAddress = await IncentivResolver.getAccountAddress(
         Config.Environments.Mainnet.Portal
       );
+
       setAddress(userAddress);
       await fetchContractData(userAddress);
     } catch (err) {
@@ -319,7 +315,7 @@ function App() {
       ) : (
         <div>
           <p>Address: {address}</p>
-          <p>Contract: {contract ? "Ready" : "Not initialized"}</p>
+          <p>Signer Status: {isReady ? "Ready" : "Not initialized"}</p>
         </div>
       )}
     </div>
@@ -335,8 +331,8 @@ To deposit native tokens (CENT) to a smart contract:
 
 ```javascript
 async function depositFunds(amountInCENT) {
-  if (!contract) {
-    throw new Error("Contract not initialized");
+  if (!signer || !contractInterface) {
+    throw new Error("Signer not initialized");
   }
 
   try {
@@ -370,8 +366,8 @@ To withdraw funds from a smart contract:
 
 ```javascript
 async function withdrawFunds(amountInCENT) {
-  if (!contract) {
-    throw new Error("Contract not initialized");
+  if (!signer || !contractInterface) {
+    throw new Error("Signer not initialized");
   }
 
   try {
@@ -410,8 +406,8 @@ For any contract function that requires signing:
 
 ```javascript
 async function callContractFunction(functionName, ...args) {
-  if (!contract) {
-    throw new Error("Contract not initialized");
+  if (!signer || !contractInterface) {
+    throw new Error("Signer not initialized");
   }
 
   try {
@@ -442,8 +438,8 @@ For read-only operations, you don't need to sign:
 
 ```javascript
 async function readContractData(functionName, ...args) {
-  if (!contract) {
-    throw new Error("Contract not initialized");
+  if (!signer || !contractInterface) {
+    throw new Error("Signer not initialized");
   }
 
   try {
@@ -500,8 +496,13 @@ function PaymentExample() {
 
     setIsProcessing(true);
     try {
-      const value = ethers.utils.parseEther(amount.toString());
-      const tx = await contract.deposit({ value });
+      const value = parseEtheramount.toString());
+      const data = contractInterface.encodeFunctionData("deposit", []);
+      const tx = await signer.sendTransaction({
+        to: Config.SC.address,
+        data,
+        value,
+      });
       await tx.wait();
       console.log("Deposit successful!");
       await updateBalance();
@@ -518,7 +519,7 @@ function PaymentExample() {
 
     setIsProcessing(true);
     try {
-      const amountWei = ethers.utils.parseEther(amount.toString());
+      const amountWei = parseEtheramount.toString());
       const tx = await contract.withdraw(amountWei);
       await tx.wait();
       console.log("Withdrawal successful!");
@@ -659,8 +660,13 @@ function FullIntegrationExample() {
 
     setIsProcessing(true);
     try {
-      const value = ethers.utils.parseEther(amount.toString());
-      const tx = await contract.deposit({ value });
+      const value = parseEtheramount.toString());
+      const data = contractInterface.encodeFunctionData("deposit", []);
+      const tx = await signer.sendTransaction({
+        to: Config.SC.address,
+        data,
+        value,
+      });
       console.log("Transaction sent:", tx.hash);
       await tx.wait();
       console.log("Transaction confirmed");
@@ -679,7 +685,7 @@ function FullIntegrationExample() {
 
     setIsProcessing(true);
     try {
-      const amountWei = ethers.utils.parseEther(amount.toString());
+      const amountWei = parseEtheramount.toString());
       const tx = await contract.withdraw(amountWei);
       console.log("Transaction sent:", tx.hash);
       await tx.wait();
@@ -795,7 +801,12 @@ const [isProcessing, setIsProcessing] = useState(false);
 Always wait for transaction confirmation:
 
 ```javascript
-const tx = await contract.deposit({ value });
+const data = contractInterface.encodeFunctionData("deposit", []);
+const tx = await signer.sendTransaction({
+  to: Config.SC.address,
+  data,
+  value,
+});
 await tx.wait(); // Wait for confirmation
 ```
 
@@ -823,9 +834,9 @@ if (!address || address === "null" || address === null) {
 Always check if contract is initialized before use:
 
 ```javascript
-if (!contract) {
-  throw new Error("Contract not initialized");
-}
+  if (!signer || !contractInterface) {
+    throw new Error("Signer not initialized");
+  }
 ```
 
 ### 7. Use Refs for Signers
@@ -839,7 +850,10 @@ const signerRef = useRef(null);
 signerRef.current = new IncentivSigner({...});
 
 // Use later
-const contract = new ethers.Contract(address, ABI, signerRef.current);
+const contractInterfaceRef = useRef(null);
+
+signerRef.current = new IncentivSigner({...});
+contractInterfaceRef.current = new Interface(ABI);
 ```
 
 ## Troubleshooting
