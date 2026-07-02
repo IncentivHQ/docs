@@ -37,14 +37,7 @@
               "docs/GetStarted/UsingIncentiv",
               "docs/GetStarted/IncentivOnboarding",
               "docs/GetStarted/untitled-page-1",
-              {
-                "group": "Rewards",
-                "pages": [
-                  "docs/GetStarted/Rewards/MysteryBox",
-                  "docs/GetStarted/Rewards/refferals",
-                  "docs/GetStarted/Rewards/untitled-page"
-                ]
-              }
+              "docs/GetStarted/Rewards/MysteryBox"
             ]
           },
           {
