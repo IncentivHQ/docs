@@ -4,28 +4,16 @@ description: "A minimal **React + TypeScript** demo that shows how to integrat
 icon: "code"
 ---
 
----
-
-## What you’ll learn
-
-- Connecting to the **Incentiv Portal** and retrieving the user’s account address
-- Creating an `ethers` provider and the SDK’s `IncentivSigner`
-- Reading on‑chain state from a simple **Storage** contract
-- Triggering a transaction that opens the Portal pop‑up and submits an ERC‑4337 _UserOperation_
-- React hooks for real‑time UI updates
-
----
-
 ## Tech stack
 
-| Tool              | Purpose                              |
-| ----------------- | ------------------------------------ |
-| Vite              | Development server and bundler       |
-| React 18          | UI framework                         |
-| TypeScript        | Type safety                          |
-| Tailwind CSS      | Utility‑first styling                |
-| ethers v5         | Ethereum RPC + contract ABI bindings |
-| Incentiv dApp SDK | Proprietary signing & submission     |
+| Tool | Purpose |
+| --- | --- |
+| Vite | Development server and bundler |
+| React 18 | UI framework |
+| TypeScript | Type safety |
+| Tailwind CSS | Utility‑first styling |
+| ethers v5 | Ethereum RPC \+ contract ABI bindings |
+| Incentiv dApp SDK | Proprietary signing & submission |
 
 ---
 
@@ -33,7 +21,7 @@ icon: "code"
 
 ```bash
 # 1. Clone the SDK repository
-git clone https://github.com/IncentivNetwork/incentiv-dapp-sdk.git
+git clone https://github.com/IncentivNetwork/dapp-sdk.git
 cd incentiv-dapp-sdk
 
 # 2. Build the SDK – this creates the dist/ folder required for the example to work
@@ -94,7 +82,7 @@ Reusable modal component used for success/error feedback.
 
 ## Runtime flow
 
-```mermaid expandable
+```mermaid
 sequenceDiagram
     participant User
     participant Example dApp
@@ -113,11 +101,11 @@ sequenceDiagram
 
 ## Troubleshooting
 
-| Symptom                              | Possible cause & fix                                            |
-| ------------------------------------ | --------------------------------------------------------------- |
-| Pop‑up opens then closes immediately | The user closed it or rejected the Portal request.              |
-| `Popup closed` error in console      | Same as above – re‑try and approve the Portal prompt.           |
-| `Failed to connect wallet`           | Wrong Portal URL in `config.ts` or you’re on a different chain. |
+| Symptom | Possible cause & fix |
+| --- | --- |
+| Pop‑up opens then closes immediately | The user closed it or rejected the Portal request. |
+| `Popup closed` error in console | Same as above – re‑try and approve the Portal prompt. |
+| `Failed to connect wallet` | Wrong Portal URL in `config.ts` or you’re on a different chain. |
 
 ---
 

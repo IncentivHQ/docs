@@ -248,17 +248,17 @@ const signer = new IncentivSigner({
   address: userAddress, // From wallet connection
   provider: provider,
   environment: Config.Environments.Mainnet.Portal,
-  entryPoint: "[EntryPoint contract address]", // EntryPoint contract address
+  entryPoint: "0x3eC61c5633BBD7Afa9144C6610930489736a72d4", // EntryPoint contract address
 });
 ```
 
 ### Step 3: Create Contract Instance
 
 ```javascript
-import ABI from "./YourContractABI.json";
+import { Interface } from "ethers";
 
 const contractAddress = Config.GamePot.address;
-const contract = new ethers.Contract(contractAddress, ABI, signer);
+const contractInterface = new Interface(ABI);
 ```
 
 ### Complete Signer Initialization Example
@@ -288,20 +288,17 @@ function App() {
         address: userAddress,
         provider: provider,
         environment: Config.Environments.Mainnet.Portal,
-        entryPoint: "[EntryPoint contract address]",
+        entryPoint: "0x3eC61c5633BBD7Afa9144C6610930489736a72d4",
       });
 
       // Store signer reference
       signerRef.current = signer;
 
       // Create contract instance
-      const contractInstance = new ethers.Contract(
-        Config.SC.address,
-        ABI,
-        signer
-      );
+     const contractInterface = new Interface(ABI);
 
-      setContract(contractInstance);
+      signerRef.current = signer;
+      setContractInterface(contractInterface);
       console.log("Contract initialized:", contractInstance);
     } catch (err) {
       console.error("Failed to initialize contract:", err);
@@ -355,7 +352,13 @@ async function depositFunds(amountInCENT) {
     const value = parseEther(amountInCENT.toString());
 
     // Call the deposit function with native value
-    const tx = await contract.deposit({ value });
+    const data = contractInterface.encodeFunctionData("deposit", []);
+
+    const tx = await signer.sendTransaction({
+      to: Config.SC.address,
+      data,
+      value,
+    });
 
     // Wait for transaction confirmation
     await tx.wait();
@@ -384,7 +387,15 @@ async function withdrawFunds(amountInCENT) {
     const withdrawalAmountWei = parseEther(amountInCENT.toString());
 
     // Call the withdraw function
-    const tx = await contract.withdraw(withdrawalAmountWei);
+    const data = contractInterface.encodeFunctionData("withdraw", [
+    withdrawalAmountWei,
+  ]);
+  
+  const tx = await signer.sendTransaction({
+    to: Config.SC.address,
+    data,
+    value: 0n,
+  });
 
     // Show pending transaction notification
     console.log("Transaction pending:", tx.hash);
@@ -413,7 +424,13 @@ async function callContractFunction(functionName, ...args) {
 
   try {
     // Call the contract function
-    const tx = await contract[functionName](...args);
+    const data = contractInterface.encodeFunctionData(functionName, args);
+
+    const tx = await signer.sendTransaction({
+      to: Config.SC.address,
+      data,
+      value: 0n,
+    });
 
     // Wait for transaction
     await tx.wait();
@@ -473,7 +490,7 @@ function PaymentExample() {
       address: userAddress,
       provider: provider,
       environment: Config.Environments.Mainnet.Portal,
-      entryPoint: "[EntryPoint contract address]",
+      entryPoint: "0x3eC61c5633BBD7Afa9144C6610930489736a72d4",
     });
 
     const contractInstance = new ethers.Contract(
@@ -587,7 +604,7 @@ function FullIntegrationExample() {
         address: userAddress,
         provider: provider,
         environment: Config.Environments.Mainnet.Portal,
-        entryPoint: "[EntryPoint contract address]",
+        entryPoint: "0x3eC61c5633BBD7Afa9144C6610930489736a72d4",
       });
 
       signerRef.current = signer;
@@ -738,7 +755,8 @@ Update your configuration based on the network:
 const MainnetConfig = {
   Portal: "https://portal.incentiv.io/",
   RPC: "https://rpc.incentiv.io",
-  EntryPoint: "0x..." // Update with mainnet EntryPoint
+  EntryPoint: "0x3eC61c5633BBD7Afa9144C6610930489736a72d4",
+  VerifierContract: "0xd44EbfDf4FFf3e367b7e07e47eA0e70F5277Bca0"
 };
 ```
 
@@ -938,7 +956,7 @@ const signer = new IncentivSigner({
   address: "0x...",
   provider: provider,
   environment: "https://portal.incentiv.io",
-  entryPoint: "[EntryPoint contract address]"
+  entryPoint: "0x3eC61c5633BBD7Afa9144C6610930489736a72d4"
 });
 ```
 
