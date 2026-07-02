@@ -352,7 +352,7 @@ async function depositFunds(amountInCENT) {
 
   try {
     // Convert CENT to wei (1 CENT = 10^18 wei)
-    const value = ethers.utils.parseEther(amountInCENT.toString());
+    const value = parseEther(amountInCENT.toString());
 
     // Call the deposit function with native value
     const tx = await contract.deposit({ value });
@@ -381,7 +381,7 @@ async function withdrawFunds(amountInCENT) {
 
   try {
     // Convert CENT to wei
-    const withdrawalAmountWei = ethers.utils.parseEther(amountInCENT.toString());
+    const withdrawalAmountWei = parseEther(amountInCENT.toString());
 
     // Call the withdraw function
     const tx = await contract.withdraw(withdrawalAmountWei);
@@ -527,7 +527,7 @@ function PaymentExample() {
 
     try {
       const balanceWei = await contract.deposits(address);
-      const balanceCENT = ethers.utils.formatEther(balanceWei);
+      const balanceCENT = formatEther(balanceWei);
       setBalance(parseFloat(balanceCENT));
     } catch (err) {
       console.error("Failed to read balance:", err);
@@ -639,7 +639,7 @@ function FullIntegrationExample() {
 
     try {
       const balanceWei = await contractInstance.deposits(userAddr);
-      const balanceCENT = ethers.utils.formatEther(balanceWei);
+      const balanceCENT = formatEther(balanceWei);
       setBalance(parseFloat(balanceCENT));
     } catch (err) {
       console.error("Failed to read balance:", err);
@@ -918,7 +918,7 @@ const address = await IncentivResolver.getAccountAddress(
 ```javascript
 new IncentivSigner({
   address: string,
-  provider: ethers.providers.Provider,
+  provider: ethers.Provider,
   environment: string,
   entryPoint: string
 })
