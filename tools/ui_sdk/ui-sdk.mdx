@@ -63,7 +63,6 @@ Before creating any Account Abstraction provider, you need to configure the SDK 
 
 ```javascript
 const config = {
-  chainId: 11690,                    // The blockchain network ID
   entryPointAddress: '0x...',        // ERC-4337 EntryPoint contract address
   bundlerUrl: 'https://...',         // URL of the ERC-4337 bundler service
   factoryAddress: '0x...'            // Smart account factory contract address
@@ -72,7 +71,6 @@ const config = {
 
 #### Configuration Parameters
 
-- **chainId**: The blockchain network identifier (e.g., 1 for Ethereum mainnet, 11690 for custom networks)
 - **entryPointAddress**: The address of the ERC-4337 EntryPoint contract that handles UserOperations
 - **bundlerUrl**: The HTTP endpoint of the bundler service that processes and submits UserOperations
 - **factoryAddress**: The address of the factory contract that creates smart contract accounts
@@ -100,7 +98,6 @@ const createEoaProvider = async () => {
   await window.ethereum.request({ method: 'eth_requestAccounts' });
 
   const config = {
-    chainId: await baseProvider.getNetwork().then((net) => net.chainId),
     entryPointAddress: process.env.REACT_APP_ENTRY_POINT_ADDRESS,
     bundlerUrl: process.env.REACT_APP_BUNDLER_URL,
     factoryAddress: process.env.REACT_APP_ACCOUNT_FACTORY_ADDRESS
@@ -151,7 +148,6 @@ const createPasskeyProvider = async (credential) => {
   );
 
   const config = {
-    chainId: 11690, // Your network chain ID
     entryPointAddress: process.env.REACT_APP_ENTRY_POINT_ADDRESS,
     bundlerUrl: process.env.REACT_APP_BUNDLER_URL,
     factoryAddress: process.env.REACT_APP_ACCOUNT_FACTORY_ADDRESS
