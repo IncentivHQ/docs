@@ -3,10 +3,9 @@ title: "Incentiv Consensus"
 ---
 
 Consensus is the foundation of every blockchain. It determines who gets to write history, how secure the network is, and how incentives shape long-term participation.\
-Incentiv takes a familiar model, Proof-of-Work, and evolves it into something fundamentally more aligned with real-world usage and economic value.
+Incentiv takes a familiar model, Proof-of-Work, and adapts it to a zero-inflation reward model.
 
-Old PoW systems rewarded miners with static, inflationary payouts. Incentiv replaces this with a **dynamic, demand-coupled security model** that grows stronger as the network becomes more useful.\
-It’s not simply PoW. It’s PoW redesigned for an adaptive, sustainable, human-centric ecosystem.
+Unlike traditional PoW systems that pay miners through fixed inflationary block subsidies, Incentiv has zero block rewards from genesis. Miners are rewarded from gas fees only: **12.5% of gas fees per block go to miners**, while the remaining **87.5% flows to the on-chain FeeDistributor**.
 
 ## Why We Chose Proof-of-Work
 
@@ -35,25 +34,16 @@ In short: **traditional PoW is static** in a world that demands adaptability.
 
 ![Pow Comparison Pn](/docs/images/PowComparison.png)
 
-## **Our Solution: Demand-Coupled Proof-of-Work**
+## **Our Solution: Zero-Inflation Proof-of-Work**
 
-Incentiv introduces a simple but transformative idea:\
-**the security budget should scale automatically with economic activity.**
+Incentiv removes inflationary block subsidies entirely.
 
-When more users interact with the chain, when value flows increase, when applications thrive — Incentiv responds immediately. Mining rewards adjust based on:
+Miner rewards come from real network usage through gas fees. As activity increases, total fee revenue can naturally increase as well, but the protocol split is fixed:
 
-- real transaction volume
-- value-fee inflows
-- total network usage
+- **12.5%** of gas fees go to miners
+- **87.5%** of gas fees flow to the on-chain FeeDistributor
 
-Security is no longer a fixed subsidy. It becomes a function of the network’s vitality.
-
-This creates a living system where:
-
-High usage → larger reward pool → stronger mining → higher security\
-Low usage → smaller reward pool → reduced expenditure without compromising fairness
-
-The network breathes with demand.
+This means miner revenue is connected to actual network activity, but it does **not** adjust algorithmically. The fee split is fixed by protocol.
 
 ## **Mining Designed for Humans**
 
@@ -81,18 +71,15 @@ Here’s how Incentiv’s consensus system operates end-to-end:
    GPUs perform memory-hard hashing to propose the next block.
 2. **Transactions enter block candidates**\
    UserOperations and regular transactions are processed through the EVM, following Ethereum semantics.
-3. **Value fees flow into the shared reward pool**\
-   Each block collects transaction fees and value-based fees, contributing to the Incentiv+ reward system.
-4. **Demand adjusts the block reward dynamically**\
-   The protocol increases or decreases miner rewards based on real network activity and throughput.
+3. **Gas fees are collected per block** Each block collects gas fees from executed transactions.
+4. **Fees are split by a fixed protocol ratio** Miners receive 12.5% of gas fees, while 87.5% flows to the on-chain FeeDistributor.
 5. **Nodes validate and execute the block**\
    Every node re-executes the EVM computation to confirm the correctness of the state transition.
 6. **Fork choice selects the chain with the most cumulative work**\
    The longest-work chain is accepted, ensuring objectivity and resistance to manipulation.
-7. **Miners claim rewards proportional to both security contribution and network demand**\
-   Higher activity → larger reward pool → stronger economic alignment.
+7. **Miners receive the miner fee share** Miners earn the fixed 12.5% share of gas fees from the blocks they produce.
 
 ## **A Consensus Layer aligned with Contribution**
 
-By linking security, usage, and contribution, Incentiv transforms Proof-of-Work into a demand-driven, economically grounded engine. Miners aren’t just competing on hardware they’re securing real value and are rewarded in proportion to the ecosystem they help protect.\
+By removing inflationary block rewards and routing gas fees through a fixed protocol split, Incentiv turns Proof-of-Work into a fee-based security model. Miners secure the network and receive 12.5% of gas fees, while the remaining 87.5% supports the broader on-chain FeeDistributor system.\
 This ensures sustainability, fairness, and long-term decentralization across the entire network.
