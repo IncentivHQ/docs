@@ -19,7 +19,7 @@ Before you begin, ensure you have:
 
 - **Node.js** (v16 or higher)
 - **npm** or **yarn** package manager
-- **Incentiv Wallet Extension** installed in your browser
+- A modern browser with **popups** enabled for your application
 - Basic knowledge of:
   - React/JavaScript
   - Ethereum/Web3 concepts
@@ -129,13 +129,6 @@ The `IncentivResolver` is used to connect to the user's wallet and get their acc
 ```javascript
 const handleConnect = async () => {
   try {
-    // Check if IncentivResolver is available
-    if (typeof IncentivResolver === "undefined") {
-      throw new Error(
-        "Incentiv wallet extension not found. Please install the Incentiv wallet extension."
-      );
-    }
-
     // Get the user's wallet address
     const address = await IncentivResolver.getAccountAddress(
       Config.Environments.Mainnet.Portal
@@ -144,7 +137,7 @@ const handleConnect = async () => {
     // Validate the address
     if (!address || address === "null" || address === null) {
       throw new Error(
-        "No wallet address received. Please make sure your wallet is connected."
+        "No wallet address received. The popup may have been closed or the connection was rejected."
       );
     }
 
@@ -155,7 +148,10 @@ const handleConnect = async () => {
     await fetchContractData(address);
   } catch (err) {
     console.error("Connection error:", err);
-    // Handle error (show toast, etc.)
+    // Possible causes:
+    // - Popup blocked by the browser
+    // - User closed the popup
+    // - User rejected the connection
   }
 };
 ```
@@ -177,13 +173,6 @@ function WalletConnection() {
     setError("");
 
     try {
-      // Check if wallet extension is available
-      if (typeof IncentivResolver === "undefined") {
-        throw new Error(
-          "Incentiv wallet extension not found. Please install the Incentiv wallet extension."
-        );
-      }
-
       // Connect to wallet
       const userAddress = await IncentivResolver.getAccountAddress(
         Config.Environments.Mainnet.Portal
@@ -192,7 +181,7 @@ function WalletConnection() {
       // Validate address
       if (!userAddress || userAddress === "null" || userAddress === null) {
         throw new Error(
-          "No wallet address received. Please make sure your wallet is connected and you've approved the connection."
+          "No wallet address received. The popup may have been closed or the connection was rejected."
         );
       }
 
@@ -200,7 +189,10 @@ function WalletConnection() {
       console.log("Wallet connected:", userAddress);
     } catch (err) {
       console.error("Connection error:", err);
-      setError(err.message || "Failed to connect wallet");
+      setError(
+        err.message ||
+          "Failed to connect. Please allow popups and try again."
+      );
     } finally {
       setIsConnecting(false);
     }
@@ -628,16 +620,14 @@ function FullIntegrationExample() {
   const handleConnect = async () => {
     setIsConnecting(true);
     try {
-      if (typeof IncentivResolver === "undefined") {
-        throw new Error("Incentiv wallet extension not found.");
-      }
-
       const userAddress = await IncentivResolver.getAccountAddress(
         Config.Environments.Mainnet.Portal
       );
 
       if (!userAddress || userAddress === "null" || userAddress === null) {
-        throw new Error("No wallet address received.");
+        throw new Error(
+          "No wallet address received. The popup may have been closed or the connection was rejected."
+        );
       }
 
       setAddress(userAddress);
@@ -854,21 +844,22 @@ const contract = new ethers.Contract(address, ABI, signerRef.current);
 
 ## Troubleshooting
 
-### Issue: "IncentivResolver is undefined"
+### Issue: Portal popup is blocked
 
 **Solution:**
 
-- Ensure the Incentiv wallet extension is installed
-- Check that the extension is enabled
-- Refresh the page after installing the extension
+- Allow popups for your application.
+- Trigger `getAccountAddress()` from a user action (such as clicking a button).
+- Try the connection again.
 
 ### Issue: "No wallet address received"
 
 **Solution:**
 
-- Make sure the wallet is unlocked
-- Check that the user approved the connection request
-- Verify the Portal URL is correct
+- Verify the Portal URL is correct.
+- Ensure the popup was not blocked.
+- Ensure the user completed the connection flow in the Portal.
+- If the popup was closed or the user rejected the request, ask them to try again.
 
 ### Issue: Transaction fails with "insufficient funds"
 
@@ -911,7 +902,7 @@ const contract = new ethers.Contract(address, ABI, signerRef.current);
 
 #### `getAccountAddress(portal: string): Promise<string>`
 
-Gets the user's wallet address from the Incentiv wallet extension.
+Opens the Incentiv Portal in a popup and returns the user's wallet address after the connection flow is completed.
 
 **Parameters:**
 
