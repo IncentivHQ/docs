@@ -1,31 +1,91 @@
 ---
-title: "Bridges"
+title: "Incentiv Bridge"
 icon: "bridge"
-description: "A bridge is a tool that allows users to move assets such as USDC from Ethereum to Incentiv and vice versa. "
+description: "Move supported assets between Incentiv and connected networks using the official Incentiv Bridge. "
 ---
 
-## Hyperlane
+# Incentiv Bridge
 
-[Hyperlane](https://www.hyperlane.xyz) is a modular interoperability protocol that enables permissionless, secure messaging and asset transfers across blockchains. Developers can deploy it on any chain and customize security.
+The **Incentiv Bridge** lets you move supported assets between Incentiv and connected networks through an interface operated by Incentiv.
 
-<CardGroup cols={3}>
-  <Card title="Hyperlane Nexus" icon="bridge" color="#ffaf00" href="https://nexus.hyperlane.xyz?destination=incentiv">
-    Bridge
+<CardGroup cols={2}>
+  <Card title="Open Incentiv Bridge" color="#FE7233" icon="bridge" href="https://bridge.incentiv.io/">
+    Transfer assets to or from Incentiv.
   </Card>
-  <Card title="Hyperlane Explorer" icon="search" color="#ffaf00" href="https://explorer.hyperlane.xyz">
-    Hyperlane Explorer
-  </Card>
-  <Card title="Hyperlane" icon="book" color="#ffaf00" href="https://docs.hyperlane.xyz">
-    Documentation
+
+  <Card title="Bridge Explorer" color="#FE7233" icon="magnifying-glass" href="https://explorer.bridge.incentiv.io/">
+    Track the status of a bridge transfer.
   </Card>
 </CardGroup>
 
-### Bridge Tokens Contracts
+<Warning>
+  Always use the official URLs shown above. Check the selected token, source network, destination network, recipient address, and estimated fees before confirming a transfer.
+</Warning>
 
-| **Currency Symbol** | **Address**                                                                                                                 | **YAML**                                                                                                                |
-| :------------------ | :-------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------- |
-| **WETH**            | [0x3e425317dB7BaC8077093117081b40d9b46F29cb](https://explorer.incentiv.io/token/0x3e425317dB7BaC8077093117081b40d9b46F29cb) | [YAML](https://github.com/hyperlane-xyz/hyperlane-registry/blob/main/deployments/warp_routes/WETH/incentiv-config.yaml) |
-| **WBTC**            | [0x0292593D416Cb765E0e8FF77b32fA7e465958FEE](https://explorer.incentiv.io/token/0x0292593D416Cb765E0e8FF77b32fA7e465958FEE) | [YAML](https://github.com/hyperlane-xyz/hyperlane-registry/blob/main/deployments/warp_routes/WBTC/incentiv-config.yaml) |
-| **USDC**            | [0x16e43840d8D79896A389a3De85aB0B0210C05685](https://explorer.incentiv.io/token/0x16e43840d8D79896A389a3De85aB0B0210C05685) | [YAML](https://github.com/hyperlane-xyz/hyperlane-registry/blob/main/deployments/warp_routes/USDC/incentiv-config.yaml) |
-| **USDT**            | [0x39b076b5d23F588690D480af3Bf820edad31a4bB](https://explorer.incentiv.io/token/0x39b076b5d23F588690D480af3Bf820edad31a4bB) | [YAML](https://github.com/hyperlane-xyz/hyperlane-registry/blob/main/deployments/warp_routes/USDT/incentiv-config.yaml) |
-| **SOL**             | [0xfaC24134dbc4b00Ee11114eCDFE6397f389203E3](https://explorer.incentiv.io/token/0xfaC24134dbc4b00Ee11114eCDFE6397f389203E3) | [YAML](https://github.com/hyperlane-xyz/hyperlane-registry/blob/main/deployments/warp_routes/SOL/incentiv-config.yaml)  |
+## Supported assets and networks
+
+The bridge currently supports the following routes:
+
+| Asset | Supported networks |
+| :-- | :-- |
+| **USDC** | Incentiv, Ethereum, Arbitrum, Base, Optimism, Polygon |
+| **USDT** | Incentiv, Ethereum |
+| **WETH** | Incentiv, Ethereum |
+| **WBTC** | Incentiv, Ethereum |
+| **SOL** | Incentiv, Solana |
+
+<Note>
+  Available routes may change. The token and network selectors in the Incentiv Bridge show the routes currently available for transfer.
+</Note>
+
+## Bridge an asset
+
+<Steps>
+  <Step title="Open the bridge">
+    Go to [bridge.incentiv.io](https://bridge.incentiv.io/).
+  </Step>
+  <Step title="Select the asset and source network">
+    Choose the token you want to transfer and the network where you currently hold it.
+  </Step>
+  <Step title="Connect your wallet">
+    Connect the wallet that holds the asset on the source network.
+  </Step>
+  <Step title="Choose the destination">
+    Select the destination network. Either the source or destination must be **Incentiv**.
+  </Step>
+  <Step title="Enter the transfer details">
+    Enter the amount to bridge. To send the asset to a different wallet, enable **Receive to Another Address** and carefully verify the recipient address.
+  </Step>
+  <Step title="Review and confirm">
+    Review the route, amount, recipient, estimated completion time, and fees. Select **Bridge**, then approve the transaction in your wallet.
+  </Step>
+  <Step title="Track the transfer">
+    Follow the transfer in the [Incentiv Bridge Explorer](https://explorer.bridge.incentiv.io/) until it is complete.
+  </Step>
+</Steps>
+
+## Bridged token contracts on Incentiv
+
+Use the contract address—not only the token name or symbol—to verify an asset on Incentiv.
+
+| Asset | Incentiv contract address |
+| :-- | :-- |
+| **WETH** | [`0x3e425317dB7BaC8077093117081b40d9b46F29cb`](https://explorer.incentiv.io/token/0x3e425317dB7BaC8077093117081b40d9b46F29cb) |
+| **WBTC** | [`0x0292593D416Cb765E0e8FF77b32fA7e465958FEE`](https://explorer.incentiv.io/token/0x0292593D416Cb765E0e8FF77b32fA7e465958FEE) |
+| **USDC** | [`0x16e43840d8D79896A389a3De85aB0B0210C05685`](https://explorer.incentiv.io/token/0x16e43840d8D79896A389a3De85aB0B0210C05685) |
+| **USDT** | [`0x39b076b5d23F588690D480af3Bf820edad31a4bB`](https://explorer.incentiv.io/token/0x39b076b5d23F588690D480af3Bf820edad31a4bB) |
+| **SOL** | [`0xfaC24134dbc4b00Ee11114eCDFE6397f389203E3`](https://explorer.incentiv.io/token/0xfaC24134dbc4b00Ee11114eCDFE6397f389203E3) |
+
+## Before you confirm
+
+- Keep enough of the source network's native token to pay the source transaction fee.
+- Confirm that the destination network supports the selected asset.
+- Check the recipient address if you are sending to another wallet.
+- Review the amount and fee estimate shown in the bridge.
+- Avoid closing the wallet confirmation before the source transaction is submitted.
+
+## Transfer status and support
+
+Use the [Incentiv Bridge Explorer](https://explorer.bridge.incentiv.io/) to check a transfer's status.
+
+If a transfer remains pending longer than expected, keep the source transaction hash and bridge transfer identifier available when contacting Incentiv support. Do not submit the same transfer again until you have confirmed the status of the original transfer.
