@@ -76,6 +76,37 @@ Use the contract address—not only the token name or symbol—to verify an asse
 | **USDT** | [`0x39b076b5d23F588690D480af3Bf820edad31a4bB`](https://explorer.incentiv.io/token/0x39b076b5d23F588690D480af3Bf820edad31a4bB) |
 | **SOL** | [`0xfaC24134dbc4b00Ee11114eCDFE6397f389203E3`](https://explorer.incentiv.io/token/0xfaC24134dbc4b00Ee11114eCDFE6397f389203E3) |
 
+## Settlement times
+
+Transfer time is dominated by how long the bridge waits for the **source** chain to be safe from reorganization, plus delivery time on the destination. That means the direction of travel matters far more than the amount or the asset.
+
+### Into Incentiv
+
+| From | Typical | Why |
+| :-- | :-- | :-- |
+| Ethereum | **3–4 minutes** | Ethereum's 15-block reorg wait (~3 min) dominates |
+| Base | **~30 seconds** | 10-block wait at ~2 s blocks |
+| Optimism | **~30 seconds** | 10-block wait at ~2 s blocks |
+| Polygon | **under 30 seconds** | Waits for Polygon finality |
+| Arbitrum | **under 15 seconds** | 5-block wait at ~0.25 s blocks |
+| Solana | **~30 seconds** | No reorg wait; relayer time only |
+
+### Out of Incentiv
+
+| To | Typical |
+| :-- | :-- |
+| Ethereum, Arbitrum, Base, Optimism, Polygon, Solana | **1–2 minutes** |
+
+Outbound time is effectively the same regardless of destination: it is set by Incentiv's own 10-block (~53 second) confirmation wait plus delivery overhead, not by the receiving chain.
+
+### What to expect
+
+- **Most transfers settle well inside the times above.** Measured across recent live transfers, outbound delivery had a median of ~76 seconds and a 90th percentile of ~98 seconds.
+- **Occasionally a transfer takes much longer.** During relayer incidents, delays of up to a few hours have been observed. These transfers still complete — funds are not lost, and the message stays queued for delivery.
+- **Do not resubmit a pending transfer.** A delayed transfer will settle on its own. Sending again creates a second, independent transfer.
+
+Check any transfer's status in the [Incentiv Bridge Explorer](https://explorer.bridge.incentiv.io/).
+
 ## Before you confirm
 
 - Keep enough of the source network's native token to pay the source transaction fee.
